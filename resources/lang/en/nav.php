@@ -1,0 +1,22 @@
+<?php
+
+return [
+    'brand'       => 'MamaCare',
+    'home'        => 'Home',
+    'calculator'  => 'Risk Calculator',
+    'education'   => 'Education',
+    'high_risk'   => 'High-Risk',
+    'chatbot'     => 'AI Assistant',
+    'lang_ar'     => 'عربي',
+    'lang_en'     => 'EN',
+
+    // Footer
+    'quick_links'     => 'Quick Links',
+    'contact'         => 'Contact',
+    'tagline'         => 'An integrated pregnancy monitoring system with advanced AI and accurate risk assessment.',
+    'supervisor'      => 'Under the supervision of',
+    'supervisor_name' => 'Dr. Hala Hamed',
+    'developed_by'    => 'Developed by',
+    'developer_name'  => 'Saad Harera',
+    'rights'          => 'All rights reserved',
+];
