@@ -5,6 +5,7 @@ return [
     'powered_by'    => 'Powered by Gemini AI',
     'assistant_name'=> 'MamaCare Assistant',
     'online'        => 'Online',
+    'welcome_message' => 'Hello! I\'m your intelligent medical assistant. How can I help you today? You can ask me about:',
     'topic1'        => 'Pregnancy symptoms & nutrition',
     'topic2'        => 'Danger signs',
     'topic3'        => 'General health tips',
