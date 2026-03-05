@@ -150,7 +150,7 @@
             </p>
         </div>
         
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             <!-- Feature 1 -->
             <div class="card-minimal rounded-2xl p-6" data-aos="fade-up" data-aos-delay="100">
                 <div class="w-14 h-14 rounded-2xl bg-cyan-100 flex items-center justify-center mb-5">
@@ -203,7 +203,7 @@
             </div>
             
             <!-- Feature 4 -->
-            <div class="card-minimal rounded-2xl p-6" data-aos="fade-up" data-aos-delay="400">
+            {{-- <div class="card-minimal rounded-2xl p-6" data-aos="fade-up" data-aos-delay="400">
                 <div class="w-14 h-14 rounded-2xl bg-cyan-100 flex items-center justify-center mb-5">
                     <i class="fas fa-file-medical text-cyan-600 text-xl"></i>
                 </div>
@@ -217,7 +217,7 @@
                     {{ __('home.svc_rep_cta') }}
                     <i class="fas fa-arrow-{{ app()->getLocale() == 'ar' ? 'left' : 'right' }} text-xs"></i>
                 </a>
-            </div>
+            </div> --}}
         </div>
     </div>
 </section>

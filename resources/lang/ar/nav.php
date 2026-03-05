@@ -1,7 +1,7 @@
 <?php
 
 return [
-    'brand'       => 'رعاية الحمل',
+    'brand'       => 'MamaCare',
     'home'        => 'الرئيسية',
     'calculator'  => 'حاسبة الخطورة',
     'education'   => 'التوعية الصحية',
@@ -19,4 +19,7 @@ return [
     'developed_by'    => 'تم تطويره بواسطة',
     'developer_name'  => 'سعد حريرة',
     'rights'          => 'جميع الحقوق محفوظة',
+    'phone_label'     => 'الهاتف',
+    'email_label'     => 'البريد الإلكتروني',
+    'address_label'   => 'الموقع',
 ];

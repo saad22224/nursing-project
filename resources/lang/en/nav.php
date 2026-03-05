@@ -19,4 +19,7 @@ return [
     'developed_by'    => 'Developed by',
     'developer_name'  => 'Saad Harera',
     'rights'          => 'All rights reserved',
+    'phone_label'     => 'Phone',
+    'email_label'     => 'Email',
+    'address_label'   => 'Location',
 ];
