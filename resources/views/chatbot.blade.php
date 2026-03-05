@@ -6,10 +6,10 @@
 <!-- Hero Section -->
 <section class="py-10 bg-gradient-to-b from-cyan-50 to-white" style="padding-top: 100px;">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-        <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-cyan-100 text-cyan-700 text-sm font-medium mb-4" data-aos="fade-up">
+        {{-- <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-cyan-100 text-cyan-700 text-sm font-medium mb-4" data-aos="fade-up">
             <i class="fas fa-sparkles"></i>
             {{ __('chatbot.powered_by') }}
-        </div>
+        </div> --}}
         <h1 class="text-3xl md:text-4xl font-bold text-gray-900 mb-3" data-aos="fade-up" data-aos-delay="100">
             {{ __('chatbot.title') }}
         </h1>

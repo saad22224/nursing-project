@@ -240,6 +240,61 @@
         [dir="rtl"] .space-x-reverse> :not([hidden])~ :not([hidden]) {
             --tw-space-x-reverse: 1;
         }
+
+        /* Page Specific Spacing Overrides (Education & High Risk) */
+        #nutrition,
+        #danger-signs,
+        #vaccination,
+        #mental-health,
+        section.bg-gray-50,
+        section.py-12 {
+            padding-top: 6rem !important;
+            padding-bottom: 6rem !important;
+        }
+
+        #hypertension,
+        #diabetes,
+        #anemia,
+        #placenta,
+        #multiple {
+            margin-bottom: 5rem !important;
+            padding: 2.5rem !important;
+        }
+
+        /* Hero spacing for specific pages */
+        section[style*="padding-top: 100px"],
+        section[style*="padding-top: 110px"] {
+            padding-top: 140px !important;
+            padding-bottom: 80px !important;
+        }
+
+        /* Grid and Element Gaps */
+        .grid {
+            gap: 2rem !important;
+        }
+
+        /* Titles and Headers Margins */
+        .mb-10 {
+            margin-bottom: 3.5rem !important;
+        }
+
+        .card-minimal,
+        .bg-white.rounded-2xl {
+            margin-bottom: 1rem;
+        }
+
+        #danger-signs .grid,
+        #nutrition .grid,
+        #vaccination .grid,
+        #mental-health .grid {
+            gap: 2.5rem !important;
+        }
+
+        /* High Risk Condition Card Internal Spacing */
+        .bg-white.px-8.py-8.grid.grid-cols-1.md:grid-cols-2.gap-6 {
+            gap: 3rem !important;
+            padding: 3rem !important;
+        }
     </style>
 
     @yield('styles')
