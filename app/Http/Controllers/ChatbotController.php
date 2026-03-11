@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Log;
+
 class ChatbotController extends Controller
 {
     public function chat(Request $request)
@@ -22,7 +23,7 @@ class ChatbotController extends Controller
 
         try {
             $response = $this->callGeminiAPI($systemContext, $userMessage, $locale);
-            
+
             return response()->json([
                 'success' => true,
                 'message' => $response
@@ -30,7 +31,7 @@ class ChatbotController extends Controller
         } catch (\Exception $e) {
             return response()->json([
                 'success' => false,
-                'message' => $locale == 'ar' 
+                'message' => $locale == 'ar'
                     ? 'عذراً، حدث خطأ. يرجى المحاولة مرة أخرى.'
                     : 'Sorry, an error occurred. Please try again.'
             ], 500);
@@ -40,107 +41,57 @@ class ChatbotController extends Controller
     private function getSystemContext($locale)
     {
         if ($locale == 'ar') {
-            return "أنت مساعد طبي متخصص في رعاية الحمل. اسمك 'مساعد رعاية الحمل'.
-
-معلومات عن النظام:
-- هذا نظام 'رعاية الحمل الذكية' (MamaCare)
-- يوفر حاسبة مخاطر الحمل، محتوى تعليمي صحي، ومساعد AI
-- نظام تقييم المخاطر: 0-1 نقطة = خطورة منخفضة، 2-3 = متوسطة، 4+ = عالية
-
-عوامل الخطورة المقيمة:
-- العمر: أقل من 18 أو أكثر من 35
-- ضغط الدم: 140/90 أو أعلى
-- السكر: 140 mg/dL أو أكثر
-- الهيموجلوبين: أقل من 11 g/dL
-- مؤشر كتلة الجسم: 30 أو أكثر
-- عملية قيصرية سابقة
-- نزيف مهبلي
-- عدم توافق RH
-
-قواعد مهمة للحالات الطارئة:
-- ضغط الدم 160 أو أكثر = طوارئ
-- الهيموجلوبين أقل من 9 = أنيميا حادة
-- نزيف مع ارتفاع ضغط = طوارئ فورية
-
-محتوى التوعية الصحية المتاح:
-- التغذية: الحديد، حمض الفوليك، الكالسيوم، الأطعمة الممنوعة
-- علامات الخطر: صداع شديد، نزيف، انخفاض حركة الجنين، تورم الوجه
-- التطعيمات: الكزاز، الإنفلونزا
-- الصحة النفسية: القلق، اكتئاب ما بعد الولادة
-
+            return "أنت 'مساعد رعاية الحمل' (MamaCare).
+المهام: دعم الحمل، حاسبة المخاطر، توعية صحية.
+التقييم: (0-1 منخفض، 2-3 متوسط، 4+ عالي).
+العوامل: عمر (<18 أو >35)، ضغط (>=140/90)، سكر (>=140)، هيموجلوبين (<11)، BMI (>=30)، قيصرية سابقة، نزيف، RH.
+طوارئ فورية: ضغط >=160، هيموجلوبين <9، نزيف مع ضغط مرتفع.
 تعليمات:
-1. أجب باللغة العربية فقط
-2. كن داعماً ومطمئناً
-3. قدم معلومات طبية دقيقة وموثوقة
-4. في الحالات الخطيرة، انصح بالتوجه للطبيب فوراً
-5. لا تشخص حالات - فقط قدم معلومات عامة
-6. اذكر دائماً أن هذه المعلومات لا تغني عن استشارة الطبيب
-7. اجعل إجاباتك مختصرة ومفيدة (3-5 جمل)";
+- أجب بالعربية فقط، بأسلوب داعم ومختصر (3-5 جمل).
+- لا تشخص؛ قدم معلومات عامة وحول للطبيب في حالات الخطر.
+- أضف دائماً: 'هذه المعلومات لا تغني عن استشارة الطبيب'.";
         }
 
-        return "You are a medical assistant specialized in pregnancy care. Your name is 'MamaCare Assistant'.
-
-System Information:
-- This is 'Smart Antenatal Care System' (MamaCare)
-- Provides pregnancy risk calculator, health educational content, and AI assistant
-- Risk assessment system: 0-1 points = Low risk, 2-3 = Moderate, 4+ = High
-
-Risk factors assessed:
-- Age: under 18 or over 35
-- Blood Pressure: 140/90 or higher
-- Blood Sugar: 140 mg/dL or more
-- Hemoglobin: less than 11 g/dL
-- BMI: 30 or more
-- Previous cesarean section
-- Vaginal bleeding
-- RH incompatibility
-
-Emergency rules:
-- BP 160 or higher = Emergency
-- Hemoglobin below 9 = Severe anemia
-- Bleeding with high BP = Immediate emergency
-
-Health education content available:
-- Nutrition: Iron, folic acid, calcium, foods to avoid
-- Danger signs: severe headache, bleeding, decreased fetal movement, face swelling
-- Vaccinations: Tetanus, Influenza
-- Mental health: Anxiety, postpartum depression
-
+        return "You are 'MamaCare Assistant'.
+Tasks: Pregnancy support, risk calculator, health education.
+Assessment: (0-1 Low, 2-3 Moderate, 4+ High).
+Factors: Age (<18 or >35), BP (>=140/90), Sugar (>=140), Hb (<11), BMI (>=30), prev C-section, bleeding, RH.
+Emergency: BP >=160, Hb <9, bleeding with high BP.
 Instructions:
-1. Respond in English only
-2. Be supportive and reassuring
-3. Provide accurate and reliable medical information
-4. In serious cases, advise to see a doctor immediately
-5. Don't diagnose conditions - only provide general information
-6. Always mention that this information doesn't replace doctor consultation
-7. Keep answers concise and helpful (3-5 sentences)";
+- Respond in English only, concisely (3-5 sentences).
+- Non-diagnostic; provide general info and refer to a doctor for risks.
+- Always add: 'This info doesn't replace a doctor's consultation'.";
     }
 
     private function callGeminiAPI($systemContext, $userMessage, $locale)
     {
         $apiKey = env('GEMINI_API');
-        
+
         if (!$apiKey) {
-            return $locale == 'ar' 
+            return $locale == 'ar'
                 ? 'عذراً، خدمة AI غير متاحة حالياً. يرجى المحاولة لاحقاً.'
                 : 'Sorry, AI service is currently unavailable. Please try again later.';
         }
-// https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent
         $response = Http::withHeaders([
             'Content-Type' => 'application/json',
-        ])->post("https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent?key={$apiKey}", [
+        ])->post("https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-lite:generateContent?key={$apiKey}", [
+            'system_instruction' => [
+                'parts' => [
+                    ['text' => $systemContext]
+                ]
+            ],
             'contents' => [
                 [
                     'parts' => [
-                        ['text' => $systemContext . "\n\nUser Question: " . $userMessage]
+                        ['text' => $userMessage]
                     ]
                 ]
             ],
             'generationConfig' => [
-                'temperature' => 0.7,
+                'temperature' => 0.5,
                 'topK' => 40,
                 'topP' => 0.95,
-                'maxOutputTokens' => 500,
+                'maxOutputTokens' => 1024,
             ],
             'safetySettings' => [
                 [
@@ -164,7 +115,7 @@ Instructions:
 
         if ($response->successful()) {
             $data = $response->json();
-            
+
             if (isset($data['candidates'][0]['content']['parts'][0]['text'])) {
                 return $data['candidates'][0]['content']['parts'][0]['text'];
             }
