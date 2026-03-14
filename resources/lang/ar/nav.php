@@ -1,7 +1,7 @@
 <?php
 
 return [
-    'brand'       => 'MamaCare',
+    'brand'       => 'materniq',
     'home'        => 'الرئيسية',
     'calculator'  => 'حاسبة الخطورة',
     'education'   => 'التوعية الصحية',
@@ -9,6 +9,8 @@ return [
     'chatbot'     => 'المساعد الذكي',
     'lang_ar'     => 'عربي',
     'lang_en'     => 'EN',
+    'register_clinic' => 'التسجيل كعيادة',
+    'clinic_dashboard' => 'لوحة تحكم العيادة',
 
     // Footer
     'quick_links'     => 'روابط سريعة',

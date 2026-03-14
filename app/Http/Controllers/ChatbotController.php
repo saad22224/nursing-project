@@ -41,7 +41,7 @@ class ChatbotController extends Controller
     private function getSystemContext($locale)
     {
         if ($locale == 'ar') {
-            return "أنت 'مساعد رعاية الحمل' (MamaCare).
+            return "أنت 'مساعد رعاية الحمل' (materniq).
 المهام: دعم الحمل، حاسبة المخاطر، توعية صحية.
 التقييم: (0-1 منخفض، 2-3 متوسط، 4+ عالي).
 العوامل: عمر (<18 أو >35)، ضغط (>=140/90)، سكر (>=140)، هيموجلوبين (<11)، BMI (>=30)، قيصرية سابقة، نزيف، RH.
@@ -52,7 +52,7 @@ class ChatbotController extends Controller
 - أضف دائماً: 'هذه المعلومات لا تغني عن استشارة الطبيب'.";
         }
 
-        return "You are 'MamaCare Assistant'.
+        return "You are 'materniq Assistant'.
 Tasks: Pregnancy support, risk calculator, health education.
 Assessment: (0-1 Low, 2-3 Moderate, 4+ High).
 Factors: Age (<18 or >35), BP (>=140/90), Sugar (>=140), Hb (<11), BMI (>=30), prev C-section, bleeding, RH.

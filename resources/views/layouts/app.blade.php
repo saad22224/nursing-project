@@ -342,6 +342,19 @@
 
                 <!-- Right Side -->
                 <div class="flex items-center gap-4">
+                    <!-- Clinic Button -->
+                    <div class="hidden md:block">
+                        @auth('clinic')
+                            <a href="{{ route('clinic.dashboard') }}" class="btn-primary text-sm shadow-lg shadow-cyan-500/30">
+                                <i class="fas fa-stethoscope ml-1 rtl:mr-1"></i> {{ __('nav.clinic_dashboard') }}
+                            </a>
+                        @else
+                            <a href="{{ route('clinic.register') }}" class="btn-primary text-sm shadow-lg shadow-cyan-500/30">
+                                <i class="fas fa-plus ml-1 rtl:mr-1"></i> {{ __('nav.register_clinic') }}
+                            </a>
+                        @endauth
+                    </div>
+
                     <!-- Language Switcher -->
                     <div class="lang-switcher">
                         <a href="{{ route('lang.switch', 'ar') }}"
@@ -385,6 +398,18 @@
                     class="block px-4 py-3 rounded-xl {{ request()->routeIs('chatbot') ? 'bg-cyan-50 text-cyan-600' : 'text-gray-600 hover:bg-gray-50' }} font-medium transition-colors">
                     {{ __('nav.chatbot') }}
                 </a>
+                
+                @auth('clinic')
+                    <a href="{{ route('clinic.dashboard') }}"
+                        class="block px-4 py-3 rounded-xl bg-cyan-600 text-white font-medium transition-colors text-center mt-2">
+                        <i class="fas fa-stethoscope ml-1 rtl:mr-1"></i> {{ __('nav.clinic_dashboard') }}
+                    </a>
+                @else
+                    <a href="{{ route('clinic.register') }}"
+                        class="block px-4 py-3 rounded-xl bg-cyan-600 text-white font-medium transition-colors text-center mt-2">
+                        <i class="fas fa-plus ml-1 rtl:mr-1"></i> {{ __('nav.register_clinic') }}
+                    </a>
+                @endauth
             </div>
         </div>
     </nav>

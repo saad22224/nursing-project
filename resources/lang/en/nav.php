@@ -1,7 +1,7 @@
 <?php
 
 return [
-    'brand'       => 'MamaCare',
+    'brand'       => 'materniq',
     'home'        => 'Home',
     'calculator'  => 'Risk Calculator',
     'education'   => 'Education',
@@ -9,6 +9,8 @@ return [
     'chatbot'     => 'AI Assistant',
     'lang_ar'     => 'عربي',
     'lang_en'     => 'EN',
+    'register_clinic' => 'Register as Clinic',
+    'clinic_dashboard' => 'Clinic Dashboard',
 
     // Footer
     'quick_links'     => 'Quick Links',
