@@ -147,13 +147,6 @@
                     <span>{{ __('clinic.patients') }}</span>
                 </a>
 
-                <div class="mt-8 pt-8 border-t border-slate-100">
-                    <p class="px-8 text-[11px] font-bold text-slate-400 uppercase tracking-[0.2em] mb-4">{{ __('Actions') }}</p>
-                    <a href="{{ route('home') }}" class="nav-link">
-                        <i class="fas fa-globe"></i>
-                        <span>{{ __('nav.home') }}</span>
-                    </a>
-                </div>
             </nav>
 
             <div class="p-6">
@@ -187,7 +180,7 @@
 
     <!-- Main Content -->
     <main class="main-content">
-        <div class="p-4 lg:p-10">
+        <div class="p-4 lg:p-6">
             @if(session('success'))
             <div class="mb-6 bg-emerald-50 border border-emerald-100 text-emerald-700 px-6 py-4 rounded-2xl flex items-center gap-3 shadow-sm animate-fade-in">
                 <i class="fas fa-check-circle text-lg"></i>

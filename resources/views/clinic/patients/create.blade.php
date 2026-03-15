@@ -94,19 +94,19 @@
             
             <div class="grid grid-cols-2 md:grid-cols-4 gap-6 bg-slate-50/50 p-6 rounded-2xl border border-slate-50">
                 <div>
-                    <label class="block text-[10px] font-black text-slate-400 uppercase tracking-widest mb-2 text-center">Gravida (G)</label>
+                    <label class="block text-[10px] font-black text-slate-400 uppercase tracking-widest mb-2 text-center">{{ app()->getLocale() == 'ar' ? 'حامل حالياً (Gravida)' : 'Gravida (G)' }}</label>
                     <input type="number" name="gravida" value="1" class="w-full bg-white border border-slate-100 rounded-xl py-4 text-center text-xl font-bold text-slate-700 shadow-sm focus:border-cyan-500 focus:ring-0">
                 </div>
                 <div>
-                    <label class="block text-[10px] font-black text-slate-400 uppercase tracking-widest mb-2 text-center">Para (P)</label>
+                    <label class="block text-[10px] font-black text-slate-400 uppercase tracking-widest mb-2 text-center">{{ app()->getLocale() == 'ar' ? 'ولادات (Para)' : 'Para (P)' }}</label>
                     <input type="number" name="para" value="0" class="w-full bg-white border border-slate-100 rounded-xl py-4 text-center text-xl font-bold text-slate-700 shadow-sm focus:border-cyan-500 focus:ring-0">
                 </div>
                 <div>
-                    <label class="block text-[10px] font-black text-slate-400 uppercase tracking-widest mb-2 text-center">Abortion (A)</label>
+                    <label class="block text-[10px] font-black text-slate-400 uppercase tracking-widest mb-2 text-center">{{ app()->getLocale() == 'ar' ? 'إجهاض (Abortion)' : 'Abortion (A)' }}</label>
                     <input type="number" name="abortion" value="0" class="w-full bg-white border border-slate-100 rounded-xl py-4 text-center text-xl font-bold text-slate-700 shadow-sm focus:border-cyan-500 focus:ring-0">
                 </div>
                 <div>
-                    <label class="block text-[10px] font-black text-slate-400 uppercase tracking-widest mb-2 text-center">Living (L)</label>
+                    <label class="block text-[10px] font-black text-slate-400 uppercase tracking-widest mb-2 text-center">{{ app()->getLocale() == 'ar' ? 'أحياء (Living)' : 'Living (L)' }}</label>
                     <input type="number" name="living" value="0" class="w-full bg-white border border-slate-100 rounded-xl py-4 text-center text-xl font-bold text-slate-700 shadow-sm focus:border-cyan-500 focus:ring-0">
                 </div>
             </div>

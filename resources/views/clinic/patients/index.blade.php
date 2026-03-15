@@ -15,18 +15,45 @@
     </div>
 
     <!-- Search Section -->
-    <div class="bg-white p-4 rounded-2xl shadow-sm border border-slate-100">
-        <form action="{{ route('clinic.patients.index') }}" method="GET" class="flex flex-col sm:flex-row gap-3">
-            <div class="relative flex-1">
-                <i class="fas fa-search absolute {{ app()->getLocale() == 'ar' ? 'right-4' : 'left-4' }} top-1/2 -translate-y-1/2 text-slate-400"></i>
-                <input type="text" name="search" value="{{ request('search') }}" 
-                       class="input-field {{ app()->getLocale() == 'ar' ? 'pr-12' : 'pl-12' }}" 
-                       placeholder="{{ __('clinic.search_patients') }}">
+    <div class="bg-white rounded-2xl shadow-sm border border-slate-100 overflow-hidden">
+        <div class="px-6 py-4 border-b border-slate-50 bg-slate-50/50 flex items-center justify-between">
+            <div class="flex items-center gap-3">
+                <div class="w-8 h-8 bg-cyan-50 text-cyan-600 rounded-lg flex items-center justify-center text-sm">
+                    <i class="fas fa-search"></i>
+                </div>
+                <p class="text-xs font-bold text-slate-400 uppercase tracking-widest">{{ app()->getLocale() == 'ar' ? 'بحث في سجلات المرضى' : 'Search Patient Records' }}</p>
             </div>
-            <button type="submit" class="bg-cyan-600 text-white px-8 py-3 rounded-xl font-bold hover:bg-cyan-700 transition-colors shadow-lg shadow-cyan-600/10">
-                {{ app()->getLocale() == 'ar' ? 'بحث' : 'Search' }}
-            </button>
-        </form>
+            @if(request('search'))
+            <span class="text-xs font-bold text-cyan-600 bg-cyan-50 px-3 py-1 rounded-full border border-cyan-100">
+                {{ app()->getLocale() == 'ar' ? 'نتائج: ' : 'Results for: ' }}&ldquo;{{ request('search') }}&rdquo;
+            </span>
+            @endif
+        </div>
+        <div class="p-4">
+            <form action="{{ route('clinic.patients.index') }}" method="GET" class="flex flex-col sm:flex-row gap-3">
+                <div class="relative flex-1">
+                    <i class="fas fa-search absolute {{ app()->getLocale() == 'ar' ? 'right-4' : 'left-4' }} top-1/2 -translate-y-1/2 text-slate-300 text-sm"></i>
+                    <input type="text" name="search" id="search-input" value="{{ request('search') }}"
+                           class="w-full border border-slate-200 rounded-xl py-3 {{ app()->getLocale() == 'ar' ? 'pr-11 pl-4' : 'pl-11 pr-4' }} text-sm font-medium text-slate-700 placeholder-slate-300 focus:outline-none focus:border-cyan-400 focus:ring-2 focus:ring-cyan-100 transition-all bg-slate-50 focus:bg-white"
+                           placeholder="{{ __('clinic.search_patients') }}">
+                </div>
+                <button type="submit" class="bg-cyan-600 text-white px-6 py-3 rounded-xl font-bold hover:bg-cyan-700 transition-all shadow-md shadow-cyan-500/20 hover:-translate-y-0.5 flex items-center gap-2 justify-center text-sm">
+                    <i class="fas fa-search text-xs"></i>
+                    {{ app()->getLocale() == 'ar' ? 'بحث' : 'Search' }}
+                </button>
+                @if(request('search'))
+                <a href="{{ route('clinic.patients.index') }}" class="bg-slate-100 text-slate-600 px-6 py-3 rounded-xl font-bold hover:bg-slate-200 transition-all flex items-center gap-2 justify-center text-sm border border-slate-200">
+                    <i class="fas fa-times text-xs"></i>
+                    {{ app()->getLocale() == 'ar' ? 'إلغاء' : 'Reset' }}
+                </a>
+                @else
+                <button type="button" onclick="document.getElementById('search-input').value=''; this.form.submit();" class="bg-slate-100 text-slate-400 px-6 py-3 rounded-xl font-bold hover:bg-slate-200 transition-all flex items-center gap-2 justify-center text-sm border border-slate-200 cursor-pointer">
+                    <i class="fas fa-rotate-left text-xs"></i>
+                    {{ app()->getLocale() == 'ar' ? 'مسح' : 'Clear' }}
+                </button>
+                @endif
+            </form>
+        </div>
     </div>
 
     <!-- Patients List -->

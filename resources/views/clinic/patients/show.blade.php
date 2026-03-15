@@ -21,49 +21,70 @@
 
     <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
         <!-- Sidebar Profile -->
-        <div class="space-y-6">
-            <div class="card-minimal p-6 text-center">
-                <div class="w-20 h-20 rounded-2xl bg-cyan-100 text-cyan-600 flex items-center justify-center text-3xl font-bold mx-auto mb-4 border-2 border-white shadow-sm">
-                    {{ strtoupper(substr($patient->name, 0, 1)) }}
+        <div class="space-y-5">
+            <!-- Patient Card -->
+            <div class="bg-white rounded-2xl border border-slate-100 shadow-sm overflow-hidden">
+                <div class="bg-gradient-to-br from-cyan-600 to-cyan-700 p-6 text-center">
+                    <div class="w-20 h-20 rounded-2xl bg-white/20 text-white flex items-center justify-center text-3xl font-bold mx-auto mb-3 border-2 border-white/30 shadow-lg">
+                        {{ strtoupper(substr($patient->name, 0, 1)) }}
+                    </div>
+                    <h2 class="text-xl font-bold text-white">{{ $patient->name }}</h2>
+                    <p class="text-cyan-100 text-sm mt-1">{{ $patient->phone ?: (app()->getLocale() == 'ar' ? 'بدون هاتف' : 'No phone') }}</p>
                 </div>
-                <h2 class="text-2xl font-bold text-gray-900">{{ $patient->name }}</h2>
-                <p class="text-gray-500 font-medium text-sm">{{ $patient->phone ?: '-' }}</p>
-                
-                <div class="mt-6 grid grid-cols-3 gap-2">
-                    <div class="p-2 bg-gray-50 rounded-xl">
-                        <p class="text-[10px] text-gray-400 font-bold uppercase">{{ __('clinic.age') }}</p>
-                        <p class="text-sm font-bold text-gray-800">{{ $patient->age ?: '-' }}</p>
+                <div class="grid grid-cols-3 divide-x divide-slate-100 rtl:divide-x-reverse">
+                    <div class="p-4 text-center">
+                        <p class="text-[10px] text-slate-400 font-bold uppercase mb-1">{{ __('clinic.age') }}</p>
+                        <p class="text-lg font-extrabold text-slate-800">{{ $patient->age ?: '-' }}</p>
                     </div>
-                    <div class="p-2 bg-gray-50 rounded-xl">
-                        <p class="text-[10px] text-gray-400 font-bold uppercase">{{ app()->getLocale() == 'ar' ? 'الطول' : 'Height' }}</p>
-                        <p class="text-sm font-bold text-gray-800">{{ $patient->height ?: '-' }}</p>
+                    <div class="p-4 text-center">
+                        <p class="text-[10px] text-slate-400 font-bold uppercase mb-1">{{ app()->getLocale() == 'ar' ? 'الطول' : 'Height' }}</p>
+                        <p class="text-lg font-extrabold text-slate-800">{{ $patient->height ?: '-' }}</p>
                     </div>
-                    <div class="p-2 bg-cyan-50 rounded-xl">
-                        <p class="text-[10px] text-cyan-500 font-bold uppercase">{{ __('clinic.bmi') }}</p>
-                        <p class="text-sm font-bold text-cyan-700">{{ $patient->bmi ?: '-' }}</p>
+                    <div class="p-4 text-center bg-cyan-50/50">
+                        <p class="text-[10px] text-cyan-500 font-bold uppercase mb-1">{{ __('clinic.bmi') }}</p>
+                        <p class="text-lg font-extrabold text-cyan-700">{{ $patient->bmi ?: '-' }}</p>
                     </div>
                 </div>
             </div>
 
-            <div class="card-minimal p-6 space-y-4">
-                <h3 class="font-bold text-gray-800 border-b pb-2 mb-4">{{ __('clinic.ob_history') }}</h3>
-                <div class="flex justify-between text-center px-2">
-                    <div><p class="text-lg font-bold text-cyan-600">G{{ $patient->gravida }}</p><p class="text-[10px] text-gray-400 uppercase font-bold">Gravida</p></div>
-                    <div><p class="text-lg font-bold text-cyan-600">P{{ $patient->para }}</p><p class="text-[10px] text-gray-400 uppercase font-bold">Para</p></div>
-                    <div><p class="text-lg font-bold text-cyan-600">A{{ $patient->abortion }}</p><p class="text-[10px] text-gray-400 uppercase font-bold">Abortion</p></div>
-                    <div><p class="text-lg font-bold text-cyan-600">L{{ $patient->living }}</p><p class="text-[10px] text-gray-400 uppercase font-bold">Living</p></div>
-                </div>
-                <div class="pt-4 space-y-3 border-t">
-                    <div class="flex justify-between text-sm">
-                        <span class="text-gray-500">{{ __('clinic.lmp') }}</span>
-                        <span class="font-bold">{{ $patient->lmp ? $patient->lmp->format('Y-m-d') : '-' }}</span>
+            <!-- OB History -->
+            <div class="bg-white rounded-2xl border border-slate-100 shadow-sm p-5">
+                <h3 class="font-bold text-slate-800 pb-3 mb-4 border-b border-slate-100 flex items-center gap-2">
+                    <span class="w-1 h-5 bg-cyan-500 rounded-full inline-block"></span>
+                    {{ __('clinic.ob_history') }}
+                </h3>
+                <div class="grid grid-cols-4 gap-2 mb-4">
+                    <div class="bg-cyan-50 rounded-xl p-3 text-center border border-cyan-100">
+                        <p class="text-xl font-extrabold text-cyan-700">{{ $patient->gravida }}</p>
+                        <p class="text-[9px] text-cyan-500 font-bold uppercase mt-0.5">{{ app()->getLocale() == 'ar' ? 'حامل' : 'Gravida' }}</p>
                     </div>
-                    <div class="flex justify-between text-sm">
+                    <div class="bg-indigo-50 rounded-xl p-3 text-center border border-indigo-100">
+                        <p class="text-xl font-extrabold text-indigo-700">{{ $patient->para }}</p>
+                        <p class="text-[9px] text-indigo-500 font-bold uppercase mt-0.5">{{ app()->getLocale() == 'ar' ? 'ولادات' : 'Para' }}</p>
+                    </div>
+                    <div class="bg-rose-50 rounded-xl p-3 text-center border border-rose-100">
+                        <p class="text-xl font-extrabold text-rose-700">{{ $patient->abortion }}</p>
+                        <p class="text-[9px] text-rose-500 font-bold uppercase mt-0.5">{{ app()->getLocale() == 'ar' ? 'إجهاض' : 'Abort' }}</p>
+                    </div>
+                    <div class="bg-emerald-50 rounded-xl p-3 text-center border border-emerald-100">
+                        <p class="text-xl font-extrabold text-emerald-700">{{ $patient->living }}</p>
+                        <p class="text-[9px] text-emerald-500 font-bold uppercase mt-0.5">{{ app()->getLocale() == 'ar' ? 'أحياء' : 'Living' }}</p>
+                    </div>
+                </div>
+                <div class="space-y-3 pt-3 border-t border-slate-100">
+                    <div class="flex justify-between items-center text-sm">
+                        <span class="text-slate-500 font-medium">{{ __('clinic.lmp') }}</span>
+                        <span class="font-bold text-slate-800">{{ $patient->lmp ? $patient->lmp->format('Y-m-d') : '-' }}</span>
+                    </div>
+                    <div class="flex justify-between items-center text-sm">
                         <span class="text-cyan-600 font-bold">{{ __('clinic.edd') }}</span>
-                        <span class="font-bold text-cyan-700">{{ $patient->edd ? $patient->edd->format('Y-m-d') : '-' }}</span>
+                        <span class="font-bold text-cyan-700 bg-cyan-50 px-3 py-1 rounded-lg border border-cyan-100">
+                            {{ $patient->edd ? $patient->edd->format('Y-m-d') : '-' }}
+                        </span>
                     </div>
                     @if($patient->previous_cs)
-                    <div class="bg-red-50 text-red-700 p-2 rounded-lg text-xs font-bold border border-red-100 text-center">
+                    <div class="bg-red-50 text-red-700 px-3 py-2 rounded-xl text-xs font-bold border border-red-100 text-center flex items-center justify-center gap-2">
+                        <i class="fas fa-exclamation-triangle"></i>
                         {{ __('clinic.previous_cs') }}
                     </div>
                     @endif
@@ -71,79 +92,116 @@
             </div>
 
             @if($patient->medical_history)
-            <div class="card-minimal p-6">
-                <h3 class="font-bold text-gray-800 border-b pb-2 mb-3">{{ __('clinic.medical_history') }}</h3>
-                <p class="text-sm text-gray-600 leading-relaxed italic">{{ $patient->medical_history }}</p>
+            <div class="bg-white rounded-2xl border border-slate-100 shadow-sm p-5">
+                <h3 class="font-bold text-slate-800 pb-3 mb-3 border-b border-slate-100 flex items-center gap-2">
+                    <span class="w-1 h-5 bg-amber-500 rounded-full inline-block"></span>
+                    {{ __('clinic.medical_history') }}
+                </h3>
+                <p class="text-sm text-slate-600 leading-relaxed">{{ $patient->medical_history }}</p>
             </div>
             @endif
         </div>
 
         <!-- Visits History -->
-        <div class="lg:col-span-2 space-y-6">
-            <h2 class="text-xl font-bold text-gray-900 border-b pb-3">{{ __('clinic.visits') }} ({{ $patient->visits->count() }})</h2>
+        <div class="lg:col-span-2 space-y-5">
+            <!-- Visits header -->
+            <div class="flex items-center justify-between bg-white rounded-2xl border border-slate-100 shadow-sm px-6 py-4">
+                <div class="flex items-center gap-3">
+                    <div class="w-10 h-10 bg-cyan-50 text-cyan-600 rounded-xl flex items-center justify-center">
+                        <i class="fas fa-calendar-alt"></i>
+                    </div>
+                    <div>
+                        <h2 class="text-lg font-bold text-slate-900">{{ __('clinic.visits') }}</h2>
+                        <p class="text-[11px] text-slate-400 font-bold uppercase">{{ $patient->visits->count() }} {{ app()->getLocale() == 'ar' ? 'زيارة مسجلة' : 'recorded visits' }}</p>
+                    </div>
+                </div>
+                <span class="w-9 h-9 rounded-xl bg-cyan-600 text-white flex items-center justify-center font-extrabold text-sm shadow-md shadow-cyan-500/20">
+                    {{ $patient->visits->count() }}
+                </span>
+            </div>
+
             <div class="space-y-4">
                 @forelse($patient->visits()->latest('visit_date')->get() as $visit)
-                <div class="card-minimal p-6 hover:border-cyan-200 transition-colors">
-                    <div class="flex items-start justify-between mb-4">
+                <div class="bg-white rounded-2xl border border-slate-100 shadow-sm hover:border-cyan-200 hover:shadow-md transition-all duration-200 overflow-hidden">
+                    <!-- Visit top bar -->
+                    <div class="flex items-center justify-between px-6 py-4 border-b border-slate-50 bg-slate-50/60">
                         <div class="flex items-center gap-4">
-                            <div class="w-12 h-12 rounded-xl bg-gray-50 flex flex-col items-center justify-center font-bold text-gray-400 border">
-                                <span class="text-[10px] uppercase leading-none">{{ $visit->visit_date->format('M') }}</span>
-                                <span class="text-xl leading-none">{{ $visit->visit_date->format('d') }}</span>
+                            <div class="w-12 h-12 rounded-xl bg-white flex flex-col items-center justify-center font-bold text-slate-600 border border-slate-100 shadow-sm">
+                                <span class="text-[10px] uppercase leading-none text-cyan-500 font-black">{{ $visit->visit_date->format('M') }}</span>
+                                <span class="text-xl leading-none font-extrabold">{{ $visit->visit_date->format('d') }}</span>
                             </div>
                             <div>
-                                <p class="text-xs text-gray-400 font-bold uppercase">{{ $visit->visit_date->format('Y-m-d') }}</p>
-                                <h4 class="font-bold text-gray-800">{{ $visit->complaints ?: (app()->getLocale() == 'ar' ? 'متابعة دورية' : 'Routine Check-up') }}</h4>
+                                <p class="text-xs text-slate-400 font-bold">{{ $visit->visit_date->format('Y-m-d') }}</p>
+                                <h4 class="font-bold text-slate-900">{{ $visit->complaints ?: (app()->getLocale() == 'ar' ? 'متابعة دورية' : 'Routine Check-up') }}</h4>
                             </div>
                         </div>
-                        <div class="text-right">
-                            <div class="flex gap-4">
-                                <div class="text-center">
-                                    <p class="text-[9px] text-gray-400 font-bold uppercase">{{ __('clinic.bp') }}</p>
-                                    <p class="font-bold text-gray-800 text-sm">{{ $visit->bp ?: '-' }}</p>
-                                </div>
-                                <div class="text-center">
-                                    <p class="text-[9px] text-gray-400 font-bold uppercase">{{ __('clinic.weight') }}</p>
-                                    <p class="font-bold text-gray-800 text-sm">{{ $visit->weight ?: '-' }}</p>
-                                </div>
+                        <!-- Vitals chips -->
+                        <div class="flex items-center gap-3">
+                            @if($visit->bp)
+                            <div class="text-center bg-white border border-slate-100 rounded-xl px-3 py-2 shadow-sm">
+                                <p class="text-[9px] text-slate-400 font-bold uppercase">{{ __('clinic.bp') }}</p>
+                                <p class="font-extrabold text-slate-800 text-sm leading-tight">{{ $visit->bp }}</p>
                             </div>
+                            @endif
+                            @if($visit->weight)
+                            <div class="text-center bg-white border border-slate-100 rounded-xl px-3 py-2 shadow-sm">
+                                <p class="text-[9px] text-slate-400 font-bold uppercase">{{ __('clinic.weight') }}</p>
+                                <p class="font-extrabold text-slate-800 text-sm leading-tight">{{ $visit->weight }} <span class="text-[9px] text-slate-400">kg</span></p>
+                            </div>
+                            @endif
                         </div>
                     </div>
 
+                    <!-- Visit body -->
                     @if($visit->medications || $visit->tests_required)
-                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mt-4">
+                    <div class="grid grid-cols-1 md:grid-cols-2">
                         @if($visit->medications)
-                        <div class="p-4 bg-emerald-50 rounded-xl border border-emerald-100">
-                            <p class="text-[10px] text-emerald-600 font-bold uppercase mb-1">{{ __('clinic.medications') }}</p>
-                            <p class="text-xs text-emerald-900 font-medium whitespace-pre-line">{{ $visit->medications }}</p>
+                        <div class="px-6 py-4 border-b md:border-b-0 md:border-e border-slate-50">
+                            <p class="text-[10px] text-emerald-600 font-black uppercase mb-2 flex items-center gap-1.5">
+                                <i class="fas fa-pills"></i>
+                                {{ __('clinic.medications') }}
+                            </p>
+                            <p class="text-sm text-slate-700 font-medium leading-relaxed">{{ $visit->medications }}</p>
                         </div>
                         @endif
                         @if($visit->tests_required)
-                        <div class="p-4 bg-indigo-50 rounded-xl border border-indigo-100">
-                            <p class="text-[10px] text-indigo-600 font-bold uppercase mb-1">{{ __('clinic.tests') }}</p>
-                            <p class="text-xs text-indigo-900 font-medium whitespace-pre-line">{{ $visit->tests_required }}</p>
+                        <div class="px-6 py-4">
+                            <p class="text-[10px] text-indigo-600 font-black uppercase mb-2 flex items-center gap-1.5">
+                                <i class="fas fa-vial"></i>
+                                {{ __('clinic.tests') }}
+                            </p>
+                            <p class="text-sm text-slate-700 font-medium leading-relaxed">{{ $visit->tests_required }}</p>
                         </div>
                         @endif
                     </div>
                     @endif
 
-                    <div class="mt-6 flex items-center justify-between pt-4 border-t border-gray-50">
+                    <!-- Visit footer -->
+                    <div class="flex items-center justify-between px-6 py-3 border-t border-slate-50 bg-slate-50/30">
                         @if($visit->next_visit_date)
-                        <div class="text-xs font-bold text-cyan-600">
-                            <i class="fas fa-calendar-check mr-1 rtl:ml-1"></i>
+                        <div class="flex items-center gap-2 text-xs font-bold text-cyan-600 bg-cyan-50 px-3 py-1.5 rounded-lg border border-cyan-100">
+                            <i class="fas fa-calendar-check"></i>
                             {{ __('clinic.next_visit') }}: {{ $visit->next_visit_date->format('Y-m-d') }}
                         </div>
                         @else
                         <div></div>
                         @endif
-                        <a href="{{ route('clinic.patients.visits.show', [$patient, $visit]) }}" class="text-xs font-bold text-gray-400 hover:text-cyan-600 flex items-center gap-1 transition-colors">
+                        <a href="{{ route('clinic.patients.visits.show', [$patient, $visit]) }}" class="flex items-center gap-2 text-xs font-bold text-slate-500 hover:text-cyan-600 bg-white hover:bg-cyan-50 px-4 py-2 rounded-xl border border-slate-100 hover:border-cyan-200 transition-all">
                             {{ app()->getLocale() == 'ar' ? 'عرض التقرير' : 'View Report' }}
                             <i class="fas fa-arrow-{{ app()->getLocale() == 'ar' ? 'left' : 'right' }} text-[10px]"></i>
                         </a>
                     </div>
                 </div>
                 @empty
-                <div class="card-minimal p-10 text-center text-gray-400 italic">
-                    <p>{{ app()->getLocale() == 'ar' ? 'لا يوجد سجل زيارات حتى الآن.' : 'No visits recorded for this patient yet.' }}</p>
+                <div class="bg-white rounded-2xl border border-slate-100 shadow-sm p-16 text-center">
+                    <div class="w-16 h-16 bg-slate-50 rounded-2xl flex items-center justify-center mx-auto mb-4 border border-slate-100">
+                        <i class="fas fa-calendar-times text-2xl text-slate-300"></i>
+                    </div>
+                    <p class="font-bold text-slate-400 uppercase tracking-widest text-sm">{{ app()->getLocale() == 'ar' ? 'لا يوجد سجل زيارات حتى الآن' : 'No visits recorded yet' }}</p>
+                    <a href="{{ route('clinic.patients.visits.create', $patient) }}" class="mt-4 inline-flex items-center gap-2 btn-primary text-sm">
+                        <i class="fas fa-plus-circle"></i>
+                        {{ __('clinic.add_visit') }}
+                    </a>
                 </div>
                 @endforelse
             </div>

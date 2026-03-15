@@ -17,7 +17,7 @@
     </div>
 
     <!-- Quick Stats -->
-    <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
         <div class="bg-white p-6 rounded-2xl shadow-sm border border-slate-100 flex items-center gap-5 group hover:border-cyan-200 transition-colors">
             <div class="w-14 h-14 rounded-2xl bg-cyan-50 text-cyan-600 flex items-center justify-center text-2xl shadow-inner">
                 <i class="fas fa-users"></i>
@@ -35,16 +35,6 @@
             <div>
                 <p class="text-[11px] font-bold text-slate-400 uppercase tracking-widest mb-1">{{ __('clinic.today_visits') }}</p>
                 <p class="text-3xl font-extrabold text-slate-900 tracking-tight">{{ $todayVisits }}</p>
-            </div>
-        </div>
-
-        <div class="bg-white p-6 rounded-2xl shadow-sm border border-slate-100 flex items-center gap-5 group hover:border-emerald-200 transition-colors">
-            <div class="w-14 h-14 rounded-2xl bg-emerald-50 text-emerald-600 flex items-center justify-center text-2xl shadow-inner">
-                <i class="fas fa-clock"></i>
-            </div>
-            <div>
-                <p class="text-[11px] font-bold text-slate-400 uppercase tracking-widest mb-1">{{ app()->getLocale() == 'ar' ? 'آخر نشاط' : 'LAST ACTIVITY' }}</p>
-                <p class="text-lg font-extrabold text-slate-900 truncate uppercase">{{ $recentPatients->first() ? $recentPatients->first()->created_at->diffForHumans() : '-' }}</p>
             </div>
         </div>
     </div>
