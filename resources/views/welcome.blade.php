@@ -179,7 +179,7 @@
                 <p class="text-gray-600 text-sm mb-4">
                     {{ __('home.svc_edu_desc') }}
                 </p>
-                <a href="{{ route('education') }}" class="text-cyan-600 text-sm font-medium hover:text-cyan-700 inline-flex items-center gap-1">
+                <a href="{{ route('women-health') }}" class="text-cyan-600 text-sm font-medium hover:text-cyan-700 inline-flex items-center gap-1">
                     {{ __('home.svc_edu_cta') }}
                     <i class="fas fa-arrow-{{ app()->getLocale() == 'ar' ? 'left' : 'right' }} text-xs"></i>
                 </a>
@@ -203,7 +203,7 @@
             </div>
             
             <!-- Feature 4 - Women's Health Hub -->
-            <div class="card-minimal rounded-2xl p-6" data-aos="fade-up" data-aos-delay="400">
+            {{-- <div class="card-minimal rounded-2xl p-6" data-aos="fade-up" data-aos-delay="400">
                 <div class="w-14 h-14 rounded-2xl bg-pink-100 flex items-center justify-center mb-5">
                     <i class="fas fa-female text-pink-600 text-xl"></i>
                 </div>
@@ -217,7 +217,7 @@
                     {{ app()->getLocale() == 'ar' ? 'استكشفي المزيد' : 'Learn More' }}
                     <i class="fas fa-arrow-{{ app()->getLocale() == 'ar' ? 'left' : 'right' }} text-xs"></i>
                 </a>
-            </div>
+            </div> --}}
             
             <!-- Feature 5 -->
             {{-- <div class="card-minimal rounded-2xl p-6" data-aos="fade-up" data-aos-delay="500">

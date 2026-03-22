@@ -56,26 +56,26 @@ class ClinicPatientController extends Controller
 
     public function show(ClinicPatient $patient)
     {
-        if ($patient->clinic_id !== Auth::guard('clinic')->id()) abort(403);
+        if ($patient->clinic_id != Auth::guard('clinic')->id()) abort(403);
         $patient->load('visits');
         return view('clinic.patients.show', compact('patient'));
     }
     
     public function showVisit(ClinicPatient $patient, ClinicVisit $visit)
     {
-        if ($patient->clinic_id !== Auth::guard('clinic')->id() || $visit->clinic_patient_id !== $patient->id) abort(403);
+        if ($patient->clinic_id != Auth::guard('clinic')->id() || $visit->clinic_patient_id !== $patient->id) abort(403);
         return view('clinic.visits.show', compact('patient', 'visit'));
     }
 
     public function createVisit(ClinicPatient $patient)
     {
-        if ($patient->clinic_id !== Auth::guard('clinic')->id()) abort(403);
+        if ($patient->clinic_id != Auth::guard('clinic')->id()) abort(403);
         return view('clinic.visits.create', compact('patient'));
     }
 
     public function storeVisit(Request $request, ClinicPatient $patient)
     {
-        if ($patient->clinic_id !== Auth::guard('clinic')->id()) abort(403);
+        if ($patient->clinic_id != Auth::guard('clinic')->id()) abort(403);
 
         $validated = $request->validate([
             'visit_date' => 'required|date',
