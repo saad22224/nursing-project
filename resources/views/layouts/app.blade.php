@@ -326,7 +326,7 @@
                         class="nav-link text-sm font-medium {{ request()->routeIs('calculator') ? 'text-cyan-600' : 'text-gray-600 hover:text-cyan-600' }} transition-colors">
                         {{ __('nav.calculator') }}
                     </a>
-                    <a href="{{ route('education') }}"
+                    <a href="{{ route('women-health') }}"
                         class="nav-link text-sm font-medium {{ request()->routeIs('education') ? 'text-cyan-600' : 'text-gray-600 hover:text-cyan-600' }} transition-colors">
                         {{ __('nav.education') }}
                     </a>
@@ -334,12 +334,16 @@
                         class="nav-link text-sm font-medium {{ request()->routeIs('high-risk') ? 'text-cyan-600' : 'text-gray-600 hover:text-cyan-600' }} transition-colors">
                         {{ __('nav.high_risk') }}
                     </a>
+                    <!-- <a href="{{ route('women-health') }}"
+                        class="nav-link text-sm font-medium {{ request()->routeIs('women-health') ? 'text-cyan-600' : 'text-gray-600 hover:text-cyan-600' }} transition-colors">
+                        {{ __('nav.women_health') }}
+                    </a> -->
                     <a href="{{ route('chatbot') }}"
                         class="nav-link text-sm font-medium {{ request()->routeIs('chatbot') ? 'text-cyan-600' : 'text-gray-600 hover:text-cyan-600' }} transition-colors">
                         {{ __('nav.chatbot') }}
                     </a>
                 </div>
-
+                
                 <!-- Right Side -->
                 <div class="flex items-center gap-4">
                     <!-- Clinic Button -->
@@ -393,6 +397,10 @@
                 <a href="{{ route('high-risk') }}"
                     class="block px-4 py-3 rounded-xl {{ request()->routeIs('high-risk') ? 'bg-cyan-50 text-cyan-600' : 'text-gray-600 hover:bg-gray-50' }} font-medium transition-colors">
                     {{ __('nav.high_risk') }}
+                </a>
+                <a href="{{ route('women-health') }}"
+                    class="block px-4 py-3 rounded-xl {{ request()->routeIs('women-health') ? 'bg-cyan-50 text-cyan-600' : 'text-gray-600 hover:bg-gray-50' }} font-medium transition-colors">
+                    {{ __('nav.women_health') }}
                 </a>
                 <a href="{{ route('chatbot') }}"
                     class="block px-4 py-3 rounded-xl {{ request()->routeIs('chatbot') ? 'bg-cyan-50 text-cyan-600' : 'text-gray-600 hover:bg-gray-50' }} font-medium transition-colors">
@@ -472,6 +480,12 @@
                                     <i
                                         class="fas fa-chevron-{{ app()->getLocale() == 'ar' ? 'left' : 'right' }} text-[10px] text-cyan-600 group-hover:translate-{{ app()->getLocale() == 'ar' ? '-x-1' : 'x-1' }} transition-transform"></i>
                                     {{ __('nav.education') }}
+                                </a></li>
+                            <li><a href="{{ route('women-health') }}"
+                                    class="text-gray-400 hover:text-cyan-400 transition-colors flex items-center gap-3 group">
+                                    <i
+                                        class="fas fa-chevron-{{ app()->getLocale() == 'ar' ? 'left' : 'right' }} text-[10px] text-cyan-600 group-hover:translate-{{ app()->getLocale() == 'ar' ? '-x-1' : 'x-1' }} transition-transform"></i>
+                                    {{ __('nav.women_health') }}
                                 </a></li>
                             <li><a href="{{ route('chatbot') }}"
                                     class="text-gray-400 hover:text-cyan-400 transition-colors flex items-center gap-3 group">

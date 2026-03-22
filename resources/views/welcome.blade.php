@@ -202,8 +202,25 @@
                 </a>
             </div>
             
-            <!-- Feature 4 -->
-            {{-- <div class="card-minimal rounded-2xl p-6" data-aos="fade-up" data-aos-delay="400">
+            <!-- Feature 4 - Women's Health Hub -->
+            <div class="card-minimal rounded-2xl p-6" data-aos="fade-up" data-aos-delay="400">
+                <div class="w-14 h-14 rounded-2xl bg-pink-100 flex items-center justify-center mb-5">
+                    <i class="fas fa-female text-pink-600 text-xl"></i>
+                </div>
+                <h3 class="text-lg font-bold text-gray-900 mb-2">
+                    {{ app()->getLocale() == 'ar' ? 'مركز صحة نسا' : "Women's Health Hub" }}
+                </h3>
+                <p class="text-gray-600 text-sm mb-4">
+                    {{ app()->getLocale() == 'ar' ? 'معلومات شاملة عن الحمل، تخطيط الأسرة، سن اليأس، وما بعد الولادة' : 'Comprehensive info on pregnancy, family planning, menopause, and postpartum' }}
+                </p>
+                <a href="{{ route('women-health') }}" class="text-pink-600 text-sm font-medium hover:text-pink-700 inline-flex items-center gap-1">
+                    {{ app()->getLocale() == 'ar' ? 'استكشفي المزيد' : 'Learn More' }}
+                    <i class="fas fa-arrow-{{ app()->getLocale() == 'ar' ? 'left' : 'right' }} text-xs"></i>
+                </a>
+            </div>
+            
+            <!-- Feature 5 -->
+            {{-- <div class="card-minimal rounded-2xl p-6" data-aos="fade-up" data-aos-delay="500">
                 <div class="w-14 h-14 rounded-2xl bg-cyan-100 flex items-center justify-center mb-5">
                     <i class="fas fa-file-medical text-cyan-600 text-xl"></i>
                 </div>

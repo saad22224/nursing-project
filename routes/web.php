@@ -38,6 +38,11 @@ Route::get('/chatbot', function () {
     return view('chatbot');
 })->name('chatbot');
 
+// Women's Health Hub Route
+Route::get('/women-health', function () {
+    return view('women-health');
+})->name('women-health');
+
 // Chatbot API Route
 Route::post('/api/chat', [ChatbotController::class, 'chat'])->name('api.chat');
 
