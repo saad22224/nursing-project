@@ -14,7 +14,7 @@ class ClinicPatientController extends Controller
         $query = Auth::guard('clinic')->user()->patients();
         if ($request->search) {
             $query->where('name', 'like', '%' . $request->search . '%')
-                  ->orWhere('phone', 'like', '%' . $request->search . '%');
+                ->orWhere('phone', 'like', '%' . $request->search . '%');
         }
         $patients = $query->latest()->paginate(15);
         return view('clinic.patients.index', compact('patients'));
@@ -50,7 +50,7 @@ class ClinicPatientController extends Controller
         $validated['previous_cs'] = $request->has('previous_cs');
 
         $patient = Auth::guard('clinic')->user()->patients()->create($validated);
-        
+
         return redirect()->route('clinic.patients.show', $patient)->with('success', 'Patient added successfully.');
     }
 
@@ -60,11 +60,20 @@ class ClinicPatientController extends Controller
         $patient->load('visits');
         return view('clinic.patients.show', compact('patient'));
     }
-    
+
     public function showVisit(ClinicPatient $patient, ClinicVisit $visit)
     {
-        if ($patient->clinic_id != Auth::guard('clinic')->id() || $visit->clinic_patient_id !== $patient->id) abort(403);
+        if (
+            $patient->clinic_id != Auth::guard('clinic')->id()
+            || $visit->clinic_patient_id != $patient->id
+        ) abort(403);
         return view('clinic.visits.show', compact('patient', 'visit'));
+
+        // dd(Auth::guard('clinic')->id(), $patient->clinic_id, $visit->clinic_patient_id);
+
+        // auth()->id returns integer while $patient->clinic_id 
+        // and $visit->clinic_patient_id are strings, so we need to cast 
+        // them to integers before comparing or compare them with non identical equality operator (!=) instead of identical equality operator (!==)
     }
 
     public function createVisit(ClinicPatient $patient)
