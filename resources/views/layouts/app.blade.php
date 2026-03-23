@@ -475,18 +475,18 @@
                                         class="fas fa-chevron-{{ app()->getLocale() == 'ar' ? 'left' : 'right' }} text-[10px] text-cyan-600 group-hover:translate-{{ app()->getLocale() == 'ar' ? '-x-1' : 'x-1' }} transition-transform"></i>
                                     {{ __('nav.calculator') }}
                                 </a></li>
-                            <li><a href="{{ route('education') }}"
+                            <li><a href="{{ route('women-health') }}"
                                     class="text-gray-400 hover:text-cyan-400 transition-colors flex items-center gap-3 group">
                                     <i
                                         class="fas fa-chevron-{{ app()->getLocale() == 'ar' ? 'left' : 'right' }} text-[10px] text-cyan-600 group-hover:translate-{{ app()->getLocale() == 'ar' ? '-x-1' : 'x-1' }} transition-transform"></i>
                                     {{ __('nav.education') }}
                                 </a></li>
-                            <li><a href="{{ route('women-health') }}"
+                            {{-- <li><a href="{{ route('women-health') }}"
                                     class="text-gray-400 hover:text-cyan-400 transition-colors flex items-center gap-3 group">
                                     <i
                                         class="fas fa-chevron-{{ app()->getLocale() == 'ar' ? 'left' : 'right' }} text-[10px] text-cyan-600 group-hover:translate-{{ app()->getLocale() == 'ar' ? '-x-1' : 'x-1' }} transition-transform"></i>
                                     {{ __('nav.women_health') }}
-                                </a></li>
+                                </a></li> --}}
                             <li><a href="{{ route('chatbot') }}"
                                     class="text-gray-400 hover:text-cyan-400 transition-colors flex items-center gap-3 group">
                                     <i
