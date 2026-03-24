@@ -394,7 +394,7 @@
                     class="block px-4 py-3 rounded-xl {{ request()->routeIs('calculator') ? 'bg-cyan-50 text-cyan-600' : 'text-gray-600 hover:bg-gray-50' }} font-medium transition-colors">
                     {{ __('nav.calculator') }}
                 </a>
-                <a href="{{ route('education') }}"
+                <a href="{{ route('women-health') }}"
                     class="block px-4 py-3 rounded-xl {{ request()->routeIs('education') ? 'bg-cyan-50 text-cyan-600' : 'text-gray-600 hover:bg-gray-50' }} font-medium transition-colors">
                     {{ __('nav.education') }}
                 </a>
@@ -402,10 +402,10 @@
                     class="block px-4 py-3 rounded-xl {{ request()->routeIs('high-risk') ? 'bg-cyan-50 text-cyan-600' : 'text-gray-600 hover:bg-gray-50' }} font-medium transition-colors">
                     {{ __('nav.high_risk') }}
                 </a>
-                <a href="{{ route('women-health') }}"
+                {{-- <a href="{{ route('women-health') }}"
                     class="block px-4 py-3 rounded-xl {{ request()->routeIs('women-health') ? 'bg-cyan-50 text-cyan-600' : 'text-gray-600 hover:bg-gray-50' }} font-medium transition-colors">
                     {{ __('nav.women_health') }}
-                </a>
+                </a> --}}
                 <a href="{{ route('chatbot') }}"
                     class="block px-4 py-3 rounded-xl {{ request()->routeIs('chatbot') ? 'bg-cyan-50 text-cyan-600' : 'text-gray-600 hover:bg-gray-50' }} font-medium transition-colors">
                     {{ __('nav.chatbot') }}
