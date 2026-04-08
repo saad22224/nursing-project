@@ -62,7 +62,7 @@
                             {{ __('women_health.pregnancy.topics_title') }}
                         </h3>
                         <div class="space-y-2">
-                            @foreach(['nutrition', 'exercise', 'screening', 'warning_signs', 'mental_health', 'preparation'] as $topic)
+                            @foreach(['nutrition', 'exercise', 'screening', 'warning_signs', 'mental_health', 'preparation', 'hygiene', 'dental', 'sleep', 'medication'] as $topic)
                             <button onclick="scrollToSection('preg-{{ $topic }}')" class="w-full text-left px-3 py-2 rounded-lg text-sm hover:bg-pink-50 hover:text-pink-700 transition-colors flex items-center gap-2">
                                 <i class="fas fa-chevron-{{ app()->getLocale() == 'ar' ? 'left' : 'right' }} text-xs text-gray-400"></i>
                                 {{ __('women_health.pregnancy.topic_' . $topic) }}
@@ -205,6 +205,62 @@
                             <strong>{{ __('women_health.references') }}:</strong> {{ __('women_health.pregnancy.prep_refs') }}
                         </div>
                     </div>
+                    
+                    <!-- Hygiene -->
+                    <div id="preg-hygiene" class="bg-white rounded-2xl shadow-sm border border-gray-100 p-6">
+                        <h2 class="text-xl font-bold text-gray-900 mb-4 flex items-center gap-2">
+                            <i class="fas fa-hands-wash text-green-500"></i>
+                            {{ __('women_health.pregnancy.hygiene_title') }}
+                        </h2>
+                        <div class="prose prose-sm max-w-none text-gray-600">
+                            {!! __('women_health.pregnancy.hygiene_content') !!}
+                        </div>
+                        <div class="mt-4 p-3 bg-gray-50 rounded-lg text-xs text-gray-500">
+                            <strong>{{ __('women_health.references') }}:</strong> {{ __('women_health.pregnancy.hygiene_refs') }}
+                        </div>
+                    </div>
+                    
+                    <!-- Dental Care -->
+                    <div id="preg-dental" class="bg-white rounded-2xl shadow-sm border border-gray-100 p-6">
+                        <h2 class="text-xl font-bold text-gray-900 mb-4 flex items-center gap-2">
+                            <i class="fas fa-tooth text-blue-500"></i>
+                            {{ __('women_health.pregnancy.dental_title') }}
+                        </h2>
+                        <div class="prose prose-sm max-w-none text-gray-600">
+                            {!! __('women_health.pregnancy.dental_content') !!}
+                        </div>
+                        <div class="mt-4 p-3 bg-gray-50 rounded-lg text-xs text-gray-500">
+                            <strong>{{ __('women_health.references') }}:</strong> {{ __('women_health.pregnancy.dental_refs') }}
+                        </div>
+                    </div>
+                    
+                    <!-- Sleep Hygiene -->
+                    <div id="preg-sleep" class="bg-white rounded-2xl shadow-sm border border-gray-100 p-6">
+                        <h2 class="text-xl font-bold text-gray-900 mb-4 flex items-center gap-2">
+                            <i class="fas fa-bed text-indigo-500"></i>
+                            {{ __('women_health.pregnancy.sleep_title') }}
+                        </h2>
+                        <div class="prose prose-sm max-w-none text-gray-600">
+                            {!! __('women_health.pregnancy.sleep_content') !!}
+                        </div>
+                        <div class="mt-4 p-3 bg-gray-50 rounded-lg text-xs text-gray-500">
+                            <strong>{{ __('women_health.references') }}:</strong> {{ __('women_health.pregnancy.sleep_refs') }}
+                        </div>
+                    </div>
+                    
+                    <!-- Medication Safety -->
+                    <div id="preg-medication" class="bg-amber-50 rounded-2xl border border-amber-100 p-6">
+                        <h2 class="text-xl font-bold text-amber-900 mb-4 flex items-center gap-2">
+                            <i class="fas fa-pills text-amber-600"></i>
+                            {{ __('women_health.pregnancy.medication_title') }}
+                        </h2>
+                        <div class="prose prose-sm max-w-none text-amber-800">
+                            {!! __('women_health.pregnancy.medication_content') !!}
+                        </div>
+                        <div class="mt-4 p-3 bg-amber-100 rounded-lg text-xs text-amber-700">
+                            <strong>{{ __('women_health.references') }}:</strong> {{ __('women_health.pregnancy.medication_refs') }}
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -219,7 +275,7 @@
                             {{ __('women_health.family_planning.topics_title') }}
                         </h3>
                         <div class="space-y-2">
-                            @foreach(['contraception', 'fertility', 'preconception', 'sti'] as $topic)
+                            @foreach(['contraception', 'fertility', 'preconception', 'sti', 'emergency_contraception', 'infertility', 'hygiene_intimate'] as $topic)
                             <button onclick="scrollToSection('fp-{{ $topic }}')" class="w-full text-left px-3 py-2 rounded-lg text-sm hover:bg-purple-50 hover:text-purple-700 transition-colors flex items-center gap-2">
                                 <i class="fas fa-chevron-{{ app()->getLocale() == 'ar' ? 'left' : 'right' }} text-xs text-gray-400"></i>
                                 {{ __('women_health.family_planning.topic_' . $topic) }}
@@ -236,29 +292,8 @@
                             <i class="fas fa-shield-alt text-purple-500"></i>
                             {{ __('women_health.family_planning.contraception_title') }}
                         </h2>
-                        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-                            <div class="border border-gray-100 rounded-xl p-4">
-                                <h4 class="font-semibold text-gray-800 mb-2">{{ __('women_health.family_planning.hormonal') }}</h4>
-                                <ul class="text-sm text-gray-600 space-y-1">
-                                    <li><i class="fas fa-check text-purple-400 mr-1"></i>{{ __('women_health.family_planning.coc') }}</li>
-                                    <li><i class="fas fa-check text-purple-400 mr-1"></i>{{ __('women_health.family_planning.pop') }}</li>
-                                    <li><i class="fas fa-check text-purple-400 mr-1"></i>{{ __('women_health.family_planning.implant') }}</li>
-                                    <li><i class="fas fa-check text-purple-400 mr-1"></i>{{ __('women_health.family_planning.iud_hormonal') }}</li>
-                                    <li><i class="fas fa-check text-purple-400 mr-1"></i>{{ __('women_health.family_planning.injection') }}</li>
-                                    <li><i class="fas fa-check text-purple-400 mr-1"></i>{{ __('women_health.family_planning.patch') }}</li>
-                                </ul>
-                            </div>
-                            <div class="border border-gray-100 rounded-xl p-4">
-                                <h4 class="font-semibold text-gray-800 mb-2">{{ __('women_health.family_planning.non_hormonal') }}</h4>
-                                <ul class="text-sm text-gray-600 space-y-1">
-                                    <li><i class="fas fa-check text-green-400 mr-1"></i>{{ __('women_health.family_planning.copper_iud') }}</li>
-                                    <li><i class="fas fa-check text-green-400 mr-1"></i>{{ __('women_health.family_planning.condom_m') }}</li>
-                                    <li><i class="fas fa-check text-green-400 mr-1"></i>{{ __('women_health.family_planning.condom_f') }}</li>
-                                    <li><i class="fas fa-check text-green-400 mr-1"></i>{{ __('women_health.family_planning.diaphragm') }}</li>
-                                    <li><i class="fas fa-check text-green-400 mr-1"></i>{{ __('women_health.family_planning.fertility') }}</li>
-                                    <li><i class="fas fa-check text-green-400 mr-1"></i>{{ __('women_health.family_planning.sterilization') }}</li>
-                                </ul>
-                            </div>
+                        <div class="prose prose-sm max-w-none text-gray-600">
+                            {!! __('women_health.family_planning.contraception_content') !!}
                         </div>
                         <div class="mt-4 p-3 bg-gray-50 rounded-lg text-xs text-gray-500">
                             <strong>{{ __('women_health.references') }}:</strong> {{ __('women_health.family_planning.contraception_refs') }}
@@ -306,6 +341,48 @@
                             <strong>{{ __('women_health.references') }}:</strong> {{ __('women_health.family_planning.sti_refs') }}
                         </div>
                     </div>
+                    
+                    <!-- Emergency Contraception -->
+                    <div id="fp-emergency_contraception" class="bg-rose-50 rounded-2xl border border-rose-100 p-6">
+                        <h2 class="text-xl font-bold text-rose-900 mb-4 flex items-center gap-2">
+                            <i class="fas fa-clock text-rose-600"></i>
+                            {{ __('women_health.family_planning.emergency_title') }}
+                        </h2>
+                        <div class="prose prose-sm max-w-none text-rose-800">
+                            {!! __('women_health.family_planning.emergency_content') !!}
+                        </div>
+                        <div class="mt-4 p-3 bg-rose-100 rounded-lg text-xs text-rose-700">
+                            <strong>{{ __('women_health.references') }}:</strong> {{ __('women_health.family_planning.emergency_refs') }}
+                        </div>
+                    </div>
+                    
+                    <!-- Infertility Evaluation -->
+                    <div id="fp-infertility" class="bg-white rounded-2xl shadow-sm border border-gray-100 p-6">
+                        <h2 class="text-xl font-bold text-gray-900 mb-4 flex items-center gap-2">
+                            <i class="fas fa-microscope text-teal-500"></i>
+                            {{ __('women_health.family_planning.infertility_title') }}
+                        </h2>
+                        <div class="prose prose-sm max-w-none text-gray-600">
+                            {!! __('women_health.family_planning.infertility_content') !!}
+                        </div>
+                        <div class="mt-4 p-3 bg-gray-50 rounded-lg text-xs text-gray-500">
+                            <strong>{{ __('women_health.references') }}:</strong> {{ __('women_health.family_planning.infertility_refs') }}
+                        </div>
+                    </div>
+                    
+                    <!-- Intimate Hygiene -->
+                    <div id="fp-hygiene_intimate" class="bg-white rounded-2xl shadow-sm border border-gray-100 p-6">
+                        <h2 class="text-xl font-bold text-gray-900 mb-4 flex items-center gap-2">
+                            <i class="fas fa-soap text-green-500"></i>
+                            {{ __('women_health.family_planning.hygiene_intimate_title') }}
+                        </h2>
+                        <div class="prose prose-sm max-w-none text-gray-600">
+                            {!! __('women_health.family_planning.hygiene_intimate_content') !!}
+                        </div>
+                        <div class="mt-4 p-3 bg-gray-50 rounded-lg text-xs text-gray-500">
+                            <strong>{{ __('women_health.references') }}:</strong> {{ __('women_health.family_planning.hygiene_intimate_refs') }}
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -320,7 +397,7 @@
                             {{ __('women_health.menopause.topics_title') }}
                         </h3>
                         <div class="space-y-2">
-                            @foreach(['symptoms', 'hormone', 'bone', 'heart', 'sexual', 'mental'] as $topic)
+                            @foreach(['symptoms', 'hormone', 'bone', 'heart', 'sexual', 'mental', 'urinary', 'cancer_screening', 'weight_management', 'skin_hair', 'hygiene_menopause'] as $topic)
                             <button onclick="scrollToSection('meno-{{ $topic }}')" class="w-full text-left px-3 py-2 rounded-lg text-sm hover:bg-orange-50 hover:text-orange-700 transition-colors flex items-center gap-2">
                                 <i class="fas fa-chevron-{{ app()->getLocale() == 'ar' ? 'left' : 'right' }} text-xs text-gray-400"></i>
                                 {{ __('women_health.menopause.topic_' . $topic) }}
@@ -437,6 +514,76 @@
                             <strong>{{ __('women_health.references') }}:</strong> {{ __('women_health.menopause.mental_refs') }}
                         </div>
                     </div>
+                    
+                    <!-- Urinary Health -->
+                    <div id="meno-urinary" class="bg-white rounded-2xl shadow-sm border border-gray-100 p-6">
+                        <h2 class="text-xl font-bold text-gray-900 mb-4 flex items-center gap-2">
+                            <i class="fas fa-tint text-cyan-500"></i>
+                            {{ __('women_health.menopause.urinary_title') }}
+                        </h2>
+                        <div class="prose prose-sm max-w-none text-gray-600">
+                            {!! __('women_health.menopause.urinary_content') !!}
+                        </div>
+                        <div class="mt-4 p-3 bg-gray-50 rounded-lg text-xs text-gray-500">
+                            <strong>{{ __('women_health.references') }}:</strong> {{ __('women_health.menopause.urinary_refs') }}
+                        </div>
+                    </div>
+                    
+                    <!-- Cancer Screening -->
+                    <div id="meno-cancer_screening" class="bg-rose-50 rounded-2xl border border-rose-100 p-6">
+                        <h2 class="text-xl font-bold text-rose-900 mb-4 flex items-center gap-2">
+                            <i class="fas fa-ribbon text-rose-600"></i>
+                            {{ __('women_health.menopause.cancer_title') }}
+                        </h2>
+                        <div class="prose prose-sm max-w-none text-rose-800">
+                            {!! __('women_health.menopause.cancer_content') !!}
+                        </div>
+                        <div class="mt-4 p-3 bg-rose-100 rounded-lg text-xs text-rose-700">
+                            <strong>{{ __('women_health.references') }}:</strong> {{ __('women_health.menopause.cancer_refs') }}
+                        </div>
+                    </div>
+                    
+                    <!-- Weight Management -->
+                    <div id="meno-weight_management" class="bg-white rounded-2xl shadow-sm border border-gray-100 p-6">
+                        <h2 class="text-xl font-bold text-gray-900 mb-4 flex items-center gap-2">
+                            <i class="fas fa-weight text-green-500"></i>
+                            {{ __('women_health.menopause.weight_title') }}
+                        </h2>
+                        <div class="prose prose-sm max-w-none text-gray-600">
+                            {!! __('women_health.menopause.weight_content') !!}
+                        </div>
+                        <div class="mt-4 p-3 bg-gray-50 rounded-lg text-xs text-gray-500">
+                            <strong>{{ __('women_health.references') }}:</strong> {{ __('women_health.menopause.weight_refs') }}
+                        </div>
+                    </div>
+                    
+                    <!-- Skin and Hair Changes -->
+                    <div id="meno-skin_hair" class="bg-white rounded-2xl shadow-sm border border-gray-100 p-6">
+                        <h2 class="text-xl font-bold text-gray-900 mb-4 flex items-center gap-2">
+                            <i class="fas fa-spa text-pink-400"></i>
+                            {{ __('women_health.menopause.skin_title') }}
+                        </h2>
+                        <div class="prose prose-sm max-w-none text-gray-600">
+                            {!! __('women_health.menopause.skin_content') !!}
+                        </div>
+                        <div class="mt-4 p-3 bg-gray-50 rounded-lg text-xs text-gray-500">
+                            <strong>{{ __('women_health.references') }}:</strong> {{ __('women_health.menopause.skin_refs') }}
+                        </div>
+                    </div>
+                    
+                    <!-- Menopause Hygiene -->
+                    <div id="meno-hygiene_menopause" class="bg-white rounded-2xl shadow-sm border border-gray-100 p-6">
+                        <h2 class="text-xl font-bold text-gray-900 mb-4 flex items-center gap-2">
+                            <i class="fas fa-pump-soap text-green-500"></i>
+                            {{ __('women_health.menopause.hygiene_title') }}
+                        </h2>
+                        <div class="prose prose-sm max-w-none text-gray-600">
+                            {!! __('women_health.menopause.hygiene_content') !!}
+                        </div>
+                        <div class="mt-4 p-3 bg-gray-50 rounded-lg text-xs text-gray-500">
+                            <strong>{{ __('women_health.references') }}:</strong> {{ __('women_health.menopause.hygiene_refs') }}
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -451,7 +598,7 @@
                             {{ __('women_health.postpartum.topics_title') }}
                         </h3>
                         <div class="space-y-2">
-                            @foreach(['recovery', 'breastfeeding', 'newborn', 'depression', 'contraception', 'checkups'] as $topic)
+                            @foreach(['recovery', 'breastfeeding', 'newborn', 'depression', 'contraception', 'checkups', 'hygiene_postpartum', 'exercise', 'nutrition', 'pelvic_floor', 'emotional_bonding'] as $topic)
                             <button onclick="scrollToSection('pp-{{ $topic }}')" class="w-full text-left px-3 py-2 rounded-lg text-sm hover:bg-cyan-50 hover:text-cyan-700 transition-colors flex items-center gap-2">
                                 <i class="fas fa-chevron-{{ app()->getLocale() == 'ar' ? 'left' : 'right' }} text-xs text-gray-400"></i>
                                 {{ __('women_health.postpartum.topic_' . $topic) }}
@@ -580,6 +727,76 @@
                         </div>
                         <div class="mt-4 p-3 bg-gray-50 rounded-lg text-xs text-gray-500">
                             <strong>{{ __('women_health.references') }}:</strong> {{ __('women_health.postpartum.checkups_refs') }}
+                        </div>
+                    </div>
+                    
+                    <!-- Postpartum Hygiene -->
+                    <div id="pp-hygiene_postpartum" class="bg-white rounded-2xl shadow-sm border border-gray-100 p-6">
+                        <h2 class="text-xl font-bold text-gray-900 mb-4 flex items-center gap-2">
+                            <i class="fas fa-hands-wash text-green-500"></i>
+                            {{ __('women_health.postpartum.hygiene_title') }}
+                        </h2>
+                        <div class="prose prose-sm max-w-none text-gray-600">
+                            {!! __('women_health.postpartum.hygiene_content') !!}
+                        </div>
+                        <div class="mt-4 p-3 bg-gray-50 rounded-lg text-xs text-gray-500">
+                            <strong>{{ __('women_health.references') }}:</strong> {{ __('women_health.postpartum.hygiene_refs') }}
+                        </div>
+                    </div>
+                    
+                    <!-- Exercise Recovery -->
+                    <div id="pp-exercise" class="bg-white rounded-2xl shadow-sm border border-gray-100 p-6">
+                        <h2 class="text-xl font-bold text-gray-900 mb-4 flex items-center gap-2">
+                            <i class="fas fa-running text-orange-500"></i>
+                            {{ __('women_health.postpartum.exercise_title') }}
+                        </h2>
+                        <div class="prose prose-sm max-w-none text-gray-600">
+                            {!! __('women_health.postpartum.exercise_content') !!}
+                        </div>
+                        <div class="mt-4 p-3 bg-gray-50 rounded-lg text-xs text-gray-500">
+                            <strong>{{ __('women_health.references') }}:</strong> {{ __('women_health.postpartum.exercise_refs') }}
+                        </div>
+                    </div>
+                    
+                    <!-- Postpartum Nutrition -->
+                    <div id="pp-nutrition" class="bg-white rounded-2xl shadow-sm border border-gray-100 p-6">
+                        <h2 class="text-xl font-bold text-gray-900 mb-4 flex items-center gap-2">
+                            <i class="fas fa-utensils text-green-500"></i>
+                            {{ __('women_health.postpartum.nutrition_title') }}
+                        </h2>
+                        <div class="prose prose-sm max-w-none text-gray-600">
+                            {!! __('women_health.postpartum.nutrition_content') !!}
+                        </div>
+                        <div class="mt-4 p-3 bg-gray-50 rounded-lg text-xs text-gray-500">
+                            <strong>{{ __('women_health.references') }}:</strong> {{ __('women_health.postpartum.nutrition_refs') }}
+                        </div>
+                    </div>
+                    
+                    <!-- Pelvic Floor Therapy -->
+                    <div id="pp-pelvic_floor" class="bg-white rounded-2xl shadow-sm border border-gray-100 p-6">
+                        <h2 class="text-xl font-bold text-gray-900 mb-4 flex items-center gap-2">
+                            <i class="fas fa-female text-pink-500"></i>
+                            {{ __('women_health.postpartum.pelvic_title') }}
+                        </h2>
+                        <div class="prose prose-sm max-w-none text-gray-600">
+                            {!! __('women_health.postpartum.pelvic_content') !!}
+                        </div>
+                        <div class="mt-4 p-3 bg-gray-50 rounded-lg text-xs text-gray-500">
+                            <strong>{{ __('women_health.references') }}:</strong> {{ __('women_health.postpartum.pelvic_refs') }}
+                        </div>
+                    </div>
+                    
+                    <!-- Emotional Bonding -->
+                    <div id="pp-emotional_bonding" class="bg-pink-50 rounded-2xl border border-pink-100 p-6">
+                        <h2 class="text-xl font-bold text-pink-900 mb-4 flex items-center gap-2">
+                            <i class="fas fa-heart text-pink-600"></i>
+                            {{ __('women_health.postpartum.bonding_title') }}
+                        </h2>
+                        <div class="prose prose-sm max-w-none text-pink-800">
+                            {!! __('women_health.postpartum.bonding_content') !!}
+                        </div>
+                        <div class="mt-4 p-3 bg-pink-100 rounded-lg text-xs text-pink-700">
+                            <strong>{{ __('women_health.references') }}:</strong> {{ __('women_health.postpartum.bonding_refs') }}
                         </div>
                     </div>
                 </div>

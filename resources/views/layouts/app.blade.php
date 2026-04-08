@@ -513,15 +513,13 @@
                             <span class="text-white font-bold ml-1 text-cyan-500"
                                 style="color:#00b8db;">{{ __('nav.supervisor_name') }}</span>
                         </p>
-                        <p class="text-gray-500 text-sm tracking-wide">
-                            {{ __('nav.developed_by') }}
-                            <a href="https://wa.me/201099615358" target="_blank"
-                                class="text-cyan-500 font-bold hover:text-cyan-400 transition-all
-                             inline-flex items-center gap-1">
-                                <i class="fas fa-code"></i>
-                                {{ __('nav.developer_name') }}
-                            </a>
-                        </p>
+                     <div class="text-center" style="direction: ltr;">
+                        <a href="https://wa.me/201099615358" target="_blank" class="inline-flex items-center text-purple-400 hover:text-purple-300 transition-all duration-300 group">
+                            <span class="text-sm">Developed with</span>
+                            <i class="fas fa-heart text-red-500 mx-2 animate-pulse"></i>
+                            <span class="font-bold text-white hover:text-purple-300 transition-colors"> By Eng Saad Harera</span>
+                        </a>
+                    </div>
                     </div>
 
                     <div class="flex flex-col items-center lg:items-end gap-3 text-center">
