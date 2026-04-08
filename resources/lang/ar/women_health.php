@@ -255,7 +255,6 @@ return [
                 <div class="p-4 bg-blue-50 rounded-lg border-l-4 border-blue-500">
                     <h4 class="font-bold text-blue-800 mb-2">الفحص والتشخيص</h4>
                     <ul class="text-sm text-blue-700 space-y-1">
-                        <li><strong>مقياس ادنبره (EPDS):</strong> يجب إجراؤه أثناء الحمل وبعد الولادة</li>
                         <li><strong>علامات التحذير:</strong> حزن مستمر، فقدان الاهتمام، أفكار سلبية</li>
                         <li><strong>متى تطلب المساعدة:</strong> إذا استمرت الأعراض أكثر من أسبوعين</li>
                     </ul>

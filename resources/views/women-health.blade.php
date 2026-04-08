@@ -62,7 +62,7 @@
                             {{ __('women_health.pregnancy.topics_title') }}
                         </h3>
                         <div class="space-y-2">
-                            @foreach(['nutrition', 'exercise', 'screening', 'warning_signs', 'mental_health', 'preparation', 'hygiene', 'dental', 'sleep', 'medication'] as $topic)
+                            @foreach(['nutrition', 'exercise', 'screening', 'warning_signs', 'mental_health', 'hygiene', 'dental', 'sleep', 'medication', 'preparation'] as $topic)
                             <button onclick="scrollToSection('preg-{{ $topic }}')" class="w-full text-left px-3 py-2 rounded-lg text-sm hover:bg-pink-50 hover:text-pink-700 transition-colors flex items-center gap-2">
                                 <i class="fas fa-chevron-{{ app()->getLocale() == 'ar' ? 'left' : 'right' }} text-xs text-gray-400"></i>
                                 {{ __('women_health.pregnancy.topic_' . $topic) }}
@@ -147,10 +147,8 @@
                                 </thead>
                                 <tbody class="divide-y divide-gray-100">
                                     <tr><td class="px-4 py-2">{{ __('women_health.first_trimester') }}</td><td class="px-4 py-2">{{ __('women_health.pregnancy.test_dating') }}</td><td class="px-4 py-2">{{ __('women_health.pregnancy.purpose_dating') }}</td></tr>
-                                    <tr><td class="px-4 py-2">{{ __('women_health.first_trimester') }}</td><td class="px-4 py-2">{{ __('women_health.pregnancy.test_nt') }}</td><td class="px-4 py-2">{{ __('women_health.pregnancy.purpose_nt') }}</td></tr>
                                     <tr><td class="px-4 py-2">{{ __('women_health.second_trimester') }}</td><td class="px-4 py-2">{{ __('women_health.pregnancy.test_anatomy') }}</td><td class="px-4 py-2">{{ __('women_health.pregnancy.purpose_anatomy') }}</td></tr>
                                     <tr><td class="px-4 py-2">{{ __('women_health.second_trimester') }}</td><td class="px-4 py-2">{{ __('women_health.pregnancy.test_glucose') }}</td><td class="px-4 py-2">{{ __('women_health.pregnancy.purpose_glucose') }}</td></tr>
-                                    <tr><td class="px-4 py-2">{{ __('women_health.third_trimester') }}</td><td class="px-4 py-2">{{ __('women_health.pregnancy.test_gbs') }}</td><td class="px-4 py-2">{{ __('women_health.pregnancy.purpose_gbs') }}</td></tr>
                                 </tbody>
                             </table>
                         </div>
@@ -189,20 +187,6 @@
                         </div>
                         <div class="mt-4 p-3 bg-gray-50 rounded-lg text-xs text-gray-500">
                             <strong>{{ __('women_health.references') }}:</strong> {{ __('women_health.pregnancy.mental_refs') }}
-                        </div>
-                    </div>
-                    
-                    <!-- Preparation -->
-                    <div id="preg-preparation" class="bg-white rounded-2xl shadow-sm border border-gray-100 p-6">
-                        <h2 class="text-xl font-bold text-gray-900 mb-4 flex items-center gap-2">
-                            <i class="fas fa-hospital text-cyan-500"></i>
-                            {{ __('women_health.pregnancy.prep_title') }}
-                        </h2>
-                        <div class="prose prose-sm max-w-none text-gray-600">
-                            {!! __('women_health.pregnancy.prep_content') !!}
-                        </div>
-                        <div class="mt-4 p-3 bg-gray-50 rounded-lg text-xs text-gray-500">
-                            <strong>{{ __('women_health.references') }}:</strong> {{ __('women_health.pregnancy.prep_refs') }}
                         </div>
                     </div>
                     
@@ -259,6 +243,20 @@
                         </div>
                         <div class="mt-4 p-3 bg-amber-100 rounded-lg text-xs text-amber-700">
                             <strong>{{ __('women_health.references') }}:</strong> {{ __('women_health.pregnancy.medication_refs') }}
+                        </div>
+                    </div>
+                    
+                    <!-- Preparation -->
+                    <div id="preg-preparation" class="bg-white rounded-2xl shadow-sm border border-gray-100 p-6">
+                        <h2 class="text-xl font-bold text-gray-900 mb-4 flex items-center gap-2">
+                            <i class="fas fa-hospital text-cyan-500"></i>
+                            {{ __('women_health.pregnancy.prep_title') }}
+                        </h2>
+                        <div class="prose prose-sm max-w-none text-gray-600">
+                            {!! __('women_health.pregnancy.prep_content') !!}
+                        </div>
+                        <div class="mt-4 p-3 bg-gray-50 rounded-lg text-xs text-gray-500">
+                            <strong>{{ __('women_health.references') }}:</strong> {{ __('women_health.pregnancy.prep_refs') }}
                         </div>
                     </div>
                 </div>

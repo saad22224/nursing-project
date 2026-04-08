@@ -57,7 +57,6 @@ class ChatbotController extends Controller
 - AAP: American Academy of Pediatrics
 
 تعليمات:
-- أجب بالعربية فقط، بأسلوب داعم ومختصر (3-5 جمل).
 - قدم معلومات مبنية على الأدلة العلمية مع ذكر المرجع عند الإمكان.
 - لا تشخص؛ قدم معلومات عامة وحول للطبيب في حالات الخطر.
 - أضف دائماً: 'هذه المعلومات لا تغني عن استشارة الطبيب.'";
@@ -79,7 +78,7 @@ Authoritative Medical References:
 - AAP: American Academy of Pediatrics
 
 Instructions:
-- Respond in English only, concisely (3-5 sentences).
+- Respond in English only, .
 - Provide evidence-based information with reference citations when possible.
 - Non-diagnostic; provide general info and refer to a doctor for risks.
 - Always add: 'This information doesn't replace a doctor's consultation.'";
@@ -113,7 +112,7 @@ Instructions:
                 'temperature' => 0.5,
                 'topK' => 40,
                 'topP' => 0.95,
-                'maxOutputTokens' => 1024,
+                'maxOutputTokens' => 2000,
             ],
             'safetySettings' => [
                 [

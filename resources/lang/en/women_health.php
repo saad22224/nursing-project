@@ -48,6 +48,7 @@ return [
         'topic_dental' => 'Dental Health',
         'topic_sleep' => 'Sleep Hygiene',
         'topic_medication' => 'Medication Safety',
+        'topic_preparation' => 'Birth Preparation',
         
         'nutrition_title' => 'Nutrition During Pregnancy',
         'nutrition_content' => '
@@ -254,7 +255,6 @@ return [
                 <div class="p-4 bg-blue-50 rounded-lg border-l-4 border-blue-500">
                     <h4 class="font-bold text-blue-800 mb-2">Screening & Diagnosis</h4>
                     <ul class="text-sm text-blue-700 space-y-1">
-                        <li><strong>EPDS Scale:</strong> Should be administered during pregnancy and postpartum</li>
                         <li><strong>Warning signs:</strong> Persistent sadness, loss of interest, negative thoughts</li>
                         <li><strong>When to seek help:</strong> If symptoms last more than 2 weeks</li>
                     </ul>
