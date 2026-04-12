@@ -15,6 +15,7 @@ return [
     'references' => 'المراجع الطبية',
     
     // Tabs
+    'tab_adolescence' => 'المراهقة',
     'tab_pregnancy' => 'الحمل',
     'tab_family_planning' => 'تخطيط الأسرة',
     'tab_menopause' => 'سن اليأس',
@@ -28,6 +29,362 @@ return [
     'second_trimester' => 'الثلث الثاني',
     'third_trimester' => 'الثلث الثالث',
     'years' => 'سنوات',
+    
+    // Adolescence Section
+    'adolescence' => [
+        'topics_title' => 'مواضيع المراهقة',
+        'facts_title' => 'حقائق عن المراهقة',
+        'age_start' => 'عمر بداية البلوغ',
+        'menarche_age' => 'متوسط عمر أول دورة',
+        'duration' => 'مدة المراهقة',
+        'who_ref' => 'المصدر: WHO & UNICEF (2023)',
+        
+        'topic_puberty' => 'تغيرات البلوغ',
+        'topic_menstrual_health' => 'صحة الدورة الشهرية',
+        'topic_nutrition' => 'التغذية السليمة',
+        'topic_mental_health' => 'الصحة النفسية',
+        'topic_hygiene' => 'النظافة الشخصية',
+        'topic_exercise' => 'النشاط البدني',
+        'topic_reproductive_education' => 'التثقيف الصحي التناسلي',
+        'topic_body_image' => 'صورة الجسم',
+        'topic_healthy_relationships' => 'العلاقات الصحية',
+        
+        'puberty_title' => 'تغيرات البلوغ والنمو',
+        'puberty_content' => '
+            <div class="space-y-4">
+                <div class="p-4 bg-green-50 rounded-lg border-l-4 border-green-500">
+                    <h4 class="font-bold text-green-800 mb-2">التغيرات الجسدية</h4>
+                    <ul class="text-sm text-green-700 space-y-1">
+                        <li><strong>نمو الثديين:</strong> يبدأ عادة بين 8-13 سنة (المرحلة الثانية)</li>
+                        <li><strong>نزول الإفرازات المهبلية:</strong> علامة على اقتراب أول دورة شهرية</li>
+                        <li><strong>النمو السريع:</strong> زيادة الارتفاع 5-10 سم سنوياً</li>
+                        <li><strong>تغير شكل الجسم:</strong> تراكم الدهون في الوركين والفخذين</li>
+                        <li><strong>تعرق وأعراض جسمية:</strong> بسبب تغير الهرمونات</li>
+                    </ul>
+                </div>
+                
+                <div class="p-4 bg-blue-50 rounded-lg border-l-4 border-blue-500">
+                    <h4 class="font-bold text-blue-800 mb-2">الحيض (الدورة الشهرية)</h4>
+                    <ul class="text-sm text-blue-700 space-y-1">
+                        <li><strong>متوسط عمر البداية:</strong> 12-13 سنة (المدى 9-16 سنة)</li>
+                        <li><strong>الدورة في البداية:</strong> قد تكون غير منتظمة لـ 2-3 سنوات</li>
+                        <li><strong>مدة الدورة:</strong> عادة 21-45 يوم في السنتين الأولى</li>
+                        <li><strong>النزيف:</strong> 2-7 أيام، متوسط 30-40 مل دماً</li>
+                    </ul>
+                </div>
+                
+                <div class="p-4 bg-purple-50 rounded-lg border-l-4 border-purple-500">
+                    <h4 class="font-bold text-purple-800 mb-2">النضج العاطفي والاجتماعي</h4>
+                    <ul class="text-sm text-purple-700 space-y-1">
+                        <li>تقلبات مزاجية بسبب الهرمونات (الاستروجين والبروجسترون)</li>
+                        <li>الاهتمام المتزايد بالعلاقات الاجتماعية والزملاء</li>
+                        <li>تطور الهوية الشخصية والاستقلالية</li>
+                        <li>الرغبة في الخصوصية والاستقلال عن الأسرة</li>
+                    </ul>
+                </div>
+            </div>
+        ',
+        'puberty_refs' => 'WHO (2023) "Adolescent Health"; ACOG (2022) "Menstruation in Girls and Adolescents"',
+        
+        'menstrual_title' => 'صحة الدورة الشهرية',
+        'menstrual_content' => '
+            <div class="space-y-4">
+                <div class="p-4 bg-pink-50 rounded-lg border-l-4 border-pink-500">
+                    <h4 class="font-bold text-pink-800 mb-2">فهم الدورة الشهرية</h4>
+                    <ul class="text-sm text-pink-700 space-y-1">
+                        <li><strong>المرحلة الجريبية:</strong> الأيام 1-14 (نمو البويضة)</li>
+                        <li><strong>التبويض:</strong> حوالي اليوم 14 (وسط الدورة المثالية 28 يوم)</li>
+                        <li><strong>المرحلة الجسمية:</strong> الأيام 15-28 (تحضير الرحم)</li>
+                        <li><strong>النزيف:</strong> يبدأ عندما لا يحدث الحمل</li>
+                    </ul>
+                </div>
+                
+                <div class="p-4 bg-cyan-50 rounded-lg border-l-4 border-cyan-500">
+                    <h4 class="font-bold text-cyan-800 mb-2">إدارة الدورة الشهرية</h4>
+                    <ul class="text-sm text-cyan-700 space-y-1">
+                        <li><strong>فوط صحية:</strong> تغيير كل 4-6 ساعات على الأقل</li>
+                        <li><strong>السدادات القطنية:</strong> لا تترك أكثر من 8 ساعات (خطر التسمم الصدمي)</li>
+                        <li><strong>كأس الحيض:</strong> آمنة للمراهقات، تفرغ كل 8-12 ساعة</li>
+                        <li><strong>تتبع الدورة:</strong> استخدام تطبيقات أو تقويم لمعرفة موعد الدورة القادمة</li>
+                    </ul>
+                </div>
+                
+                <div class="p-4 bg-red-50 rounded-lg border-l-4 border-red-500">
+                    <h4 class="font-bold text-red-800 mb-2">متى تزورين الطبيب؟</h4>
+                    <ul class="text-sm text-red-700 space-y-1">
+                        <li>أول دورة قبل 9 سنوات أو غيابها بعد 16 سنة</li>
+                        <li>نزيف شديد جداً (تغيير كل ساعة أو أقل)</li>
+                        <li>دورة غير منتظمة جداً بعد 3 سنوات من البداية</li>
+                        <li>ألم شديد يمنع من الأنشطة اليومية</li>
+                        <li>غياب الدورة لـ 3 أشهر متتالية</li>
+                    </ul>
+                </div>
+            </div>
+        ',
+        'menstrual_refs' => 'ACOG (2023) "Menstruation in Girls and Adolescents"; AAP (2022) "Menstrual Health"',
+        
+        'nutrition_title' => 'التغذية السليمة للمراهقات',
+        'nutrition_content' => '
+            <div class="space-y-4">
+                <div class="p-4 bg-green-50 rounded-lg border-l-4 border-green-500">
+                    <h4 class="font-bold text-green-800 mb-2">الاحتياجات الغذائية</h4>
+                    <ul class="text-sm text-green-700 space-y-1">
+                        <li><strong>الحديد:</strong> 15 ملجرام/يوم (مهم أثناء الحيض)</li>
+                        <li><strong>الكالسيوم:</strong> 1,300 ملجرام/يوم (ذروة نمو العظام)</li>
+                        <li><strong>فيتامين د:</strong> 600 وحدة دولية/يوم</li>
+                        <li><strong>الفولات:</strong> 400 ميكروجرام/يوم</li>
+                        <li><strong>البروتين:</strong> 46 غرام/يوم</li>
+                    </ul>
+                </div>
+                
+                <div class="p-4 bg-orange-50 rounded-lg border-l-4 border-orange-500">
+                    <h4 class="font-bold text-orange-800 mb-2">نصائح غذائية صحية</h4>
+                    <ul class="text-sm text-orange-700 space-y-1">
+                        <li>تناول 3 وجبات رئيسية + وجبات خفيفة صحية</li>
+                        <li>لا تتخطى الإفطار - يحسن التركيز في المدرسة</li>
+                        <li>شرب 8-10 أكواب ماء يومياً</li>
+                        <li>تناول الفواكه والخضروات بألوانها المختلفة</li>
+                        <li>اختيار الحبوب الكاملة بدلاً من المكررة</li>
+                    </ul>
+                </div>
+                
+                <div class="p-4 bg-red-50 rounded-lg border-l-4 border-red-500">
+                    <h4 class="font-bold text-red-800 mb-2">تجنبي هذه العادات</h4>
+                    <ul class="text-sm text-red-700 space-y-1">
+                        <li>الحميات القاسية - تؤثر سلباً على النمو</li>
+                        <li>تخطي الوجبات - يؤدي إلى فقر الدم والإرهاق</li>
+                        <li>الإفراط في المشروبات الغازية - تمنع امتصاص الكالسيوم</li>
+                        <li>الوجبات السريعة بشكل يومي</li>
+                    </ul>
+                </div>
+            </div>
+        ',
+        'nutrition_refs' => 'WHO (2022) "Nutrition in Adolescents"; AAP (2023) "Healthy Eating for Teens"',
+        
+        'mental_title' => 'الصحة النفسية في سن المراهقة',
+        'mental_content' => '
+            <div class="space-y-4">
+                <div class="p-4 bg-purple-50 rounded-lg border-l-4 border-purple-500">
+                    <h4 class="font-bold text-purple-800 mb-2">التحديات النفسية الشائعة</h4>
+                    <ul class="text-sm text-purple-700 space-y-1">
+                        <li><strong>تقلبات المزاج:</strong> طبيعية بسبب التغير الهرموني</li>
+                        <li><strong>الضغط الاجتماعي:</strong> ضغط الأقران والتنمر</li>
+                        <li><strong>القلق الاجتماعي:</strong> الخوف من الحكم أو الإحراج</li>
+                        <li><strong>الاكتئاب:</strong> يصيب 1 من كل 5 مراهقين</li>
+                        <li><strong>مشاكل الصورة الجسدية:</strong> عدم الرضا عن المظهر</li>
+                    </ul>
+                </div>
+                
+                <div class="p-4 bg-blue-50 rounded-lg border-l-4 border-blue-500">
+                    <h4 class="font-bold text-blue-800 mb-2">استراتيجيات للتعامل مع الضغط</h4>
+                    <ul class="text-sm text-blue-700 space-y-1">
+                        <li>الحديث مع شخص موثوق (والد، معلم، صديق)</li>
+                        <li>ممارسة التمارين الرياضية بانتظام (تخفف التوتر)</li>
+                        <li>الحصول على نوم كافٍ (8-10 ساعات للمراهقين)</li>
+                        <li>تقليل وقت الشاشات ووسائل التواصل</li>
+                        <li>تعلم تقنيات الاسترخاء والتنفس العميق</li>
+                    </ul>
+                </div>
+                
+                <div class="p-4 bg-rose-50 rounded-lg border-l-4 border-rose-500">
+                    <h4 class="font-bold text-rose-800 mb-2">متى تطلب المساعدة؟</h4>
+                    <ul class="text-sm text-rose-700 space-y-1">
+                        <li>حزن مستمر لأكثر من أسبوعين</li>
+                        <li>فقدان الاهتمام بالأنشطة المفضلة</li>
+                        <li>تغير كبير في النوم أو الشهية</li>
+                        <li>أفكار عن إيذاء النفس</li>
+                        <li>صعوبة في التركيز في الدراسة</li>
+                    </ul>
+                </div>
+            </div>
+        ',
+        'mental_refs' => 'WHO (2023) "Mental Health of Adolescents"; AAP (2023) "Depression in Teens"',
+        
+        'hygiene_title' => 'النظافة الشخصية للمراهقات',
+        'hygiene_content' => '
+            <div class="space-y-4">
+                <div class="p-4 bg-cyan-50 rounded-lg border-l-4 border-cyan-500">
+                    <h4 class="font-bold text-cyan-800 mb-2">النظافة اليومية</h4>
+                    <ul class="text-sm text-cyan-700 space-y-1">
+                        <li>الاستحمام يومياً باستخدام صابون معتدل</li>
+                        <li>غسل الوجه مرتين يومياً (صباحاً ومساءً)</li>
+                        <li>استخدام مزيل العرق أو مضاد التعرق</li>
+                        <li>تنظيف الأسنان مرتين يومياً بالفرشاة والخيط</li>
+                        <li>تغيير الملابس الداخلية يومياً</li>
+                    </ul>
+                </div>
+                
+                <div class="p-4 bg-pink-50 rounded-lg border-l-4 border-pink-500">
+                    <h4 class="font-bold text-pink-800 mb-2">النظافة الحميمة</h4>
+                    <ul class="text-sm text-pink-700 space-y-1">
+                        <li>غسل المنطقة الخارجية بالماء الدافئ فقط</li>
+                        <li>تجنب الغسل المهبلي (يثير العدوى)</li>
+                        <li>ارتداء ملابس داخلية قطنية</li>
+                        <li>تجنب الملابس الضيقة لفترات طويلة</li>
+                        <li>تغيير الفوط/السدادات بانتظام أثناء الدورة</li>
+                    </ul>
+                </div>
+                
+                <div class="p-4 bg-green-50 rounded-lg border-l-4 border-green-500">
+                    <h4 class="font-bold text-green-800 mb-2">نصائح للعناية بالبشرة</h4>
+                    <ul class="text-sm text-green-700 space-y-1">
+                        <li>استخدام واقٍ شمسي SPF 30 يومياً</li>
+                        <li>عدم لمس الوجه باليدين المتسختين</li>
+                        <li>تجنب العبث بالبثور (يزيد الندوب)</li>
+                        <li>استخدام منتجات غير كوميدوجينية</li>
+                    </ul>
+                </div>
+            </div>
+        ',
+        'hygiene_refs' => 'AAP (2022) "Hygiene for Teens"; ACOG (2023) "Vulvar Care"',
+        
+        'exercise_title' => 'النشاط البدني للمراهقات',
+        'exercise_content' => '
+            <div class="space-y-4">
+                <div class="p-4 bg-green-50 rounded-lg border-l-4 border-green-500">
+                    <h4 class="font-bold text-green-800 mb-2">التوصيات</h4>
+                    <ul class="text-sm text-green-700 space-y-1">
+                        <li>60 دقيقة على الأقل من النشاط البدني يومياً</li>
+                        <li>تمارين تقوية العضلات 3 أيام/أسبوع</li>
+                        <li>تمارين تقوية العظام (القفز، الركض)</li>
+                        <li>تنوع الأنشطة للحفاظ على الاهتمام</li>
+                    </ul>
+                </div>
+                
+                <div class="p-4 bg-blue-50 rounded-lg border-l-4 border-blue-500">
+                    <h4 class="font-bold text-blue-800 mb-2">فوائد الرياضة</h4>
+                    <ul class="text-sm text-blue-700 space-y-1">
+                        <li>بناء كتلة عظمية قصوى (مهم لمنع هشاشة العظام)</li>
+                        <li>تحسين المزاج وتقليل القلق والاكتئاب</li>
+                        <li>المحافظة على وزن صحي</li>
+                        <li>تحسين النوم والطاقة</li>
+                        <li>زيادة الثقة بالنفس</li>
+                    </ul>
+                </div>
+                
+                <div class="p-4 bg-orange-50 rounded-lg border-l-4 border-orange-500">
+                    <h4 class="font-bold text-orange-800 mb-2">أنشطة مناسبة</h4>
+                    <ul class="text-sm text-orange-700 space-y-1">
+                        <li>المشي، الجري، ركوب الدراجة</li>
+                        <li>السباحة والرياضات المائية</li>
+                        <li>اليوغا والبيلاتس</li>
+                        <li>الرياضات الجماعية (كرة القدم، السلة)</li>
+                        <li>الرقص والجمباز</li>
+                    </ul>
+                </div>
+            </div>
+        ',
+        'exercise_refs' => 'WHO (2023) "Physical Activity for Adolescents"; AAP (2022) "Exercise in Teens"',
+        
+        'reproductive_title' => 'التثقيف الصحي التناسلي',
+        'reproductive_content' => '
+            <div class="space-y-4">
+                <div class="p-4 bg-rose-50 rounded-lg border-l-4 border-rose-500">
+                    <h4 class="font-bold text-rose-800 mb-2">الحيض والخصوبة</h4>
+                    <ul class="text-sm text-rose-700 space-y-1">
+                        <li>فهم دورة الإباضة والخصوبة</li>
+                        <li>الفرق بين الإفرازات الطبيعية وعلامات العدوى</li>
+                        <li>متى تكون الدورة غير طبيعية</li>
+                        <li>أهمية عدم الضغط النفسي على الجسم</li>
+                    </ul>
+                </div>
+                
+                <div class="p-4 bg-purple-50 rounded-lg border-l-4 border-purple-500">
+                    <h4 class="font-bold text-purple-800 mb-2">الوقاية من العدوى</h4>
+                    <ul class="text-sm text-purple-700 space-y-1">
+                        <li>غسل اليدين قبل وبعد استخدام الحمام</li>
+                        <li>تغيير الملابس الداخلية الرطبة فوراً</li>
+                        <li>تجنب الملابس الضيقة الاصطناعية</li>
+                        <li>عدم مشاركة المناشف أو الملابس الداخلية</li>
+                    </ul>
+                </div>
+                
+                <div class="p-4 bg-amber-50 rounded-lg border-l-4 border-amber-500">
+                    <h4 class="font-bold text-amber-800 mb-2">متى تزوري الطبيب؟</h4>
+                    <ul class="text-sm text-amber-700 space-y-1">
+                        <li>حكة شديدة أو إفرازات غير طبيعية</li>
+                        <li>رائحة كريهة مع إفرازات</li>
+                        <li>ألم أثناء الحيض شديد جداً</li>
+                        <li>غياب الدورة الشهرية لمدة طويلة</li>
+                    </ul>
+                </div>
+            </div>
+        ',
+        'reproductive_refs' => 'WHO (2023) "Sexual and Reproductive Health"; ACOG (2022) "First Gynecological Visit"',
+        
+        'body_title' => 'صورة الجسم والثقة بالنفس',
+        'body_content' => '
+            <div class="space-y-4">
+                <div class="p-4 bg-teal-50 rounded-lg border-l-4 border-teal-500">
+                    <h4 class="font-bold text-teal-800 mb-2">تغيرات الجسم الطبيعية</h4>
+                    <ul class="text-sm text-teal-700 space-y-1">
+                        <li>تغير شكل الجسم جزء طبيعي من النمو</li>
+                        <li>كل جسم مختلف - لا يوجد "مثالي" واحد</li>
+                        <li>التغيرات الهرمونية تؤثر على الوزن والشكل</li>
+                        <li>الجسم يحتاج إلى دهون صحية للنمو</li>
+                    </ul>
+                </div>
+                
+                <div class="p-4 bg-indigo-50 rounded-lg border-l-4 border-indigo-500">
+                    <h4 class="font-bold text-indigo-800 mb-2">بناء صورة إيجابية للجسم</h4>
+                    <ul class="text-sm text-indigo-700 space-y-1">
+                        <li>ركزي على ما يمكن جسمك فعله وليس مظهره فقط</li>
+                        <li>تجنبي مقارنة نفسك بصور على الإنترنت</li>
+                        <li>احيطي بنفسك بأشخاص إيجابيين</li>
+                        <li>امنحي جسمك الراحة والتغذية التي يحتاجها</li>
+                    </ul>
+                </div>
+                
+                <div class="p-4 bg-red-50 rounded-lg border-l-4 border-red-500">
+                    <h4 class="font-bold text-red-800 mb-2">تحذيرات</h4>
+                    <ul class="text-sm text-red-700 space-y-1">
+                        <li>الحميات القاسية تؤذي النمو والصحة</li>
+                        <li>اضطرابات الأكل تحتاج لمساعدة متخصصة</li>
+                        <li>تجنبي التعليقات السلبية عن جسدك</li>
+                    </ul>
+                </div>
+            </div>
+        ',
+        'body_refs' => 'WHO (2022) "Body Image in Adolescents"; AAP (2023) "Eating Disorders in Teens"',
+        
+        'relationships_title' => 'العلاقات الصحية',
+        'relationships_content' => '
+            <div class="space-y-4">
+                <div class="p-4 bg-pink-50 rounded-lg border-l-4 border-pink-500">
+                    <h4 class="font-bold text-pink-800 mb-2">صفات العلاقات الصحية</h4>
+                    <ul class="text-sm text-pink-700 space-y-1">
+                        <li>الاحترام المتبادل بين الطرفين</li>
+                        <li>الثقة والأمانة</li>
+                        <li>الدعم والتشجيع</li>
+                        <li>التواصل المفتوح والصادق</li>
+                        <li>احترام الحدود الشخصية</li>
+                    </ul>
+                </div>
+                
+                <div class="p-4 bg-red-50 rounded-lg border-l-4 border-red-500">
+                    <h4 class="font-bold text-red-800 mb-2">علامات العلاقة غير الصحية</h4>
+                    <ul class="text-sm text-red-700 space-y-1">
+                        <li>السيطرة والتحكم في تحركاتك</li>
+                        <li>الغيرة المفرطة والاتهامات</li>
+                        <li>الإهانة أو التقليل منك</li>
+                        <li>الضغط للقيام بأشياء لا ترغبين بها</li>
+                        <li>عزلتك عن الأصدقاء والعائلة</li>
+                    </ul>
+                </div>
+                
+                <div class="p-4 bg-blue-50 rounded-lg border-l-4 border-blue-500">
+                    <h4 class="font-bold text-blue-800 mb-2">نصائح للعلاقات</h4>
+                    <ul class="text-sm text-blue-700 space-y-1">
+                        <li>ثقي بحدسك - إذا شعرتِ بعدم الراحة، توقفي</li>
+                        <li>حدودك مهمة ويجب احترامها</li>
+                        <li>لا تخافي من طلب المساعدة</li>
+                        <li>العلاقة السليمة لا تجعلك تشعرين بالذنب</li>
+                    </ul>
+                </div>
+            </div>
+        ',
+        'relationships_refs' => 'WHO (2023) "Healthy Relationships"; AAP (2022) "Teen Dating"',
+    ],
     
     // Pregnancy Section
     'pregnancy' => [

@@ -15,6 +15,7 @@ return [
     'references' => 'Medical References',
     
     // Tabs
+    'tab_adolescence' => 'Adolescence',
     'tab_pregnancy' => 'Pregnancy',
     'tab_family_planning' => 'Family Planning',
     'tab_menopause' => 'Menopause',
@@ -28,6 +29,362 @@ return [
     'second_trimester' => 'Second Trimester',
     'third_trimester' => 'Third Trimester',
     'years' => 'years',
+    
+    // Adolescence Section
+    'adolescence' => [
+        'topics_title' => 'Adolescence Topics',
+        'facts_title' => 'Adolescence Facts',
+        'age_start' => 'Puberty Onset Age',
+        'menarche_age' => 'Average Menarche Age',
+        'duration' => 'Adolescence Duration',
+        'who_ref' => 'Source: WHO & UNICEF (2023)',
+        
+        'topic_puberty' => 'Puberty Changes',
+        'topic_menstrual_health' => 'Menstrual Health',
+        'topic_nutrition' => 'Healthy Nutrition',
+        'topic_mental_health' => 'Mental Health',
+        'topic_hygiene' => 'Personal Hygiene',
+        'topic_exercise' => 'Physical Activity',
+        'topic_reproductive_education' => 'Reproductive Education',
+        'topic_body_image' => 'Body Image',
+        'topic_healthy_relationships' => 'Healthy Relationships',
+        
+        'puberty_title' => 'Puberty and Growth Changes',
+        'puberty_content' => '
+            <div class="space-y-4">
+                <div class="p-4 bg-green-50 rounded-lg border-l-4 border-green-500">
+                    <h4 class="font-bold text-green-800 mb-2">Physical Changes</h4>
+                    <ul class="text-sm text-green-700 space-y-1">
+                        <li><strong>Breast development:</strong> Usually starts between ages 8-13 (Tanner Stage 2)</li>
+                        <li><strong>Vaginal discharge:</strong> Sign that first period is approaching</li>
+                        <li><strong>Growth spurt:</strong> Height increases 5-10 cm per year</li>
+                        <li><strong>Body shape changes:</strong> Fat accumulation in hips and thighs</li>
+                        <li><strong>Sweating and body odor:</strong> Due to hormonal changes</li>
+                    </ul>
+                </div>
+                
+                <div class="p-4 bg-blue-50 rounded-lg border-l-4 border-blue-500">
+                    <h4 class="font-bold text-blue-800 mb-2">Menstruation (Period)</h4>
+                    <ul class="text-sm text-blue-700 space-y-1">
+                        <li><strong>Average age of onset:</strong> 12-13 years (range 9-16 years)</li>
+                        <li><strong>Cycles initially:</strong> May be irregular for 2-3 years</li>
+                        <li><strong>Cycle length:</strong> Usually 21-45 days in first 2 years</li>
+                        <li><strong>Bleeding:</strong> 2-7 days, average 30-40 ml of blood</li>
+                    </ul>
+                </div>
+                
+                <div class="p-4 bg-purple-50 rounded-lg border-l-4 border-purple-500">
+                    <h4 class="font-bold text-purple-800 mb-2">Emotional and Social Maturity</h4>
+                    <ul class="text-sm text-purple-700 space-y-1">
+                        <li>Mood swings due to hormones (estrogen and progesterone)</li>
+                        <li>Increasing interest in social relationships and peers</li>
+                        <li>Development of personal identity and independence</li>
+                        <li>Desire for privacy and independence from family</li>
+                    </ul>
+                </div>
+            </div>
+        ',
+        'puberty_refs' => 'WHO (2023) "Adolescent Health"; ACOG (2022) "Menstruation in Girls and Adolescents"',
+        
+        'menstrual_title' => 'Menstrual Health',
+        'menstrual_content' => '
+            <div class="space-y-4">
+                <div class="p-4 bg-pink-50 rounded-lg border-l-4 border-pink-500">
+                    <h4 class="font-bold text-pink-800 mb-2">Understanding the Menstrual Cycle</h4>
+                    <ul class="text-sm text-pink-700 space-y-1">
+                        <li><strong>Follicular phase:</strong> Days 1-14 (egg development)</li>
+                        <li><strong>Ovulation:</strong> Around day 14 (midpoint of ideal 28-day cycle)</li>
+                        <li><strong>Luteal phase:</strong> Days 15-28 (uterus preparation)</li>
+                        <li><strong>Bleeding:</strong> Begins when pregnancy does not occur</li>
+                    </ul>
+                </div>
+                
+                <div class="p-4 bg-cyan-50 rounded-lg border-l-4 border-cyan-500">
+                    <h4 class="font-bold text-cyan-800 mb-2">Period Management</h4>
+                    <ul class="text-sm text-cyan-700 space-y-1">
+                        <li><strong>Pads:</strong> Change every 4-6 hours minimum</li>
+                        <li><strong>Tampons:</strong> Do not leave in for more than 8 hours (TSS risk)</li>
+                        <li><strong>Menstrual cup:</strong> Safe for teens, empty every 8-12 hours</li>
+                        <li><strong>Track your cycle:</strong> Use apps or calendar to predict next period</li>
+                    </ul>
+                </div>
+                
+                <div class="p-4 bg-red-50 rounded-lg border-l-4 border-red-500">
+                    <h4 class="font-bold text-red-800 mb-2">When to See a Doctor?</h4>
+                    <ul class="text-sm text-red-700 space-y-1">
+                        <li>First period before age 9 or absence after age 16</li>
+                        <li>Very heavy bleeding (changing every hour or less)</li>
+                        <li>Very irregular periods after 3 years from start</li>
+                        <li>Severe pain that prevents daily activities</li>
+                        <li>Missing periods for 3 consecutive months</li>
+                    </ul>
+                </div>
+            </div>
+        ',
+        'menstrual_refs' => 'ACOG (2023) "Menstruation in Girls and Adolescents"; AAP (2022) "Menstrual Health"',
+        
+        'nutrition_title' => 'Healthy Nutrition for Teens',
+        'nutrition_content' => '
+            <div class="space-y-4">
+                <div class="p-4 bg-green-50 rounded-lg border-l-4 border-green-500">
+                    <h4 class="font-bold text-green-800 mb-2">Nutritional Needs</h4>
+                    <ul class="text-sm text-green-700 space-y-1">
+                        <li><strong>Iron:</strong> 15 mg/day (important during menstruation)</li>
+                        <li><strong>Calcium:</strong> 1,300 mg/day (peak bone growth)</li>
+                        <li><strong>Vitamin D:</strong> 600 IU/day</li>
+                        <li><strong>Folate:</strong> 400 mcg/day</li>
+                        <li><strong>Protein:</strong> 46 g/day</li>
+                    </ul>
+                </div>
+                
+                <div class="p-4 bg-orange-50 rounded-lg border-l-4 border-orange-500">
+                    <h4 class="font-bold text-orange-800 mb-2">Healthy Eating Tips</h4>
+                    <ul class="text-sm text-orange-700 space-y-1">
+                        <li>Eat 3 main meals + healthy snacks</li>
+                        <li>Do not skip breakfast - improves school concentration</li>
+                        <li>Drink 8-10 cups of water daily</li>
+                        <li>Eat fruits and vegetables of different colors</li>
+                        <li>Choose whole grains over refined ones</li>
+                    </ul>
+                </div>
+                
+                <div class="p-4 bg-red-50 rounded-lg border-l-4 border-red-500">
+                    <h4 class="font-bold text-red-800 mb-2">Habits to Avoid</h4>
+                    <ul class="text-sm text-red-700 space-y-1">
+                        <li>Extreme diets - negatively affect growth</li>
+                        <li>Skipping meals - leads to anemia and fatigue</li>
+                        <li>Excessive soda drinks - prevent calcium absorption</li>
+                        <li>Daily fast food consumption</li>
+                    </ul>
+                </div>
+            </div>
+        ',
+        'nutrition_refs' => 'WHO (2022) "Nutrition in Adolescents"; AAP (2023) "Healthy Eating for Teens"',
+        
+        'mental_title' => 'Mental Health in Adolescence',
+        'mental_content' => '
+            <div class="space-y-4">
+                <div class="p-4 bg-purple-50 rounded-lg border-l-4 border-purple-500">
+                    <h4 class="font-bold text-purple-800 mb-2">Common Mental Health Challenges</h4>
+                    <ul class="text-sm text-purple-700 space-y-1">
+                        <li><strong>Mood swings:</strong> Normal due to hormonal changes</li>
+                        <li><strong>Social pressure:</strong> Peer pressure and bullying</li>
+                        <li><strong>Social anxiety:</strong> Fear of judgment or embarrassment</li>
+                        <li><strong>Depression:</strong> Affects 1 in 5 teenagers</li>
+                        <li><strong>Body image issues:</strong> Dissatisfaction with appearance</li>
+                    </ul>
+                </div>
+                
+                <div class="p-4 bg-blue-50 rounded-lg border-l-4 border-blue-500">
+                    <h4 class="font-bold text-blue-800 mb-2">Strategies for Coping with Stress</h4>
+                    <ul class="text-sm text-blue-700 space-y-1">
+                        <li>Talk to someone you trust (parent, teacher, friend)</li>
+                        <li>Exercise regularly (reduces stress)</li>
+                        <li>Get adequate sleep (8-10 hours for teens)</li>
+                        <li>Reduce screen time and social media</li>
+                        <li>Learn relaxation and deep breathing techniques</li>
+                    </ul>
+                </div>
+                
+                <div class="p-4 bg-rose-50 rounded-lg border-l-4 border-rose-500">
+                    <h4 class="font-bold text-rose-800 mb-2">When to Seek Help?</h4>
+                    <ul class="text-sm text-rose-700 space-y-1">
+                        <li>Persistent sadness for more than 2 weeks</li>
+                        <li>Loss of interest in favorite activities</li>
+                        <li>Significant changes in sleep or appetite</li>
+                        <li>Thoughts of self-harm</li>
+                        <li>Difficulty concentrating in school</li>
+                    </ul>
+                </div>
+            </div>
+        ',
+        'mental_refs' => 'WHO (2023) "Mental Health of Adolescents"; AAP (2023) "Depression in Teens"',
+        
+        'hygiene_title' => 'Personal Hygiene for Teens',
+        'hygiene_content' => '
+            <div class="space-y-4">
+                <div class="p-4 bg-cyan-50 rounded-lg border-l-4 border-cyan-500">
+                    <h4 class="font-bold text-cyan-800 mb-2">Daily Hygiene</h4>
+                    <ul class="text-sm text-cyan-700 space-y-1">
+                        <li>Shower daily using mild soap</li>
+                        <li>Wash face twice daily (morning and evening)</li>
+                        <li>Use deodorant or antiperspirant</li>
+                        <li>Brush teeth twice daily with brush and floss</li>
+                        <li>Change underwear daily</li>
+                    </ul>
+                </div>
+                
+                <div class="p-4 bg-pink-50 rounded-lg border-l-4 border-pink-500">
+                    <h4 class="font-bold text-pink-800 mb-2">Intimate Hygiene</h4>
+                    <ul class="text-sm text-pink-700 space-y-1">
+                        <li>Wash external genital area with warm water only</li>
+                        <li>Avoid douching (triggers infection)</li>
+                        <li>Wear cotton underwear</li>
+                        <li>Avoid tight clothing for long periods</li>
+                        <li>Change pads/tampons regularly during period</li>
+                    </ul>
+                </div>
+                
+                <div class="p-4 bg-green-50 rounded-lg border-l-4 border-green-500">
+                    <h4 class="font-bold text-green-800 mb-2">Skin Care Tips</h4>
+                    <ul class="text-sm text-green-700 space-y-1">
+                        <li>Use sunscreen SPF 30 daily</li>
+                        <li>Avoid touching face with dirty hands</li>
+                        <li>Avoid picking pimples (increases scarring)</li>
+                        <li>Use non-comedogenic products</li>
+                    </ul>
+                </div>
+            </div>
+        ',
+        'hygiene_refs' => 'AAP (2022) "Hygiene for Teens"; ACOG (2023) "Vulvar Care"',
+        
+        'exercise_title' => 'Physical Activity for Teens',
+        'exercise_content' => '
+            <div class="space-y-4">
+                <div class="p-4 bg-green-50 rounded-lg border-l-4 border-green-500">
+                    <h4 class="font-bold text-green-800 mb-2">Recommendations</h4>
+                    <ul class="text-sm text-green-700 space-y-1">
+                        <li>At least 60 minutes of physical activity daily</li>
+                        <li>Muscle-strengthening exercises 3 days/week</li>
+                        <li>Bone-strengthening exercises (jumping, running)</li>
+                        <li>Variety of activities to maintain interest</li>
+                    </ul>
+                </div>
+                
+                <div class="p-4 bg-blue-50 rounded-lg border-l-4 border-blue-500">
+                    <h4 class="font-bold text-blue-800 mb-2">Benefits of Exercise</h4>
+                    <ul class="text-sm text-blue-700 space-y-1">
+                        <li>Builds peak bone mass (important for preventing osteoporosis)</li>
+                        <li>Improves mood and reduces anxiety and depression</li>
+                        <li>Maintains healthy weight</li>
+                        <li>Improves sleep and energy</li>
+                        <li>Increases self-confidence</li>
+                    </ul>
+                </div>
+                
+                <div class="p-4 bg-orange-50 rounded-lg border-l-4 border-orange-500">
+                    <h4 class="font-bold text-orange-800 mb-2">Suitable Activities</h4>
+                    <ul class="text-sm text-orange-700 space-y-1">
+                        <li>Walking, running, cycling</li>
+                        <li>Swimming and water sports</li>
+                        <li>Yoga and Pilates</li>
+                        <li>Team sports (soccer, basketball)</li>
+                        <li>Dancing and gymnastics</li>
+                    </ul>
+                </div>
+            </div>
+        ',
+        'exercise_refs' => 'WHO (2023) "Physical Activity for Adolescents"; AAP (2022) "Exercise in Teens"',
+        
+        'reproductive_title' => 'Sexual and Reproductive Education',
+        'reproductive_content' => '
+            <div class="space-y-4">
+                <div class="p-4 bg-rose-50 rounded-lg border-l-4 border-rose-500">
+                    <h4 class="font-bold text-rose-800 mb-2">Menstruation and Fertility</h4>
+                    <ul class="text-sm text-rose-700 space-y-1">
+                        <li>Understanding ovulation and fertility</li>
+                        <li>Difference between normal discharge and infection signs</li>
+                        <li>When periods are abnormal</li>
+                        <li>Importance of not stressing the body</li>
+                    </ul>
+                </div>
+                
+                <div class="p-4 bg-purple-50 rounded-lg border-l-4 border-purple-500">
+                    <h4 class="font-bold text-purple-800 mb-2">Infection Prevention</h4>
+                    <ul class="text-sm text-purple-700 space-y-1">
+                        <li>Wash hands before and after using bathroom</li>
+                        <li>Change damp underwear immediately</li>
+                        <li>Avoid tight synthetic clothing</li>
+                        <li>Do not share towels or underwear</li>
+                    </ul>
+                </div>
+                
+                <div class="p-4 bg-amber-50 rounded-lg border-l-4 border-amber-500">
+                    <h4 class="font-bold text-amber-800 mb-2">When to See a Doctor?</h4>
+                    <ul class="text-sm text-amber-700 space-y-1">
+                        <li>Severe itching or abnormal discharge</li>
+                        <li>Foul odor with discharge</li>
+                        <li>Pain during menstruation that is very severe</li>
+                        <li>Long absence of menstrual periods</li>
+                    </ul>
+                </div>
+            </div>
+        ',
+        'reproductive_refs' => 'WHO (2023) "Sexual and Reproductive Health"; ACOG (2022) "First Gynecological Visit"',
+        
+        'body_title' => 'Body Image and Self-Confidence',
+        'body_content' => '
+            <div class="space-y-4">
+                <div class="p-4 bg-teal-50 rounded-lg border-l-4 border-teal-500">
+                    <h4 class="font-bold text-teal-800 mb-2">Normal Body Changes</h4>
+                    <ul class="text-sm text-teal-700 space-y-1">
+                        <li>Body shape change is a normal part of growth</li>
+                        <li>Every body is different - there is no single "ideal"</li>
+                        <li>Hormonal changes affect weight and shape</li>
+                        <li>The body needs healthy fat for growth</li>
+                    </ul>
+                </div>
+                
+                <div class="p-4 bg-indigo-50 rounded-lg border-l-4 border-indigo-500">
+                    <h4 class="font-bold text-indigo-800 mb-2">Building a Positive Body Image</h4>
+                    <ul class="text-sm text-indigo-700 space-y-1">
+                        <li>Focus on what your body can do, not just its appearance</li>
+                        <li>Avoid comparing yourself to images online</li>
+                        <li>Surround yourself with positive people</li>
+                        <li>Give your body the rest and nutrition it needs</li>
+                    </ul>
+                </div>
+                
+                <div class="p-4 bg-red-50 rounded-lg border-l-4 border-red-500">
+                    <h4 class="font-bold text-red-800 mb-2">Warnings</h4>
+                    <ul class="text-sm text-red-700 space-y-1">
+                        <li>Harsh diets harm growth and health</li>
+                        <li>Eating disorders need professional help</li>
+                        <li>Avoid negative comments about your body</li>
+                    </ul>
+                </div>
+            </div>
+        ',
+        'body_refs' => 'WHO (2022) "Body Image in Adolescents"; AAP (2023) "Eating Disorders in Teens"',
+        
+        'relationships_title' => 'Healthy Relationships',
+        'relationships_content' => '
+            <div class="space-y-4">
+                <div class="p-4 bg-pink-50 rounded-lg border-l-4 border-pink-500">
+                    <h4 class="font-bold text-pink-800 mb-2">Characteristics of Healthy Relationships</h4>
+                    <ul class="text-sm text-pink-700 space-y-1">
+                        <li>Mutual respect between both parties</li>
+                        <li>Trust and honesty</li>
+                        <li>Support and encouragement</li>
+                        <li>Open and honest communication</li>
+                        <li>Respect for personal boundaries</li>
+                    </ul>
+                </div>
+                
+                <div class="p-4 bg-red-50 rounded-lg border-l-4 border-red-500">
+                    <h4 class="font-bold text-red-800 mb-2">Signs of Unhealthy Relationship</h4>
+                    <ul class="text-sm text-red-700 space-y-1">
+                        <li>Control and monitoring of your movements</li>
+                        <li>Excessive jealousy and accusations</li>
+                        <li>Insults or belittling you</li>
+                        <li>Pressure to do things you do not want to do</li>
+                        <li>Isolating you from friends and family</li>
+                    </ul>
+                </div>
+                
+                <div class="p-4 bg-blue-50 rounded-lg border-l-4 border-blue-500">
+                    <h4 class="font-bold text-blue-800 mb-2">Tips for Relationships</h4>
+                    <ul class="text-sm text-blue-700 space-y-1">
+                        <li>Trust your instincts - if you feel uncomfortable, stop</li>
+                        <li>Your boundaries matter and should be respected</li>
+                        <li>Do not be afraid to ask for help</li>
+                        <li>A healthy relationship does not make you feel guilty</li>
+                    </ul>
+                </div>
+            </div>
+        ',
+        'relationships_refs' => 'WHO (2023) "Healthy Relationships"; AAP (2022) "Teen Dating"',
+    ],
     
     // Pregnancy Section
     'pregnancy' => [

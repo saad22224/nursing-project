@@ -3,6 +3,12 @@
 @section('title', __('women_health.title'))
 
 @section('content')
+<style>
+    .fas{
+        position: relative;
+     {{ App()->getLocale() == 'ar' ? 'left: 10px;' : '' }}    
+    }
+</style>
 <!-- Hero Section -->
 <section class="py-10 bg-gradient-to-b from-pink-50 to-white" style="padding-top: 100px;">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
@@ -31,8 +37,14 @@
 <section class="py-6 sticky top-16 z-40 bg-white/95 backdrop-blur-sm border-b border-gray-200">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="flex flex-wrap justify-center gap-2" role="tablist">
-            <button onclick="switchTab('pregnancy')" id="tab-pregnancy" class="tab-btn px-4 py-2 rounded-xl text-sm font-medium transition-all bg-pink-600 text-white" role="tab" aria-selected="true">
+            <button onclick="switchTab('adolescence')" id="tab-adolescence" class="tab-btn px-4 py-2 rounded-xl text-sm font-medium transition-all bg-green-600 text-white" role="tab" aria-selected="true">
+                <i class="fas fa-seedling mr-2"></i>{{ __('women_health.tab_adolescence') }}
+            </button>
+            <button onclick="switchTab('pregnancy')" id="tab-pregnancy" class="tab-btn px-4 py-2 rounded-xl text-sm font-medium transition-all bg-gray-100 text-gray-700 hover:bg-pink-50 hover:text-pink-600" role="tab" aria-selected="false">
                 <i class="fas fa-baby mr-2"></i>{{ __('women_health.tab_pregnancy') }}
+            </button>
+                  <button onclick="switchTab('postpartum')" id="tab-postpartum" class="tab-btn px-4 py-2 rounded-xl text-sm font-medium transition-all bg-gray-100 text-gray-700 hover:bg-cyan-50 hover:text-cyan-600" role="tab" aria-selected="false">
+                <i class="fas fa-baby-carriage mr-2"></i>{{ __('women_health.tab_postpartum') }}
             </button>
             <button onclick="switchTab('family-planning')" id="tab-family-planning" class="tab-btn px-4 py-2 rounded-xl text-sm font-medium transition-all bg-gray-100 text-gray-700 hover:bg-purple-50 hover:text-purple-600" role="tab" aria-selected="false">
                 <i class="fas fa-heart mr-2"></i>{{ __('women_health.tab_family_planning') }}
@@ -40,9 +52,7 @@
             <button onclick="switchTab('menopause')" id="tab-menopause" class="tab-btn px-4 py-2 rounded-xl text-sm font-medium transition-all bg-gray-100 text-gray-700 hover:bg-orange-50 hover:text-orange-600" role="tab" aria-selected="false">
                 <i class="fas fa-sun mr-2"></i>{{ __('women_health.tab_menopause') }}
             </button>
-            <button onclick="switchTab('postpartum')" id="tab-postpartum" class="tab-btn px-4 py-2 rounded-xl text-sm font-medium transition-all bg-gray-100 text-gray-700 hover:bg-cyan-50 hover:text-cyan-600" role="tab" aria-selected="false">
-                <i class="fas fa-baby-carriage mr-2"></i>{{ __('women_health.tab_postpartum') }}
-            </button>
+      
         </div>
     </div>
 </section>
@@ -51,8 +61,184 @@
 <section class="py-8 min-h-[600px]">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
+        <!-- Adolescence Tab -->
+        <div id="content-adolescence" class="tab-content">
+            <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+                <!-- Quick Topics -->
+                <div class="lg:col-span-1 space-y-4">
+                    <div class="bg-white rounded-2xl shadow-sm border border-green-100 p-5">
+                        <h3 class="font-bold text-gray-900 mb-4 flex items-center gap-2">
+                            <i class="fas fa-bookmark text-green-500"></i>
+                            {{ __('women_health.adolescence.topics_title') }}
+                        </h3>
+                        <div class="space-y-2">
+                            @foreach(['puberty', 'menstrual_health', 'nutrition', 'mental_health', 'hygiene', 'exercise', 'reproductive_education', 'body_image', 'healthy_relationships'] as $topic)
+                            <button onclick="scrollToSection('adol-{{ $topic }}')" class="w-full text-left px-3 py-2 rounded-lg text-sm hover:bg-green-50 hover:text-green-700 transition-colors flex items-center gap-2">
+                                <i class="fas fa-chevron-{{ app()->getLocale() == 'ar' ? 'left' : 'right' }} text-xs text-gray-400"></i>
+                                {{ __('women_health.adolescence.topic_' . $topic) }}
+                            </button>
+                            @endforeach
+                        </div>
+                    </div>
+                    
+                    <!-- Key Info -->
+                    <div class="bg-gradient-to-br from-green-500 to-green-600 rounded-2xl p-5 text-white">
+                        <h3 class="font-bold mb-4">{{ __('women_health.adolescence.facts_title') }}</h3>
+                        <div class="space-y-3">
+                            <div class="flex justify-between items-center">
+                                <span class="text-green-100 text-sm">{{ __('women_health.adolescence.age_start') }}</span>
+                                <span class="font-bold">8-13 {{ __('women_health.years') }}</span>
+                            </div>
+                            <div class="flex justify-between items-center">
+                                <span class="text-green-100 text-sm">{{ __('women_health.adolescence.menarche_age') }}</span>
+                                <span class="font-bold">12-13 {{ __('women_health.years') }}</span>
+                            </div>
+                            <div class="flex justify-between items-center">
+                                <span class="text-green-100 text-sm">{{ __('women_health.adolescence.duration') }}</span>
+                                <span class="font-bold">3-7 {{ __('women_health.years') }}</span>
+                            </div>
+                        </div>
+                        <p class="mt-4 text-xs text-green-200">
+                            <i class="fas fa-info-circle mr-1"></i>
+                            {{ __('women_health.adolescence.who_ref') }}
+                        </p>
+                    </div>
+                </div>
+                
+                <!-- Main Content -->
+                <div class="lg:col-span-2 space-y-6">
+                    
+                    <!-- Puberty Changes -->
+                    <div id="adol-puberty" class="bg-white rounded-2xl shadow-sm border border-gray-100 p-6">
+                        <h2 class="text-xl font-bold text-gray-900 mb-4 flex items-center gap-2">
+                            <i class="fas fa-seedling text-green-500"></i>
+                            {{ __('women_health.adolescence.puberty_title') }}
+                        </h2>
+                        <div class="prose prose-sm max-w-none text-gray-600">
+                            {!! __('women_health.adolescence.puberty_content') !!}
+                        </div>
+                        <div class="mt-4 p-3 bg-gray-50 rounded-lg text-xs text-gray-500">
+                            <strong>{{ __('women_health.references') }}:</strong> {{ __('women_health.adolescence.puberty_refs') }}
+                        </div>
+                    </div>
+                    
+                    <!-- Menstrual Health -->
+                    <div id="adol-menstrual_health" class="bg-white rounded-2xl shadow-sm border border-gray-100 p-6">
+                        <h2 class="text-xl font-bold text-gray-900 mb-4 flex items-center gap-2">
+                            <i class="fas fa-calendar-alt text-pink-500"></i>
+                            {{ __('women_health.adolescence.menstrual_title') }}
+                        </h2>
+                        <div class="prose prose-sm max-w-none text-gray-600">
+                            {!! __('women_health.adolescence.menstrual_content') !!}
+                        </div>
+                        <div class="mt-4 p-3 bg-gray-50 rounded-lg text-xs text-gray-500">
+                            <strong>{{ __('women_health.references') }}:</strong> {{ __('women_health.adolescence.menstrual_refs') }}
+                        </div>
+                    </div>
+                    
+                    <!-- Nutrition -->
+                    <div id="adol-nutrition" class="bg-white rounded-2xl shadow-sm border border-gray-100 p-6">
+                        <h2 class="text-xl font-bold text-gray-900 mb-4 flex items-center gap-2">
+                            <i class="fas fa-apple-alt text-red-500"></i>
+                            {{ __('women_health.adolescence.nutrition_title') }}
+                        </h2>
+                        <div class="prose prose-sm max-w-none text-gray-600">
+                            {!! __('women_health.adolescence.nutrition_content') !!}
+                        </div>
+                        <div class="mt-4 p-3 bg-gray-50 rounded-lg text-xs text-gray-500">
+                            <strong>{{ __('women_health.references') }}:</strong> {{ __('women_health.adolescence.nutrition_refs') }}
+                        </div>
+                    </div>
+                    
+                    <!-- Mental Health -->
+                    <div id="adol-mental_health" class="bg-white rounded-2xl shadow-sm border border-gray-100 p-6">
+                        <h2 class="text-xl font-bold text-gray-900 mb-4 flex items-center gap-2">
+                            <i class="fas fa-brain text-purple-500"></i>
+                            {{ __('women_health.adolescence.mental_title') }}
+                        </h2>
+                        <div class="prose prose-sm max-w-none text-gray-600">
+                            {!! __('women_health.adolescence.mental_content') !!}
+                        </div>
+                        <div class="mt-4 p-3 bg-gray-50 rounded-lg text-xs text-gray-500">
+                            <strong>{{ __('women_health.references') }}:</strong> {{ __('women_health.adolescence.mental_refs') }}
+                        </div>
+                    </div>
+                    
+                    <!-- Hygiene -->
+                    <div id="adol-hygiene" class="bg-white rounded-2xl shadow-sm border border-gray-100 p-6">
+                        <h2 class="text-xl font-bold text-gray-900 mb-4 flex items-center gap-2">
+                            <i class="fas fa-hands-wash text-blue-500"></i>
+                            {{ __('women_health.adolescence.hygiene_title') }}
+                        </h2>
+                        <div class="prose prose-sm max-w-none text-gray-600">
+                            {!! __('women_health.adolescence.hygiene_content') !!}
+                        </div>
+                        <div class="mt-4 p-3 bg-gray-50 rounded-lg text-xs text-gray-500">
+                            <strong>{{ __('women_health.references') }}:</strong> {{ __('women_health.adolescence.hygiene_refs') }}
+                        </div>
+                    </div>
+                    
+                    <!-- Exercise -->
+                    <div id="adol-exercise" class="bg-white rounded-2xl shadow-sm border border-gray-100 p-6">
+                        <h2 class="text-xl font-bold text-gray-900 mb-4 flex items-center gap-2">
+                            <i class="fas fa-running text-orange-500"></i>
+                            {{ __('women_health.adolescence.exercise_title') }}
+                        </h2>
+                        <div class="prose prose-sm max-w-none text-gray-600">
+                            {!! __('women_health.adolescence.exercise_content') !!}
+                        </div>
+                        <div class="mt-4 p-3 bg-gray-50 rounded-lg text-xs text-gray-500">
+                            <strong>{{ __('women_health.references') }}:</strong> {{ __('women_health.adolescence.exercise_refs') }}
+                        </div>
+                    </div>
+                    
+                    <!-- Reproductive Education -->
+                    <div id="adol-reproductive_education" class="bg-rose-50 rounded-2xl border border-rose-100 p-6">
+                        <h2 class="text-xl font-bold text-rose-900 mb-4 flex items-center gap-2">
+                            <i class="fas fa-heart text-rose-600"></i>
+                            {{ __('women_health.adolescence.reproductive_title') }}
+                        </h2>
+                        <div class="prose prose-sm max-w-none text-rose-800">
+                            {!! __('women_health.adolescence.reproductive_content') !!}
+                        </div>
+                        <div class="mt-4 p-3 bg-rose-100 rounded-lg text-xs text-rose-700">
+                            <strong>{{ __('women_health.references') }}:</strong> {{ __('women_health.adolescence.reproductive_refs') }}
+                        </div>
+                    </div>
+                    
+                    <!-- Body Image -->
+                    <div id="adol-body_image" class="bg-white rounded-2xl shadow-sm border border-gray-100 p-6">
+                        <h2 class="text-xl font-bold text-gray-900 mb-4 flex items-center gap-2">
+                            <i class="fas fa-user text-teal-500"></i>
+                            {{ __('women_health.adolescence.body_title') }}
+                        </h2>
+                        <div class="prose prose-sm max-w-none text-gray-600">
+                            {!! __('women_health.adolescence.body_content') !!}
+                        </div>
+                        <div class="mt-4 p-3 bg-gray-50 rounded-lg text-xs text-gray-500">
+                            <strong>{{ __('women_health.references') }}:</strong> {{ __('women_health.adolescence.body_refs') }}
+                        </div>
+                    </div>
+                    
+                    <!-- Healthy Relationships -->
+                    <div id="adol-healthy_relationships" class="bg-white rounded-2xl shadow-sm border border-gray-100 p-6">
+                        <h2 class="text-xl font-bold text-gray-900 mb-4 flex items-center gap-2">
+                            <i class="fas fa-heart text-pink-500"></i>
+                            {{ __('women_health.adolescence.relationships_title') }}
+                        </h2>
+                        <div class="prose prose-sm max-w-none text-gray-600">
+                            {!! __('women_health.adolescence.relationships_content') !!}
+                        </div>
+                        <div class="mt-4 p-3 bg-gray-50 rounded-lg text-xs text-gray-500">
+                            <strong>{{ __('women_health.references') }}:</strong> {{ __('women_health.adolescence.relationships_refs') }}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
         <!-- Pregnancy Tab -->
-        <div id="content-pregnancy" class="tab-content">
+        <div id="content-pregnancy" class="tab-content hidden">
             <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
                 <!-- Quick Topics -->
                 <div class="lg:col-span-1 space-y-4">
@@ -830,31 +1016,36 @@ function switchTab(tabName) {
     });
     
     // Show selected tab
-    document.getElementById('content-' + tabName).classList.remove('hidden');
+    const selectedTab = document.getElementById('content-' + tabName);
+    if (selectedTab) {
+        selectedTab.classList.remove('hidden');
+    }
     
     // Update button styles
     document.querySelectorAll('.tab-btn').forEach(btn => {
-        btn.classList.remove('bg-pink-600', 'bg-purple-600', 'bg-orange-600', 'bg-cyan-600', 'text-white');
+        btn.classList.remove('bg-green-600', 'bg-pink-600', 'bg-purple-600', 'bg-orange-600', 'bg-cyan-600', 'text-white');
         btn.classList.add('bg-gray-100', 'text-gray-700');
         btn.setAttribute('aria-selected', 'false');
     });
     
     // Style active button
     const activeBtn = document.getElementById('tab-' + tabName);
-    activeBtn.classList.remove('bg-gray-100', 'text-gray-700');
-    activeBtn.setAttribute('aria-selected', 'true');
-    
-    // Set color based on tab
-    const colors = {
-        'pregnancy': 'bg-pink-600',
-        'family-planning': 'bg-purple-600',
-        'menopause': 'bg-orange-600',
-        'postpartum': 'bg-cyan-600'
-    };
-    activeBtn.classList.add(colors[tabName], 'text-white');
-    
-    // Scroll to top of content
-    document.querySelector('section.py-8').scrollIntoView({ behavior: 'smooth' });
+    if (activeBtn) {
+        activeBtn.classList.remove('bg-gray-100', 'text-gray-700');
+        activeBtn.setAttribute('aria-selected', 'true');
+        
+        // Set color based on tab
+        const colors = {
+            'adolescence': 'bg-green-600',
+            'pregnancy': 'bg-pink-600',
+            'family-planning': 'bg-purple-600',
+            'menopause': 'bg-orange-600',
+            'postpartum': 'bg-cyan-600'
+        };
+        if (colors[tabName]) {
+            activeBtn.classList.add(colors[tabName], 'text-white');
+        }
+    }
 }
 
 function scrollToSection(sectionId) {
@@ -868,12 +1059,20 @@ function scrollToSection(sectionId) {
     }
 }
 
-// Initialize on load
-if (window.location.hash) {
-    const tab = window.location.hash.replace('#', '');
-    if (document.getElementById('tab-' + tab)) {
-        switchTab(tab);
+// Initialize on load - wait for DOM to be ready
+document.addEventListener('DOMContentLoaded', function() {
+    var targetTab = 'adolescence';
+    
+    // Check for hash in URL
+    if (window.location.hash) {
+        var hashTab = window.location.hash.replace('#', '');
+        if (document.getElementById('tab-' + hashTab) && document.getElementById('content-' + hashTab)) {
+            targetTab = hashTab;
+        }
     }
-}
+    
+    // Use switchTab to properly set the active tab
+    switchTab(targetTab);
+});
 </script>
 @endsection

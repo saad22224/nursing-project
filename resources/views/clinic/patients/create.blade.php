@@ -28,7 +28,7 @@
             
             <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
                 <div class="md:col-span-2">
-                    <label class="block text-xs font-bold text-slate-500 uppercase tracking-widest mb-3">{{ __('clinic.clinic_name') }} <span class="text-rose-500">*</span></label>
+                    <label class="block text-xs font-bold text-slate-500 uppercase tracking-widest mb-3">{{ app()->getLocale() == 'ar' ? 'اسم المريضة بالكامل' : 'Full Patient Name' }} <span class="text-rose-500">*</span></label>
                     <input type="text" name="name" required class="input-field py-4 text-lg font-bold" placeholder="{{ app()->getLocale() == 'ar' ? 'اسم المريضة بالكامل' : 'Full Patient Name' }}">
                     @error('name') <p class="text-rose-500 text-[10px] mt-2 font-bold">{{ $message }}</p> @enderror
                 </div>
