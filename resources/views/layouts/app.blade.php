@@ -7,6 +7,7 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
     <title>@yield('title', __('nav.brand')) | {{ config('app.name', 'Nursing Care') }}</title>
+    <link rel="icon" type="image/webp" href="{{ asset('assets/materniq.webp') }}">
 
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -297,6 +298,14 @@
             gap: 3rem !important;
             padding: 3rem !important;
         }
+        @media(max-width:767px){
+            .materniq_logo{
+                position: absolute;
+                right:0;
+                max-height:100px;
+                max-width:150px
+            }
+        }
     </style>
 
     @yield('styles')
@@ -309,13 +318,8 @@
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex justify-between items-center h-16">
                 <!-- Logo -->
-                <a href="{{ route('home') }}" class="flex items-center gap-3">
-                    <div class="w-10 h-10 rounded-xl bg-cyan-600 flex items-center justify-center">
-                        <i class="fas fa-heart-pulse text-white text-lg"></i>
-                    </div>
-                    <span class="text-lg font-bold text-gray-800">
-                        {{ __('nav.brand') }}
-                    </span>
+                <a href="{{ route('home') }}" class="flex items-center">
+                    <img src="{{ asset('assets/materniq.webp') }}" alt="Materniq Logo" class="h-23 w-auto materniq_logo">
                 </a>
 
                 <!-- Desktop Menu -->
@@ -443,16 +447,8 @@
 
                 <!-- Brand & Description Section -->
                 <div class="lg:col-span-8">
-                    <a href="{{ route('home') }}" class="flex items-center gap-4 mb-8 group">
-                        <div
-                            class="w-14 h-14 rounded-2xl bg-gradient-to-br from-cyan-500 to-indigo-600 flex items-center justify-center shadow-xl shadow-cyan-500/20 transform group-hover:rotate-6 transition-all duration-500">
-                            <i class="fas fa-heart-pulse text-white text-2xl"></i>
-                        </div>
-                        <div>
-                            <span
-                                class="text-3xl font-extrabold text-white tracking-tight">{{ __('nav.brand') }}</span>
-                            <div class="h-1 w-12 bg-cyan-500 rounded-full mt-1"></div>
-                        </div>
+                    <a href="{{ route('home') }}" class="flex items-center mb-8 group">
+                        <img src="{{ asset('assets/materniq.webp') }}" alt="Materniq Logo" class="h-24 w-auto transform group-hover:scale-105 transition-all duration-500">
                     </a>
                     <p class="text-gray-400 text-lg leading-relaxed mb-8 max-w-2xl">
                         {{ __('nav.tagline') }}

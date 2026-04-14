@@ -4,6 +4,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>@yield('title', __('nav.clinic_dashboard')) | {{ config('app.name', 'Nursing Care') }}</title>
+    <link rel="icon" type="image/webp" href="{{ asset('assets/materniq.webp') }}">
 
     <!-- Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800&display=swap" rel="stylesheet">
@@ -110,7 +111,7 @@
         <button id="toggle-sidebar" class="text-slate-600 p-2 rounded-lg hover:bg-slate-50">
             <i class="fas fa-bars text-xl"></i>
         </button>
-        <span class="font-bold text-cyan-700 uppercase tracking-tight">{{ __('nav.brand') }}</span>
+        <img src="{{ asset('assets/materniq.webp') }}" alt="Logo" class="h-12 w-auto">
         <div class="w-8 h-8 rounded-full bg-cyan-600 text-white flex items-center justify-center font-bold">
             {{ strtoupper(substr(Auth::guard('clinic')->user()->name, 0, 1)) }}
         </div>
@@ -122,14 +123,8 @@
     <!-- Sidebar -->
     <aside id="sidebar" class="sidebar">
         <div class="h-16 flex items-center px-6 border-b">
-            <a href="{{ route('clinic.dashboard') }}" class="flex items-center gap-3">
-                <div class="w-10 h-10 bg-cyan-600 rounded-xl flex items-center justify-center text-white shadow-lg shadow-cyan-500/20">
-                    <i class="fas fa-hand-holding-medical"></i>
-                </div>
-                <div>
-                    <span class="text-xl font-bold tracking-tight text-slate-800 block uppercase">{{ __('nav.brand') }}</span>
-                    <span class="text-[10px] text-cyan-500 font-bold uppercase tracking-widest">{{ app()->getLocale() == 'ar' ? 'نظام العيادة' : 'CLINIC SYSTEM' }}</span>
-                </div>
+            <a href="{{ route('clinic.dashboard') }}" class="flex items-center">
+                <img src="{{ asset('assets/materniq.webp') }}" alt="Logo" class="h-14 w-auto">
             </a>
         </div>
 

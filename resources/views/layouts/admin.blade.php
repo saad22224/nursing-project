@@ -6,6 +6,7 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
     
     <title>@yield('title', 'Admin Panel') | MamaCare</title>
+    <link rel="icon" type="image/webp" href="{{ asset('assets/materniq.webp') }}">
     
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -153,11 +154,8 @@
     <!-- Sidebar -->
     <aside class="w-64 bg-white border-r border-gray-100 flex-shrink-0 flex flex-col hidden md:flex" style="position: sticky; top: 0; height: 100vh;">
         <div class="h-16 flex items-center justify-center p-4 border-b border-gray-100">
-            <a href="{{ route('admin.dashboard') }}" class="flex items-center gap-3">
-                <div class="w-8 h-8 rounded-lg bg-cyan-600 flex items-center justify-center">
-                    <i class="fas fa-user-doctor text-white text-sm"></i>
-                </div>
-                <span class="text-lg font-bold text-gray-800">MamaCare Admin</span>
+            <a href="{{ route('admin.dashboard') }}" class="flex items-center">
+                <img src="{{ asset('assets/materniq.webp') }}" alt="Logo" class="h-14 w-auto">
             </a>
         </div>
         
