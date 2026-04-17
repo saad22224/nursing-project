@@ -76,6 +76,8 @@ Route::prefix('clinic')->name('clinic.')->group(function () {
     // Forgot Password
     Route::get('forgot-password', [ClinicAuthController::class, 'showForgotPasswordForm'])->name('password.request');
     Route::post('forgot-password', [ClinicAuthController::class, 'processForgotPassword'])->name('password.email');
+    Route::get('verify-code', [ClinicAuthController::class, 'showVerifyCodeForm'])->name('password.verify');
+    Route::post('verify-code', [ClinicAuthController::class, 'verifyCode']);
     Route::get('reset-password', [ClinicAuthController::class, 'showResetPasswordForm'])->name('password.reset');
     Route::post('reset-password', [ClinicAuthController::class, 'resetPassword'])->name('password.update');
 

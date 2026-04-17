@@ -53,4 +53,12 @@ return [
     'next_visit' => 'Next Visit Date',
     'save' => 'Save Information',
     'view_file' => 'View Full File',
+    'verify_code' => 'Verify Code',
+    'enter_code' => 'Enter the 6-digit verification code',
+    'verify_btn' => 'Verify Code',
+    'otp_sent' => 'Verification code sent to your email',
+    'invalid_otp' => 'Invalid verification code',
+    'invalid_reset_session' => 'Invalid session, please try again',
+    'invalid_token' => 'Invalid or expired verification code',
+    'password_reset_success' => 'Password reset successfully',
 ];

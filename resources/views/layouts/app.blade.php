@@ -300,10 +300,8 @@
         }
         @media(max-width:767px){
             .materniq_logo{
-                position: absolute;
-                right:0;
-                max-height:100px;
-                max-width:150px
+                max-height:80px;
+                max-width:140px;
             }
         }
     </style>

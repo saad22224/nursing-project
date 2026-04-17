@@ -8,6 +8,8 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Mail;
+use App\Mail\ClinicOtpMail;
 
 class ClinicAuthController extends Controller
 {
@@ -60,16 +62,53 @@ class ClinicAuthController extends Controller
     public function processForgotPassword(Request $request)
     {
         $request->validate(['email' => 'required|email|exists:clinics,email']);
-        $token = Str::random(60);
+        $code = rand(100000, 999999);
         DB::table('password_reset_tokens')->updateOrInsert(
             ['email' => $request->email],
-            ['token' => Hash::make($token), 'created_at' => now()]
+            ['token' => Hash::make($code), 'created_at' => now()]
         );
-        // Simulate email sending by redirecting straight to reset page with token.
-        return redirect()->route('clinic.password.reset', ['token' => $token, 'email' => $request->email])->with('status', 'Check your email for password reset link. (Simulated by automatic redirect)');
+        
+        try {
+            Mail::to($request->email)->send(new ClinicOtpMail($code));
+        } catch (\Exception $e) {
+            \Log::error('OTP Mail Error: ' . $e->getMessage());
+        }
+        
+        session(['reset_email' => $request->email]);
+        
+        return redirect()->route('clinic.password.verify')->with('status', __('clinic.otp_sent'));
+    }
+
+    public function showVerifyCodeForm() 
+    { 
+        if (!session('reset_email')) {
+            return redirect()->route('clinic.password.request');
+        }
+        return view('clinic.auth.verify-code', ['email' => session('reset_email')]); 
+    }
+
+    public function verifyCode(Request $request)
+    {
+        $request->validate([
+            'email' => 'required|email|exists:clinics,email',
+            'code' => 'required|numeric'
+        ]);
+
+        $record = DB::table('password_reset_tokens')->where('email', $request->email)->first();
+        if (!$record || !Hash::check($request->code, $record->token)) {
+            return back()->withErrors(['code' => __('clinic.invalid_otp')]);
+        }
+
+        // Store the original code in session to pass to the reset form (as the "token")
+        session(['reset_code' => $request->code]);
+
+        return redirect()->route('clinic.password.reset', ['token' => $request->code, 'email' => $request->email]);
     }
 
     public function showResetPasswordForm(Request $request) {
+        if (!session('reset_code') || session('reset_code') != $request->token) {
+            return redirect()->route('clinic.password.request')->withErrors(['email' => __('clinic.invalid_reset_session')]);
+        }
         return view('clinic.auth.reset-password', ['token' => $request->token, 'email' => $request->email]);
     }
 
@@ -83,12 +122,14 @@ class ClinicAuthController extends Controller
 
         $record = DB::table('password_reset_tokens')->where('email', $request->email)->first();
         if (!$record || !Hash::check($request->token, $record->token)) {
-            return back()->withErrors(['email' => 'Invalid token']);
+            return back()->withErrors(['email' => __('clinic.invalid_token')]);
         }
 
         Clinic::where('email', $request->email)->update(['password' => Hash::make($request->password)]);
         DB::table('password_reset_tokens')->where('email', $request->email)->delete();
+        
+        session()->forget(['reset_email', 'reset_code']);
 
-        return redirect()->route('clinic.login')->with('status', 'Password reset successfully');
+        return redirect()->route('clinic.login')->with('status', __('clinic.password_reset_success'));
     }
 }
