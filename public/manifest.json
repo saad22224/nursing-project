@@ -8,10 +8,22 @@
   "theme_color": "#00acc1",
   "icons": [
     {
-      "src": "/assets/materniq.webp",
-      "sizes": "192x192 512x512",
+      "src": "assets/materniq.webp",
+      "sizes": "192x192",
       "type": "image/webp",
-      "purpose": "any maskable"
+      "purpose": "any"
+    },
+    {
+      "src": "assets/materniq.webp",
+      "sizes": "512x512",
+      "type": "image/webp",
+      "purpose": "any"
+    },
+    {
+      "src": "assets/materniq.webp",
+      "sizes": "192x192",
+      "type": "image/webp",
+      "purpose": "maskable"
     }
   ]
 }

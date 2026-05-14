@@ -17,7 +17,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     
     <!-- PWA -->
-    <link rel="manifest" href="/manifest.json">
+    <link rel="manifest" href="{{ asset('manifest.json') }}">
     <meta name="theme-color" content="#0891b2">
     <link rel="apple-touch-icon" href="{{ asset('assets/materniq.webp') }}">
 

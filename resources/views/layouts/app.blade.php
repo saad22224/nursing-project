@@ -23,7 +23,7 @@
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
 
     <!-- PWA -->
-    <link rel="manifest" href="/manifest.json">
+    <link rel="manifest" href="{{ asset('manifest.json') }}">
     <meta name="theme-color" content="#0891b2">
     <link rel="apple-touch-icon" href="{{ asset('assets/materniq.webp') }}">
 
