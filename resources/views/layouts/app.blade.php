@@ -23,48 +23,68 @@
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
 
     <!-- PWA -->
-    <link rel="manifest" href="{{ asset('manifest.json') }}">
-    <meta name="theme-color" content="#0891b2">
-    <link rel="apple-touch-icon" href="{{ asset('assets/materniq.webp') }}">
+    @pwaHead('assets/icon.png', '#0891b2')
 
     <!-- Tailwind CSS -->
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 
-    <script>
-        if ('serviceWorker' in navigator) {
-            window.addEventListener('load', () => {
-                navigator.serviceWorker.register('/sw.js').then(registration => {
-                    console.log('SW registered: ', registration);
-                }).catch(registrationError => {
-                    console.log('SW registration failed: ', registrationError);
-                });
-            });
-        }
+    @laravelPwa
 
+    <script>
         let deferredPrompt;
+        const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream;
+        const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+
         window.addEventListener('beforeinstallprompt', (e) => {
             e.preventDefault();
             deferredPrompt = e;
+            showPWABanner();
+        });
+
+        function showPWABanner() {
             const banner = document.getElementById('global-pwa-banner');
-            if (banner && !localStorage.getItem('pwa-dismissed')) {
+            if (banner) {
                 banner.classList.remove('hidden');
+                banner.classList.add('flex');
+            }
+        }
+
+        // Handle iOS & Mobile testing
+        window.addEventListener('load', () => {
+            // Show banner after 3 seconds on mobile to ensure visibility
+            if (isMobile) {
+                setTimeout(() => {
+                    if (!localStorage.getItem('pwa-dismissed')) {
+                        showPWABanner();
+                        if (isIOS && !window.navigator.standalone) {
+                            const instructionText = document.getElementById('pwa-instruction-text');
+                            const installBtn = document.getElementById('pwa-install-btn');
+                            if (instructionText) instructionText.textContent = "{{ app()->getLocale() == 'ar' ? 'اضغط على مشاركة ثم إضافة للشاشة الرئيسية' : 'Tap Share then Add to Home Screen' }}";
+                            if (installBtn) installBtn.style.display = 'none';
+                        }
+                    }
+                }, 3000);
             }
         });
 
         function installPWA() {
-            if (!deferredPrompt) return;
+            if (!deferredPrompt) {
+                alert("{{ app()->getLocale() == 'ar' ? 'يرجى الضغط على القائمة في المتصفح واختيار تثبيت التطبيق' : 'Please use your browser menu to install the app' }}");
+                return;
+            }
             deferredPrompt.prompt();
             deferredPrompt.userChoice.then((choiceResult) => {
                 if (choiceResult.outcome === 'accepted') {
-                    console.log('User accepted the install prompt');
+                    document.getElementById('global-pwa-banner').classList.add('hidden');
                 }
                 deferredPrompt = null;
-                document.getElementById('global-pwa-banner').classList.add('hidden');
             });
         }
 
         function dismissPWABanner() {
-            document.getElementById('global-pwa-banner').classList.add('hidden');
+            const banner = document.getElementById('global-pwa-banner');
+            banner.classList.add('hidden');
+            banner.classList.remove('flex');
             localStorage.setItem('pwa-dismissed', 'true');
         }
     </script>
@@ -356,21 +376,21 @@
 
 <body class="bg-white min-h-screen text-gray-800">
     <!-- Global PWA Install Banner -->
-    <div id="global-pwa-banner" class="hidden fixed bottom-4 left-4 right-4 z-[60] bg-gradient-to-r from-cyan-600 to-cyan-800 text-white p-4 rounded-2xl shadow-2xl flex items-center justify-between gap-4 animate-slide-up border border-white/20">
-        <div class="flex items-center gap-4">
-            <div class="w-10 h-10 bg-white/20 rounded-xl flex items-center justify-center">
-                <i class="fas fa-mobile-screen-button"></i>
+    <div id="global-pwa-banner" class="hidden fixed top-4 left-4 right-4 z-[9999] bg-white text-slate-900 p-3 rounded-2xl shadow-[0_20px_50px_rgba(0,0,0,0.2)] flex items-center justify-between gap-3 animate-slide-up border border-slate-100">
+        <div class="flex items-center gap-3">
+            <div class="w-12 h-12 bg-gradient-to-br from-cyan-500 to-indigo-600 rounded-xl flex items-center justify-center text-white shadow-lg shadow-cyan-200">
+                <i class="fas fa-plus text-xl"></i>
             </div>
             <div>
-                <p class="font-bold text-sm leading-tight">{{ app()->getLocale() == 'ar' ? 'تثبيت MaterniQ' : 'Install MaterniQ' }}</p>
-                <p class="text-[11px] text-white/80">{{ app()->getLocale() == 'ar' ? 'للوصول السريع إلى خدماتنا' : 'For quick access to our services' }}</p>
+                <p class="font-extrabold text-sm text-slate-800 leading-tight">{{ app()->getLocale() == 'ar' ? 'ثبت تطبيق MaterniQ' : 'Install MaterniQ App' }}</p>
+                <p class="text-[10px] text-slate-500 font-medium mt-0.5" id="pwa-instruction-text">{{ app()->getLocale() == 'ar' ? 'لتجربة أسرع وأسهل' : 'For a faster experience' }}</p>
             </div>
         </div>
-        <div class="flex gap-2">
-            <button onclick="installPWA()" class="bg-white text-cyan-600 px-4 py-2 rounded-lg font-bold text-xs hover:bg-cyan-50 transition-colors">
+        <div class="flex items-center gap-2">
+            <button id="pwa-install-btn" onclick="installPWA()" class="bg-cyan-600 text-white px-4 py-2 rounded-xl font-bold text-xs hover:bg-cyan-700 transition-all shadow-md shadow-cyan-100">
                 {{ app()->getLocale() == 'ar' ? 'تثبيت' : 'Install' }}
             </button>
-            <button onclick="dismissPWABanner()" class="text-white/60 hover:text-white transition-colors">
+            <button onclick="dismissPWABanner()" class="w-8 h-8 flex items-center justify-center text-slate-300 hover:text-slate-500 transition-colors">
                 <i class="fas fa-times"></i>
             </button>
         </div>

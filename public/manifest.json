@@ -1,29 +1,59 @@
 {
-  "name": "MaterniQ",
-  "short_name": "MaterniQ",
-  "description": "MaterniQ - Maternity Health Assistant",
-  "start_url": "/",
-  "display": "standalone",
-  "background_color": "#ffffff",
-  "theme_color": "#00acc1",
-  "icons": [
-    {
-      "src": "assets/materniq.webp",
-      "sizes": "192x192",
-      "type": "image/webp",
-      "purpose": "any"
-    },
-    {
-      "src": "assets/materniq.webp",
-      "sizes": "512x512",
-      "type": "image/webp",
-      "purpose": "any"
-    },
-    {
-      "src": "assets/materniq.webp",
-      "sizes": "192x192",
-      "type": "image/webp",
-      "purpose": "maskable"
-    }
-  ]
+    "name": "MaterniQ",
+    "short_name": "MaterniQ",
+    "start_url": "/",
+    "background_color": "#ffffff",
+    "description": "MaterniQ - Maternity Health Assistant",
+    "display": "standalone", 
+    "theme_color": "#0891b2",
+    "icons": [
+        {
+            "src": "icon-72x72.png",
+            "sizes": "72x72",
+            "type": "image/png",
+            "purpose": "any"
+        },
+        {
+            "src": "icon-96x96.png",
+            "sizes": "96x96",
+            "type": "image/png",
+            "purpose": "any"
+        },
+        {
+            "src": "icon-128x128.png",
+            "sizes": "128x128",
+            "type": "image/png",
+            "purpose": "any"
+        },
+        {
+            "src": "icon-144x144.png",
+            "sizes": "144x144",
+            "type": "image/png",
+            "purpose": "any"
+        },
+        {
+            "src": "icon-152x152.png",
+            "sizes": "152x152",
+            "type": "image/png",
+            "purpose": "any"
+        },
+        {
+            "src": "icon-192x192.png",
+            "sizes": "192x192",
+            "type": "image/png",
+            "purpose": "any"
+        },
+        {
+            "src": "icon-384x384.png",
+            "sizes": "384x384",
+            "type": "image/png",
+            "purpose": "any"
+        },
+        {
+            "src": "icon-512x512.png",
+            "sizes": "512x512",
+            "type": "image/png",
+            "purpose": "any"
+        }
+    ]
 }
