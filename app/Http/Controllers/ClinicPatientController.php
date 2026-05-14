@@ -6,6 +6,9 @@ use App\Models\ClinicPatient;
 use App\Models\ClinicVisit;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Mail;
+use App\Mail\PatientReportMail;
+use niklasravnsborg\LaravelPdf\Facades\Pdf as PDF;
 
 class ClinicPatientController extends Controller
 {
@@ -68,12 +71,6 @@ class ClinicPatientController extends Controller
             || $visit->clinic_patient_id != $patient->id
         ) abort(403);
         return view('clinic.visits.show', compact('patient', 'visit'));
-
-        // dd(Auth::guard('clinic')->id(), $patient->clinic_id, $visit->clinic_patient_id);
-
-        // auth()->id returns integer while $patient->clinic_id 
-        // and $visit->clinic_patient_id are strings, so we need to cast 
-        // them to integers before comparing or compare them with non identical equality operator (!=) instead of identical equality operator (!==)
     }
 
     public function createVisit(ClinicPatient $patient)
@@ -101,5 +98,35 @@ class ClinicPatientController extends Controller
 
         $patient->visits()->create($validated);
         return redirect()->route('clinic.patients.show', $patient)->with('success', 'Visit recorded successfully.');
+    }
+
+    public function downloadPdf(ClinicPatient $patient)
+    {
+        if ($patient->clinic_id != Auth::guard('clinic')->id()) abort(403);
+        
+        $patient->load('visits');
+        
+        $pdf = PDF::loadView('clinic.patients.pdf', ['patient' => $patient]);
+        
+        return $pdf->download('patient_' . $patient->id . '_' . date('Y_m_d') . '.pdf');
+    }
+
+    public function sendEmail(Request $request, ClinicPatient $patient)
+    {
+        if ($patient->clinic_id != Auth::guard('clinic')->id()) abort(403);
+        
+        $request->validate([
+            'email' => 'required|email'
+        ]);
+
+        $patient->load('visits');
+        
+        $fileName = 'patient_' . $patient->id . '_' . date('Y_m_d') . '.pdf';
+        $pdf = PDF::loadView('clinic.patients.pdf', ['patient' => $patient]);
+        $pdfContent = $pdf->output();
+
+        Mail::to($request->email)->send(new PatientReportMail($patient, $pdfContent, $fileName));
+
+        return response()->json(['success' => true, 'message' => app()->getLocale() == 'ar' ? 'تم إرسال الإيميل بنجاح' : 'Email sent successfully']);
     }
 }

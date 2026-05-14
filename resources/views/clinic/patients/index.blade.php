@@ -97,10 +97,15 @@
                             </div>
                         </td>
                         <td class="px-6 py-5 text-{{ app()->getLocale() == 'ar' ? 'left' : 'right' }}">
-                            <a href="{{ route('clinic.patients.show', $p) }}" class="inline-flex items-center gap-2 px-4 py-2 border border-slate-200 text-slate-600 rounded-xl hover:border-cyan-600 hover:text-cyan-600 transition-all font-bold text-xs uppercase shadow-sm bg-white">
-                                <i class="fas fa-file-medical"></i>
-                                {{ __('clinic.view_file') }}
-                            </a>
+                            <div class="flex items-center justify-end gap-2">
+                                <a href="{{ route('clinic.patients.show', $p) }}" class="inline-flex items-center gap-2 px-3 py-2 border border-slate-200 text-slate-600 rounded-xl hover:border-cyan-600 hover:text-cyan-600 transition-all font-bold text-xs uppercase shadow-sm bg-white" title="{{ __('clinic.view_file') }}">
+                                    <i class="fas fa-file-medical"></i>
+                                </a>
+                                
+                                <button type="button" onclick="emailPatient('{{ $p->id }}', '{{ $p->name }}')" class="inline-flex items-center gap-2 px-3 py-2 border border-slate-200 text-slate-600 rounded-xl hover:border-indigo-600 hover:text-indigo-600 transition-all font-bold text-xs uppercase shadow-sm bg-white" title="{{ app()->getLocale() == 'ar' ? 'إرسال PDF عبر البريد' : 'Send PDF via Email' }}">
+                                    <i class="fas fa-paper-plane"></i>
+                                </button>
+                            </div>
                         </td>
                     </tr>
                     @empty
@@ -123,4 +128,89 @@
         @endif
     </div>
 </div>
+
+<!-- Email Modal -->
+<div id="emailModal" class="fixed inset-0 z-[2000] hidden flex items-center justify-center p-4">
+    <div class="absolute inset-0 bg-slate-900/60 backdrop-blur-sm" onclick="closeEmailModal()"></div>
+    <div class="relative w-full max-w-md animate-slide-up">
+        <div class="bg-white rounded-3xl shadow-2xl border border-slate-100 overflow-hidden">
+            <div class="bg-gradient-to-r from-cyan-600 to-indigo-600 p-6 text-white text-center">
+                <div class="w-16 h-16 bg-white/20 rounded-2xl flex items-center justify-center mx-auto mb-4 text-2xl">
+                    <i class="fas fa-paper-plane"></i>
+                </div>
+                <h3 class="text-xl font-bold">{{ app()->getLocale() == 'ar' ? 'إرسال ملف المريضة' : 'Send Patient File' }}</h3>
+                <p class="text-white/80 text-sm mt-1" id="modalPatientName"></p>
+            </div>
+            <div class="p-8">
+                <label class="block text-sm font-bold text-slate-700 mb-2">{{ app()->getLocale() == 'ar' ? 'البريد الإلكتروني' : 'Email Address' }}</label>
+                <input type="email" id="targetEmail" class="w-full px-4 py-3 rounded-xl border border-slate-200 focus:border-cyan-500 focus:ring-4 focus:ring-cyan-500/10 transition-all outline-none text-sm font-medium" placeholder="example@email.com">
+                
+                <div class="grid grid-cols-2 gap-3 mt-8">
+                    <button onclick="closeEmailModal()" class="py-3 rounded-xl font-bold text-sm text-slate-400 bg-slate-50 hover:bg-slate-100 transition-all">
+                        {{ app()->getLocale() == 'ar' ? 'إلغاء' : 'Cancel' }}
+                    </button>
+                    <button id="sendEmailBtn" onclick="confirmSendEmail()" class="py-3 rounded-xl font-bold text-sm text-white bg-cyan-600 hover:bg-cyan-700 transition-all shadow-lg shadow-cyan-500/20 flex items-center justify-center gap-2">
+                        <span>{{ app()->getLocale() == 'ar' ? 'إرسال الآن' : 'Send Now' }}</span>
+                        <i class="fas fa-arrow-right rtl:rotate-180"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+let currentPatientId = null;
+
+function emailPatient(id, name) {
+    currentPatientId = id;
+    document.getElementById('modalPatientName').textContent = name;
+    document.getElementById('emailModal').classList.remove('hidden');
+    document.getElementById('targetEmail').value = '';
+    document.getElementById('targetEmail').focus();
+}
+
+function closeEmailModal() {
+    document.getElementById('emailModal').classList.add('hidden');
+}
+
+function confirmSendEmail() {
+    const email = document.getElementById('targetEmail').value;
+    const btn = document.getElementById('sendEmailBtn');
+    
+    if (email && email.includes('@')) {
+        const originalContent = btn.innerHTML;
+        btn.disabled = true;
+        btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i>';
+
+        fetch(`/clinic/patients/${currentPatientId}/email`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'X-CSRF-TOKEN': '{{ csrf_token() }}'
+            },
+            body: JSON.stringify({ email: email })
+        })
+        .then(response => response.json())
+        .then(data => {
+            if (data.success) {
+                alert(data.message);
+                closeEmailModal();
+            } else {
+                alert('Error sending email');
+            }
+        })
+        .catch(error => {
+            console.error('Error:', error);
+            alert('Error sending email');
+        })
+        .finally(() => {
+            btn.disabled = false;
+            btn.innerHTML = originalContent;
+        });
+    } else {
+        alert('{{ app()->getLocale() == "ar" ? "بريد إلكتروني غير صالح" : "Invalid email address" }}');
+    }
+}
+</script>
 @endsection

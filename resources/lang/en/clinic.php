@@ -61,4 +61,8 @@ return [
     'invalid_reset_session' => 'Invalid session, please try again',
     'invalid_token' => 'Invalid or expired verification code',
     'password_reset_success' => 'Password reset successfully',
+    'patient_file' => 'Patient File',
+    'patient_information' => 'Patient Information',
+    'yes' => 'Yes',
+    'no' => 'No',
 ];

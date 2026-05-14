@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}" dir="{{ app()->getLocale() == 'ar' ? 'rtl' : 'ltr' }}">
+
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -9,12 +10,58 @@
     <!-- Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-    
+
+    <!-- PWA -->
+    <link rel="manifest" href="/manifest.json">
+    <meta name="theme-color" content="#00acc1">
+    <link rel="apple-touch-icon" href="{{ asset('assets/materniq.webp') }}">
+
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 
+    <script>
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', () => {
+                navigator.serviceWorker.register('/sw.js').then(registration => {
+                    console.log('SW registered: ', registration);
+                }).catch(registrationError => {
+                    console.log('SW registration failed: ', registrationError);
+                });
+            });
+        }
+
+        let deferredPrompt;
+        window.addEventListener('beforeinstallprompt', (e) => {
+            e.preventDefault();
+            deferredPrompt = e;
+            const banner = document.getElementById('global-pwa-banner');
+            if (banner && !localStorage.getItem('pwa-dismissed')) {
+                banner.classList.remove('hidden');
+            }
+        });
+
+        function installPWA() {
+            if (!deferredPrompt) return;
+            deferredPrompt.prompt();
+            deferredPrompt.userChoice.then((choiceResult) => {
+                if (choiceResult.outcome === 'accepted') {
+                    console.log('User accepted the install prompt');
+                }
+                deferredPrompt = null;
+                document.getElementById('global-pwa-banner').classList.add('hidden');
+            });
+        }
+
+        function dismissPWABanner() {
+            document.getElementById('global-pwa-banner').classList.add('hidden');
+            localStorage.setItem('pwa-dismissed', 'true');
+        }
+    </script>
+
     <style>
-        body { font-family: 'Cairo', sans-serif; }
-        
+        body {
+            font-family: 'Cairo', sans-serif;
+        }
+
         .sidebar {
             width: 280px;
             background: white;
@@ -94,17 +141,47 @@
             background: white;
             border-radius: 1rem;
             border: 1px solid #f1f5f9;
-            box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
         }
 
         @media (max-width: 1024px) {
-            .sidebar { transform: translateX({{ app()->getLocale() == 'ar' ? '100%' : '-100%' }}); transition: transform 0.3s; }
-            .sidebar.active { transform: translateX(0); }
-            .main-content { margin: 0 !important; }
+            .sidebar {
+                transform: translateX({{ app()->getLocale() == 'ar' ? '100%' : '-100%' }});
+                transition: transform 0.3s;
+            }
+
+            .sidebar.active {
+                transform: translateX(0);
+            }
+
+            .main-content {
+                margin: 0 !important;
+            }
         }
     </style>
 </head>
+
 <body class="bg-gray-50 antialiased overflow-x-hidden">
+    <!-- Global PWA Install Banner -->
+    <div id="global-pwa-banner" class="hidden fixed bottom-4 left-4 right-4 z-[2000] bg-gradient-to-r from-cyan-600 to-cyan-800 text-white p-4 rounded-2xl shadow-2xl flex items-center justify-between gap-4 border border-white/20">
+        <div class="flex items-center gap-4">
+            <div class="w-10 h-10 bg-white/20 rounded-xl flex items-center justify-center">
+                <i class="fas fa-mobile-screen-button"></i>
+            </div>
+            <div>
+                <p class="font-bold text-sm leading-tight">{{ app()->getLocale() == 'ar' ? 'تثبيت MaterniQ' : 'Install MaterniQ' }}</p>
+                <p class="text-[11px] text-white/80">{{ app()->getLocale() == 'ar' ? 'للوصول السريع إلى خدماتنا' : 'For quick access to our services' }}</p>
+            </div>
+        </div>
+        <div class="flex gap-2">
+            <button onclick="installPWA()" class="bg-white text-cyan-600 px-4 py-2 rounded-lg font-bold text-xs hover:bg-cyan-50 transition-colors">
+                {{ app()->getLocale() == 'ar' ? 'تثبيت' : 'Install' }}
+            </button>
+            <button onclick="dismissPWABanner()" class="text-white/60 hover:text-white transition-colors">
+                <i class="fas fa-times"></i>
+            </button>
+        </div>
+    </div>
 
     <!-- Mobile Header -->
     <header class="lg:hidden bg-white border-b h-16 flex items-center justify-between px-4 sticky top-0 z-50">
@@ -130,14 +207,17 @@
 
         <div class="flex flex-col h-[calc(100vh-64px)] justify-between overflow-y-auto">
             <nav class="py-6">
-                <p class="px-8 text-[11px] font-bold text-slate-400 uppercase tracking-[0.2em] mb-4">{{ __('Menu') }}</p>
-                
-                <a href="{{ route('clinic.dashboard') }}" class="nav-link {{ request()->routeIs('clinic.dashboard') ? 'active' : '' }}">
+                <p class="px-8 text-[11px] font-bold text-slate-400 uppercase tracking-[0.2em] mb-4">
+                    {{ __('Menu') }}</p>
+
+                <a href="{{ route('clinic.dashboard') }}"
+                    class="nav-link {{ request()->routeIs('clinic.dashboard') ? 'active' : '' }}">
                     <i class="fas fa-columns"></i>
                     <span>{{ app()->getLocale() == 'ar' ? 'لوحة التحكم' : 'Dashboard' }}</span>
                 </a>
 
-                <a href="{{ route('clinic.patients.index') }}" class="nav-link {{ request()->routeIs('clinic.patients.*') ? 'active' : '' }}">
+                <a href="{{ route('clinic.patients.index') }}"
+                    class="nav-link {{ request()->routeIs('clinic.patients.*') ? 'active' : '' }}">
                     <i class="fas fa-hospital-user"></i>
                     <span>{{ __('clinic.patients') }}</span>
                 </a>
@@ -147,24 +227,30 @@
             <div class="p-6">
                 <div class="bg-slate-50 border border-slate-100 rounded-2xl p-4 mb-4">
                     <div class="flex items-center gap-3">
-                        <div class="w-10 h-10 rounded-xl bg-cyan-600 text-white flex items-center justify-center font-bold shadow-lg shadow-cyan-500/20">
+                        <div
+                            class="w-10 h-10 rounded-xl bg-cyan-600 text-white flex items-center justify-center font-bold shadow-lg shadow-cyan-500/20">
                             {{ strtoupper(substr(Auth::guard('clinic')->user()->name, 0, 1)) }}
                         </div>
                         <div class="overflow-hidden">
-                            <p class="text-sm font-bold text-slate-900 truncate">{{ Auth::guard('clinic')->user()->name }}</p>
-                            <p class="text-[10px] text-slate-500 uppercase font-bold">{{ app()->getLocale() == 'ar' ? 'طبيب مسجل' : 'Logged in' }}</p>
+                            <p class="text-sm font-bold text-slate-900 truncate">
+                                {{ Auth::guard('clinic')->user()->name }}</p>
+                            <p class="text-[10px] text-slate-500 uppercase font-bold">
+                                {{ app()->getLocale() == 'ar' ? 'طبيب مسجل' : 'Logged in' }}</p>
                         </div>
                     </div>
                 </div>
 
                 <div class="grid grid-cols-2 gap-2 mb-4">
-                    <a href="{{ route('lang.switch', 'ar') }}" class="py-2 text-center text-xs rounded-xl {{ app()->getLocale() == 'ar' ? 'bg-white shadow-sm border border-slate-100 text-cyan-600 font-bold' : 'text-slate-400 hover:text-slate-600' }}">العربية</a>
-                    <a href="{{ route('lang.switch', 'en') }}" class="py-2 text-center text-xs rounded-xl {{ app()->getLocale() == 'en' ? 'bg-white shadow-sm border border-slate-100 text-cyan-600 font-bold' : 'text-slate-400 hover:text-slate-600' }}">English</a>
+                    <a href="{{ route('lang.switch', 'ar') }}"
+                        class="py-2 text-center text-xs rounded-xl {{ app()->getLocale() == 'ar' ? 'bg-white shadow-sm border border-slate-100 text-cyan-600 font-bold' : 'text-slate-400 hover:text-slate-600' }}">العربية</a>
+                    <a href="{{ route('lang.switch', 'en') }}"
+                        class="py-2 text-center text-xs rounded-xl {{ app()->getLocale() == 'en' ? 'bg-white shadow-sm border border-slate-100 text-cyan-600 font-bold' : 'text-slate-400 hover:text-slate-600' }}">English</a>
                 </div>
 
                 <form action="{{ route('clinic.logout') }}" method="POST">
                     @csrf
-                    <button type="submit" class="w-full flex items-center justify-center gap-2 py-3 rounded-xl bg-red-50 text-red-600 font-bold text-sm hover:bg-red-100 transition-colors">
+                    <button type="submit"
+                        class="w-full flex items-center justify-center gap-2 py-3 rounded-xl bg-red-50 text-red-600 font-bold text-sm hover:bg-red-100 transition-colors">
                         <i class="fas fa-sign-out-alt"></i>
                         {{ app()->getLocale() == 'ar' ? 'تسجيل الخروج' : 'Logout' }}
                     </button>
@@ -176,11 +262,12 @@
     <!-- Main Content -->
     <main class="main-content">
         <div class="p-4 lg:p-6">
-            @if(session('success'))
-            <div class="mb-6 bg-emerald-50 border border-emerald-100 text-emerald-700 px-6 py-4 rounded-2xl flex items-center gap-3 shadow-sm animate-fade-in">
-                <i class="fas fa-check-circle text-lg"></i>
-                <span class="font-bold">{{ session('success') }}</span>
-            </div>
+            @if (session('success'))
+                <div
+                    class="mb-6 bg-emerald-50 border border-emerald-100 text-emerald-700 px-6 py-4 rounded-2xl flex items-center gap-3 shadow-sm animate-fade-in">
+                    <i class="fas fa-check-circle text-lg"></i>
+                    <span class="font-bold">{{ session('success') }}</span>
+                </div>
             @endif
 
             @yield('content')
@@ -198,9 +285,10 @@
             document.body.classList.toggle('overflow-hidden');
         }
 
-        if(toggleBtn) toggleBtn.addEventListener('click', toggleMenu);
-        if(overlay) overlay.addEventListener('click', toggleMenu);
+        if (toggleBtn) toggleBtn.addEventListener('click', toggleMenu);
+        if (overlay) overlay.addEventListener('click', toggleMenu);
     </script>
     @yield('scripts')
 </body>
+
 </html>

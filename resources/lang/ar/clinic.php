@@ -61,4 +61,8 @@ return [
     'invalid_reset_session' => 'جلسة التحقق غير صالحة، يرجى المحاولة مرة أخرى',
     'invalid_token' => 'رمز التحقق غير صحيح أو منتهي الصلاحية',
     'password_reset_success' => 'تم تغيير كلمة السر بنجاح',
+    'patient_file' => 'ملف المريضة',
+    'patient_information' => 'بيانات المريضة',
+    'yes' => 'نعم',
+    'no' => 'لا',
 ];

@@ -92,6 +92,8 @@ Route::prefix('clinic')->name('clinic.')->group(function () {
             Route::get('{patient}/visits/create', [ClinicPatientController::class, 'createVisit'])->name('visits.create');
             Route::post('{patient}/visits', [ClinicPatientController::class, 'storeVisit'])->name('visits.store');
             Route::get('{patient}/visits/{visit}', [ClinicPatientController::class, 'showVisit'])->name('visits.show');
+            Route::get('{patient}/pdf', [ClinicPatientController::class, 'downloadPdf'])->name('pdf');
+            Route::post('{patient}/email', [ClinicPatientController::class, 'sendEmail'])->name('email');
         });
     });
 });

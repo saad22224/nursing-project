@@ -16,8 +16,52 @@
     <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     
+    <!-- PWA -->
+    <link rel="manifest" href="/manifest.json">
+    <meta name="theme-color" content="#0891b2">
+    <link rel="apple-touch-icon" href="{{ asset('assets/materniq.webp') }}">
+
     <!-- Tailwind CSS -->
     @vite(['resources/css/app.css', 'resources/js/app.js'])
+
+    <script>
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', () => {
+                navigator.serviceWorker.register('/sw.js').then(registration => {
+                    console.log('SW registered: ', registration);
+                }).catch(registrationError => {
+                    console.log('SW registration failed: ', registrationError);
+                });
+            });
+        }
+
+        let deferredPrompt;
+        window.addEventListener('beforeinstallprompt', (e) => {
+            e.preventDefault();
+            deferredPrompt = e;
+            const banner = document.getElementById('global-pwa-banner');
+            if (banner && !localStorage.getItem('pwa-dismissed')) {
+                banner.classList.remove('hidden');
+            }
+        });
+
+        function installPWA() {
+            if (!deferredPrompt) return;
+            deferredPrompt.prompt();
+            deferredPrompt.userChoice.then((choiceResult) => {
+                if (choiceResult.outcome === 'accepted') {
+                    console.log('User accepted the install prompt');
+                }
+                deferredPrompt = null;
+                document.getElementById('global-pwa-banner').classList.add('hidden');
+            });
+        }
+
+        function dismissPWABanner() {
+            document.getElementById('global-pwa-banner').classList.add('hidden');
+            localStorage.setItem('pwa-dismissed', 'true');
+        }
+    </script>
     
     <style>
         * { font-family: 'Cairo', 'Inter', sans-serif; }
@@ -150,6 +194,26 @@
     @yield('styles')
 </head>
 <body class="bg-slate-50 min-h-screen text-gray-800 flex">
+    <!-- Global PWA Install Banner -->
+    <div id="global-pwa-banner" class="hidden fixed bottom-4 left-4 right-4 z-[3000] bg-gradient-to-r from-cyan-600 to-cyan-800 text-white p-4 rounded-2xl shadow-2xl flex items-center justify-between gap-4 border border-white/20">
+        <div class="flex items-center gap-4">
+            <div class="w-10 h-10 bg-white/20 rounded-xl flex items-center justify-center">
+                <i class="fas fa-mobile-screen-button"></i>
+            </div>
+            <div>
+                <p class="font-bold text-sm leading-tight">{{ app()->getLocale() == 'ar' ? 'تثبيت MaterniQ' : 'Install MaterniQ' }}</p>
+                <p class="text-[11px] text-white/80">{{ app()->getLocale() == 'ar' ? 'للوصول السريع إلى خدماتنا' : 'For quick access to our services' }}</p>
+            </div>
+        </div>
+        <div class="flex gap-2">
+            <button onclick="installPWA()" class="bg-white text-cyan-600 px-4 py-2 rounded-lg font-bold text-xs hover:bg-cyan-50 transition-colors">
+                {{ app()->getLocale() == 'ar' ? 'تثبيت' : 'Install' }}
+            </button>
+            <button onclick="dismissPWABanner()" class="text-white/60 hover:text-white transition-colors">
+                <i class="fas fa-times"></i>
+            </button>
+        </div>
+    </div>
     
     <!-- Sidebar -->
     <aside class="w-64 bg-white border-r border-gray-100 flex-shrink-0 flex flex-col hidden md:flex" style="position: sticky; top: 0; height: 100vh;">

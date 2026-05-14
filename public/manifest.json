@@ -1,0 +1,17 @@
+{
+  "name": "MaterniQ",
+  "short_name": "MaterniQ",
+  "description": "MaterniQ - Maternity Health Assistant",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#00acc1",
+  "icons": [
+    {
+      "src": "/assets/materniq.webp",
+      "sizes": "192x192 512x512",
+      "type": "image/webp",
+      "purpose": "any maskable"
+    }
+  ]
+}
