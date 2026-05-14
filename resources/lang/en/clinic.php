@@ -65,4 +65,5 @@ return [
     'patient_information' => 'Patient Information',
     'yes' => 'Yes',
     'no' => 'No',
+    'name' => 'Patient Name',
 ];

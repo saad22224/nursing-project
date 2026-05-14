@@ -65,4 +65,5 @@ return [
     'patient_information' => 'بيانات المريضة',
     'yes' => 'نعم',
     'no' => 'لا',
+    'name' => 'اسم المريضة',
 ];

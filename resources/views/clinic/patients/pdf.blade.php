@@ -65,8 +65,9 @@
 <body>
 
     <div class="header">
-        <h1>{{ __('clinic.patient_file') }}</h1>
-        <p>{{ date('Y-m-d') }}</p>
+        <h1>{{ $patient->clinic->name }}</h1>
+        <h2 style="color: #666; margin-top: 5px;">{{ __('clinic.patient_file') }}</h2>
+        <p style="margin-top: 10px;">{{ date('Y-m-d') }}</p>
     </div>
 
     <div class="section">
