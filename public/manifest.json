@@ -4,7 +4,7 @@
     "start_url": "/",
     "background_color": "#ffffff",
     "description": "MaterniQ - Maternity Health Assistant",
-    "display": "standalone", 
+    "display": "standalone",
     "theme_color": "#0891b2",
     "icons": [
         {

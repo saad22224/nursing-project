@@ -1,67 +1,228 @@
-<!doctype html>
-<html lang="en">
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
 <head>
     <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="title" content="InfyBonus">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
+    <title>لا يوجد اتصال بالإنترنت | Offline</title>
+    <meta name="theme-color" content="#0891b2">
     <style>
-        .error_body {
+        :root {
+            --primary: #0891b2;
+            --primary-dark: #0e7490;
+            --bg-color: #f8fafc;
+            --text-main: #0f172a;
+            --text-muted: #64748b;
+        }
+
+        * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            height: 100vh;
+            font-family: system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            background-image: radial-gradient(circle at top right, #e0f2fe 0%, transparent 40%),
+                              radial-gradient(circle at bottom left, #ecfeff 0%, transparent 40%);
+        }
+
+        .container {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            padding: 3.5rem 2.5rem;
+            border-radius: 30px;
+            box-shadow: 0 25px 50px -12px rgba(8, 145, 178, 0.15),
+                        0 0 0 1px rgba(255, 255, 255, 0.6) inset;
+            text-align: center;
+            max-width: 440px;
             width: 100%;
-            background: #f9f9f9;
+            animation: slideUp 0.7s cubic-bezier(0.16, 1, 0.3, 1);
         }
 
-        .error_container .error_heading {
-            color: transparent;
-            font-size: 160px;
-            margin: 0;
-            font-weight: 900;
-            letter-spacing: 20px;
-            background-size: 100% 100%;
-            background: linear-gradient(90deg, #6b719b 38%, #9da3cc 53%, #979dce 65%);
-            -webkit-background-clip: text;
-            -moz-background-clip: text;
-            -ms-background-clip: text;
-        }
-
-        @media (max-width: 540px) {
-            .error_container .error_heading {
-                font-size: 120px;
-                letter-spacing: 10px;
+        @keyframes slideUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
             }
         }
 
-        .error_container .error_btn {
-            background-color: #6e749e !important;
+        .icon-wrapper {
+            position: relative;
+            width: 120px;
+            height: 120px;
+            margin: 0 auto 2rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .icon-bg {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(135deg, #e0f2fe 0%, #bae6fd 100%);
+            border-radius: 35%;
+            transform: rotate(45deg);
+            animation: morph 8s ease-in-out infinite;
+            box-shadow: 0 15px 30px -5px rgba(14, 116, 144, 0.2);
+        }
+
+        @keyframes morph {
+            0% { border-radius: 35%; transform: rotate(45deg); }
+            50% { border-radius: 50%; transform: rotate(90deg); }
+            100% { border-radius: 35%; transform: rotate(45deg); }
+        }
+
+        .icon-svg {
+            position: relative;
+            z-index: 10;
+            width: 54px;
+            height: 54px;
+            fill: none;
+            stroke: var(--primary-dark);
+            stroke-width: 2;
+            stroke-linecap: round;
+            stroke-linejoin: round;
+        }
+
+        h1 {
+            font-size: 1.6rem;
+            font-weight: 800;
+            margin-bottom: 0.75rem;
+            color: var(--text-main);
+            letter-spacing: -0.02em;
+        }
+
+        p {
+            color: var(--text-muted);
+            font-size: 1rem;
+            line-height: 1.6;
+            margin-bottom: 0;
+        }
+
+        .divider {
+            width: 40px;
+            height: 3px;
+            background: #e2e8f0;
+            margin: 1.5rem auto;
+            border-radius: 3px;
+        }
+
+        .en-section {
+            direction: ltr;
+            margin-bottom: 2.5rem;
+        }
+        
+        .en-section h2 {
+            font-size: 1.3rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+            color: var(--text-main);
+        }
+
+        .btn {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+            color: white;
             border: none;
-            outline: none;
+            padding: 16px 32px;
+            font-size: 1.1rem;
+            font-weight: 700;
+            border-radius: 16px;
+            cursor: pointer;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            width: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+            box-shadow: 0 10px 20px -5px rgba(8, 145, 178, 0.4);
         }
 
-        .error_container .error_btn:focus {
-            box-shadow: none !important;
+        .btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 25px -5px rgba(8, 145, 178, 0.5);
         }
 
-        .error_container .error_message,
-        .error_container .error_paragraph {
-            color: #787878;
+        .btn:active {
+            transform: translateY(0);
+            box-shadow: 0 5px 10px -5px rgba(8, 145, 178, 0.4);
+        }
+
+        .btn svg {
+            width: 22px;
+            height: 22px;
+            fill: none;
+            stroke: currentColor;
+            stroke-width: 2.5;
+            stroke-linecap: round;
+            stroke-linejoin: round;
+            transition: transform 0.3s ease;
+        }
+
+        .btn:hover svg {
+            transform: rotate(180deg);
+        }
+
+        .app-name {
+            position: absolute;
+            top: 40px;
+            left: 0;
+            right: 0;
+            text-align: center;
+            font-weight: 800;
+            font-size: 1.4rem;
+            color: var(--primary);
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            opacity: 0.8;
         }
     </style>
 </head>
 <body>
-<div class="error_body">
-    <div
-        class="container error_container d-flex justify-content-center align-items-center flex-column w-100 h-100 p-5 text-center">
-        <h2 class="error_message text-center mb-3">Boo! You don't have an internet connection</h2>
-        <p class="error_paragraph text-center mb-5">
-            Please check your network connection and try again.
-        </p>
-        <a href="/" class="btn btn-primary error_btn">Back to Home Page</a>
+    <div class="app-name">Materniq</div>
+    
+    <div class="container">
+        <div class="icon-wrapper">
+            <div class="icon-bg"></div>
+            <svg class="icon-svg" viewBox="0 0 24 24">
+                <line x1="1" y1="1" x2="23" y2="23"></line>
+                <path d="M16.72 11.06A10.94 10.94 0 0 1 19 12.55"></path>
+                <path d="M5 12.55a10.94 10.94 0 0 1 5.17-2.39"></path>
+                <path d="M10.71 5.05A16 16 0 0 1 22.58 9"></path>
+                <path d="M1.42 9a15.91 15.91 0 0 1 4.7-2.88"></path>
+                <path d="M8.53 16.11a6 6 0 0 1 6.95 0"></path>
+                <line x1="12" y1="20" x2="12.01" y2="20" stroke-width="3"></line>
+            </svg>
+        </div>
+        
+        <h1>أنت غير متصل بالإنترنت</h1>
+        <p>يبدو أنك فقدت الاتصال بالشبكة. يرجى التحقق من اتصالك بالإنترنت والمحاولة مرة أخرى.</p>
+        
+        <div class="divider"></div>
+        
+        <div class="en-section">
+            <h2>You are offline</h2>
+            <p>It seems you've lost your network connection. Please check your internet and try again.</p>
+        </div>
+
+        <button class="btn" onclick="window.location.reload()">
+            <svg viewBox="0 0 24 24">
+                <path d="M21 2v6h-6"></path>
+                <path d="M3 12a9 9 0 1 0 2.1-5.6L2 9"></path>
+            </svg>
+            <span>إعادة المحاولة / Retry</span>
+        </button>
     </div>
-</div>
 </body>
 </html>

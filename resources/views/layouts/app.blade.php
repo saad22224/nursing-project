@@ -37,13 +37,16 @@
             deferredPrompt = e;
             const installBtn = document.getElementById('installBtn');
             if (installBtn) {
-                installBtn.style.display = 'block';
+                installBtn.style.display = 'flex';
+                // Trigger reflow for animation
+                setTimeout(() => {
+                    installBtn.style.transform = 'translateY(0)';
+                    installBtn.style.opacity = '1';
+                }, 50);
+
                 // Auto-hide after 10 seconds
                 setTimeout(() => {
-                    if (installBtn.style.display !== 'none') {
-                        installBtn.style.opacity = '0';
-                        setTimeout(() => installBtn.style.display = 'none', 500);
-                    }
+                    hideInstallBtn();
                 }, 10000);
             }
         });
@@ -51,9 +54,7 @@
         async function installApp() {
             if (!deferredPrompt) return;
             deferredPrompt.prompt();
-            const {
-                outcome
-            } = await deferredPrompt.userChoice;
+            const { outcome } = await deferredPrompt.userChoice;
             deferredPrompt = null;
             hideInstallBtn();
         }
@@ -61,8 +62,11 @@
         function hideInstallBtn() {
             const installBtn = document.getElementById('installBtn');
             if (installBtn) {
+                installBtn.style.transform = 'translateY(-150%)';
                 installBtn.style.opacity = '0';
-                setTimeout(() => installBtn.style.display = 'none', 500);
+                setTimeout(() => {
+                    installBtn.style.display = 'none';
+                }, 600);
             }
         }
     </script>
@@ -354,19 +358,25 @@
 
 <body class="bg-white min-h-screen text-gray-800">
     <!-- PWA Install Button (Auto-hides) -->
-    <div id="installBtn" style="display:none; transition: all 0.5s ease;"
-        class="fixed bottom-6 right-6 z-[100] flex items-center gap-2">
-        <div onclick="installApp()"
-            class="bg-cyan-600 text-white px-6 py-4 rounded-2xl shadow-2xl flex items-center gap-3 hover:bg-cyan-700 transition-all active:scale-95 border border-white/20 cursor-pointer">
-            <div class="w-8 h-8 bg-white/20 rounded-lg flex items-center justify-center">
-                <i class="fas fa-download"></i>
+    <div id="installBtn" style="display:none; opacity:0; transform: translateY(-150%); transition: all 0.6s cubic-bezier(0.68, -0.55, 0.265, 1.55);"
+        class="fixed top-4 left-0 right-0 mx-auto z-[100] flex items-center justify-between gap-2 md:gap-4 bg-white px-3 md:px-4 py-3 rounded-2xl shadow-[0_10px_40px_-10px_rgba(0,0,0,0.2)] border border-gray-100 w-[92%] max-w-sm">
+        <div class="flex items-center gap-2 md:gap-3 overflow-hidden">
+            <div class="flex-shrink-0">
+                <img src="{{ asset('assets/icon.png') }}" class="w-10 h-10 rounded-xl shadow-sm border border-gray-50 object-cover" alt="App Icon">
             </div>
-            <span class="font-bold text-sm">{{ app()->getLocale() == 'ar' ? 'تثبيت التطبيق' : 'Install App' }}</span>
+            <div class="flex-1 min-w-0">
+                <h4 class="text-[13px] md:text-sm font-bold text-gray-900 leading-tight truncate">{{ config('app.name', 'Nursing Care') }}</h4>
+                <p class="text-[10px] md:text-xs text-gray-500 mt-0.5 truncate">{{ app()->getLocale() == 'ar' ? 'تثبيت التطبيق على جهازك' : 'Install app on your device' }}</p>
+            </div>
         </div>
-        <button onclick="hideInstallBtn()"
-            class="w-10 h-10 bg-white border border-slate-200 text-slate-400 rounded-full flex items-center justify-center shadow-lg hover:text-slate-900 transition-colors">
-            <i class="fas fa-times"></i>
-        </button>
+        <div class="flex items-center gap-1.5 md:gap-2 flex-shrink-0">
+            <button onclick="installApp()" class="bg-cyan-600 text-white text-[11px] md:text-xs font-bold px-3 py-2 rounded-xl hover:bg-cyan-700 transition-colors shadow-md shadow-cyan-500/20 active:scale-95 whitespace-nowrap">
+                {{ app()->getLocale() == 'ar' ? 'تثبيت' : 'Install' }}
+            </button>
+            <button onclick="hideInstallBtn()" class="w-7 h-7 md:w-8 md:h-8 flex items-center justify-center rounded-full bg-gray-50 text-gray-400 hover:bg-gray-200 hover:text-gray-700 transition-colors active:scale-95 flex-shrink-0">
+                <i class="fas fa-times text-xs md:text-sm"></i>
+            </button>
+        </div>
     </div>
 
     <!-- Navigation -->
