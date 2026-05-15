@@ -358,6 +358,7 @@
 
 <body class="bg-white min-h-screen text-gray-800">
     <!-- PWA Install Button (Auto-hides) -->
+    @if(request()->route()->named('home'))
     <div id="installBtn" style="display:none; opacity:0; transform: translateY(-150%); transition: all 0.6s cubic-bezier(0.68, -0.55, 0.265, 1.55);"
         class="fixed top-4 left-0 right-0 mx-auto z-[100] flex items-center justify-between gap-2 md:gap-4 bg-white px-3 md:px-4 py-3 rounded-2xl shadow-[0_10px_40px_-10px_rgba(0,0,0,0.2)] border border-gray-100 w-[92%] max-w-sm">
         <div class="flex items-center gap-2 md:gap-3 overflow-hidden">
@@ -378,6 +379,7 @@
             </button>
         </div>
     </div>
+    @endif
 
     <!-- Navigation -->
     <nav class="fixed top-0 left-0 right-0 z-50 glass-header border-b border-gray-100">
