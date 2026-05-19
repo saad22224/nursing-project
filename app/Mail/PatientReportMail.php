@@ -4,9 +4,6 @@ namespace App\Mail;
 
 use Illuminate\Bus\Queueable;
 use Illuminate\Mail\Mailable;
-use Illuminate\Mail\Mailables\Attachment;
-use Illuminate\Mail\Mailables\Content;
-use Illuminate\Mail\Mailables\Envelope;
 use Illuminate\Queue\SerializesModels;
 
 class PatientReportMail extends Mailable
@@ -14,7 +11,11 @@ class PatientReportMail extends Mailable
     use Queueable, SerializesModels;
 
     public $patient;
+
+    public $clinic;
+
     public $pdfContent;
+
     public $fileName;
 
     /**
@@ -22,7 +23,10 @@ class PatientReportMail extends Mailable
      */
     public function __construct($patient, $pdfContent, $fileName)
     {
+        $patient->loadMissing('clinic');
+
         $this->patient = $patient;
+        $this->clinic = $patient->clinic;
         $this->pdfContent = $pdfContent;
         $this->fileName = $fileName;
     }
@@ -32,8 +36,15 @@ class PatientReportMail extends Mailable
      */
     public function build()
     {
+        $clinicName = $this->clinic->name;
+        $patientName = $this->patient->name;
+
+        $subject = app()->getLocale() == 'ar'
+            ? "تقرير المريضة: {$patientName} — {$clinicName}"
+            : "Patient Report: {$patientName} — {$clinicName}";
+
         return $this->view('emails.patient_report')
-            ->subject((app()->getLocale() == 'ar' ? 'تقرير المريضة: ' : 'Patient Report: ') . $this->patient->name)
+            ->subject($subject)
             ->attachData($this->pdfContent, $this->fileName, [
                 'mime' => 'application/pdf',
             ]);

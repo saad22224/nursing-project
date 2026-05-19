@@ -98,11 +98,15 @@
                         </td>
                         <td class="px-6 py-5 text-{{ app()->getLocale() == 'ar' ? 'left' : 'right' }}">
                             <div class="flex items-center justify-end gap-2">
-                                <a href="{{ route('clinic.patients.show', $p) }}" class="inline-flex items-center gap-2 px-3 py-2 border border-slate-200 text-slate-600 rounded-xl hover:border-cyan-600 hover:text-cyan-600 transition-all font-bold text-xs uppercase shadow-sm bg-white" title="{{ __('clinic.view_file') }}">
+                                <a href="{{ route('clinic.patients.show', $p) }}" class="inline-flex items-center gap-2 px-3 py-2 border border-slate-200 text-slate-600 rounded-xl hover:border-cyan-600 hover:text-cyan-600 transition-all font-bold text-xs uppercase shadow-sm bg-white cursor-pointer" title="{{ __('clinic.view_file') }}">
                                     <i class="fas fa-file-medical"></i>
                                 </a>
+
+                                <a href="{{ route('clinic.patients.pdf', $p) }}" class="inline-flex items-center gap-2 px-3 py-2 border border-slate-200 text-slate-600 rounded-xl hover:border-rose-600 hover:text-rose-600 transition-all font-bold text-xs uppercase shadow-sm bg-white cursor-pointer" title="{{ app()->getLocale() == 'ar' ? 'تنزيل PDF' : 'Download PDF' }}">
+                                    <i class="fas fa-file-pdf"></i>
+                                </a>
                                 
-                                <button type="button" onclick="emailPatient('{{ $p->id }}', '{{ $p->name }}')" class="inline-flex items-center gap-2 px-3 py-2 border border-slate-200 text-slate-600 rounded-xl hover:border-indigo-600 hover:text-indigo-600 transition-all font-bold text-xs uppercase shadow-sm bg-white" title="{{ app()->getLocale() == 'ar' ? 'إرسال PDF عبر البريد' : 'Send PDF via Email' }}">
+                                <button type="button" onclick="emailPatient('{{ $p->id }}', '{{ addslashes($p->name) }}')" class="inline-flex items-center gap-2 px-3 py-2 border border-slate-200 text-slate-600 rounded-xl hover:border-indigo-600 hover:text-indigo-600 transition-all font-bold text-xs uppercase shadow-sm bg-white cursor-pointer" title="{{ app()->getLocale() == 'ar' ? 'إرسال PDF عبر البريد' : 'Send PDF via Email' }}">
                                     <i class="fas fa-paper-plane"></i>
                                 </button>
                             </div>
@@ -146,10 +150,10 @@
                 <input type="email" id="targetEmail" class="w-full px-4 py-3 rounded-xl border border-slate-200 focus:border-cyan-500 focus:ring-4 focus:ring-cyan-500/10 transition-all outline-none text-sm font-medium" placeholder="example@email.com">
                 
                 <div class="grid grid-cols-2 gap-3 mt-8">
-                    <button onclick="closeEmailModal()" class="py-3 rounded-xl font-bold text-sm text-slate-400 bg-slate-50 hover:bg-slate-100 transition-all">
+                    <button onclick="closeEmailModal()" class="py-3 rounded-xl font-bold text-sm text-slate-400 bg-slate-50 hover:bg-slate-100 transition-all cursor-pointer">
                         {{ app()->getLocale() == 'ar' ? 'إلغاء' : 'Cancel' }}
                     </button>
-                    <button id="sendEmailBtn" onclick="confirmSendEmail()" class="py-3 rounded-xl font-bold text-sm text-white bg-cyan-600 hover:bg-cyan-700 transition-all shadow-lg shadow-cyan-500/20 flex items-center justify-center gap-2">
+                    <button id="sendEmailBtn" onclick="confirmSendEmail()" class="py-3 rounded-xl font-bold text-sm text-white bg-cyan-600 hover:bg-cyan-700 transition-all shadow-lg shadow-cyan-500/20 flex items-center justify-center gap-2 cursor-pointer">
                         <span>{{ app()->getLocale() == 'ar' ? 'إرسال الآن' : 'Send Now' }}</span>
                         <i class="fas fa-arrow-right rtl:rotate-180"></i>
                     </button>

@@ -2,12 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Mail\PatientReportMail;
 use App\Models\ClinicPatient;
 use App\Models\ClinicVisit;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Mail;
-use App\Mail\PatientReportMail;
 use niklasravnsborg\LaravelPdf\Facades\Pdf as PDF;
 
 class ClinicPatientController extends Controller
@@ -16,10 +16,11 @@ class ClinicPatientController extends Controller
     {
         $query = Auth::guard('clinic')->user()->patients();
         if ($request->search) {
-            $query->where('name', 'like', '%' . $request->search . '%')
-                ->orWhere('phone', 'like', '%' . $request->search . '%');
+            $query->where('name', 'like', '%'.$request->search.'%')
+                ->orWhere('phone', 'like', '%'.$request->search.'%');
         }
         $patients = $query->latest()->paginate(15);
+
         return view('clinic.patients.index', compact('patients'));
     }
 
@@ -59,8 +60,11 @@ class ClinicPatientController extends Controller
 
     public function show(ClinicPatient $patient)
     {
-        if ($patient->clinic_id != Auth::guard('clinic')->id()) abort(403);
+        if ($patient->clinic_id != Auth::guard('clinic')->id()) {
+            abort(403);
+        }
         $patient->load('visits');
+
         return view('clinic.patients.show', compact('patient'));
     }
 
@@ -69,19 +73,27 @@ class ClinicPatientController extends Controller
         if (
             $patient->clinic_id != Auth::guard('clinic')->id()
             || $visit->clinic_patient_id != $patient->id
-        ) abort(403);
+        ) {
+            abort(403);
+        }
+
         return view('clinic.visits.show', compact('patient', 'visit'));
     }
 
     public function createVisit(ClinicPatient $patient)
     {
-        if ($patient->clinic_id != Auth::guard('clinic')->id()) abort(403);
+        if ($patient->clinic_id != Auth::guard('clinic')->id()) {
+            abort(403);
+        }
+
         return view('clinic.visits.create', compact('patient'));
     }
 
     public function storeVisit(Request $request, ClinicPatient $patient)
     {
-        if ($patient->clinic_id != Auth::guard('clinic')->id()) abort(403);
+        if ($patient->clinic_id != Auth::guard('clinic')->id()) {
+            abort(403);
+        }
 
         $validated = $request->validate([
             'visit_date' => 'required|date',
@@ -97,31 +109,36 @@ class ClinicPatientController extends Controller
         ]);
 
         $patient->visits()->create($validated);
+
         return redirect()->route('clinic.patients.show', $patient)->with('success', 'Visit recorded successfully.');
     }
 
     public function downloadPdf(ClinicPatient $patient)
     {
-        if ($patient->clinic_id != Auth::guard('clinic')->id()) abort(403);
-        
-        $patient->load('visits');
-        
+        if ($patient->clinic_id != Auth::guard('clinic')->id()) {
+            abort(403);
+        }
+
+        $patient->load(['visits', 'clinic']);
+
         $pdf = PDF::loadView('clinic.patients.pdf', ['patient' => $patient]);
-        
-        return $pdf->download('patient_' . $patient->id . '_' . date('Y_m_d') . '.pdf');
+
+        return $pdf->download('patient_'.$patient->id.'_'.date('Y_m_d').'.pdf');
     }
 
     public function sendEmail(Request $request, ClinicPatient $patient)
     {
-        if ($patient->clinic_id != Auth::guard('clinic')->id()) abort(403);
-        
+        if ($patient->clinic_id != Auth::guard('clinic')->id()) {
+            abort(403);
+        }
+
         $request->validate([
-            'email' => 'required|email'
+            'email' => 'required|email',
         ]);
 
-        $patient->load('visits');
-        
-        $fileName = 'patient_' . $patient->id . '_' . date('Y_m_d') . '.pdf';
+        $patient->load(['visits', 'clinic']);
+
+        $fileName = 'patient_'.$patient->id.'_'.date('Y_m_d').'.pdf';
         $pdf = PDF::loadView('clinic.patients.pdf', ['patient' => $patient]);
         $pdfContent = $pdf->output();
 

@@ -13,10 +13,20 @@
                 <li class="text-gray-900">{{ $patient->name }}</li>
             </ol>
         </nav>
-        <a href="{{ route('clinic.patients.visits.create', $patient) }}" class="btn-primary">
-            <i class="fas fa-plus-circle"></i>
-            {{ __('clinic.add_visit') }}
-        </a>
+        <div class="flex flex-wrap items-center gap-2">
+            <a href="{{ route('clinic.patients.pdf', $patient) }}" class="inline-flex items-center gap-2 px-4 py-2.5 border border-slate-200 text-slate-600 rounded-xl hover:border-rose-600 hover:text-rose-600 transition-all font-bold text-xs uppercase shadow-sm bg-white cursor-pointer" title="{{ app()->getLocale() == 'ar' ? 'تنزيل PDF' : 'Download PDF' }}">
+                <i class="fas fa-file-pdf"></i>
+                <span class="hidden sm:inline">{{ app()->getLocale() == 'ar' ? 'تنزيل PDF' : 'Download PDF' }}</span>
+            </a>
+            {{-- <button type="button" onclick="emailPatient('{{ $patient->id }}', '{{ addslashes($patient->name) }}')" class="inline-flex items-center gap-2 px-4 py-2.5 border border-slate-200 text-slate-600 rounded-xl hover:border-indigo-600 hover:text-indigo-600 transition-all font-bold text-xs uppercase shadow-sm bg-white cursor-pointer" title="{{ app()->getLocale() == 'ar' ? 'إرسال PDF عبر البريد' : 'Send PDF via Email' }}">
+                <i class="fas fa-paper-plane"></i>
+                <span class="hidden sm:inline">{{ app()->getLocale() == 'ar' ? 'إرسال PDF' : 'Send PDF' }}</span>
+            </button> --}}
+            <a href="{{ route('clinic.patients.visits.create', $patient) }}" class="btn-primary">
+                <i class="fas fa-plus-circle"></i>
+                {{ __('clinic.add_visit') }}
+            </a>
+        </div>
     </div>
 
     <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
